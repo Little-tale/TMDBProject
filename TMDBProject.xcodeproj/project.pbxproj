@@ -42,6 +42,9 @@
 		7BE61C8D2B6D3ABE006E3CAF /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61C8C2B6D3ABE006E3CAF /* BaseCollectionViewCell.swift */; };
 		7BE61C902B6D3C17006E3CAF /* overviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61C8F2B6D3C17006E3CAF /* overviewView.swift */; };
 		7BE61C932B6D4165006E3CAF /* ReusableIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61C922B6D4165006E3CAF /* ReusableIdentifier.swift */; };
+		7BE61C952B6D61E7006E3CAF /* DetailRecommendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61C942B6D61E7006E3CAF /* DetailRecommendCollectionViewCell.swift */; };
+		7BE61C972B6D6221006E3CAF /* DetailRecommendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61C962B6D6221006E3CAF /* DetailRecommendTableViewCell.swift */; };
+		7BE61C992B6D65FC006E3CAF /* defaultHeaderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61C982B6D65FC006E3CAF /* defaultHeaderLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +81,9 @@
 		7BE61C8C2B6D3ABE006E3CAF /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		7BE61C8F2B6D3C17006E3CAF /* overviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = overviewView.swift; sourceTree = "<group>"; };
 		7BE61C922B6D4165006E3CAF /* ReusableIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableIdentifier.swift; sourceTree = "<group>"; };
+		7BE61C942B6D61E7006E3CAF /* DetailRecommendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecommendCollectionViewCell.swift; sourceTree = "<group>"; };
+		7BE61C962B6D6221006E3CAF /* DetailRecommendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecommendTableViewCell.swift; sourceTree = "<group>"; };
+		7BE61C982B6D65FC006E3CAF /* defaultHeaderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = defaultHeaderLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +198,8 @@
 				7BE61C6B2B6CD078006E3CAF /* StartViewControllerTableCell.swift */,
 				7BE61C722B6CDE60006E3CAF /* StartViewCollectIonvIewCell.swift */,
 				7BE61C882B6D3A07006E3CAF /* DetailPosterViewCell.swift */,
+				7BE61C942B6D61E7006E3CAF /* DetailRecommendCollectionViewCell.swift */,
+				7BE61C962B6D6221006E3CAF /* DetailRecommendTableViewCell.swift */,
 			);
 			path = "Table+CollectionViewCells";
 			sourceTree = "<group>";
@@ -200,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				7BE61C702B6CDA0C006E3CAF /* UnderLineLabel.swift */,
+				7BE61C982B6D65FC006E3CAF /* defaultHeaderLabel.swift */,
 			);
 			path = "CustomLabel+TextField";
 			sourceTree = "<group>";
@@ -337,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BE61C682B6CCF5C006E3CAF /* StartViewSearchBar.swift in Sources */,
+				7BE61C952B6D61E7006E3CAF /* DetailRecommendCollectionViewCell.swift in Sources */,
 				7BDEF2DF2B6CC2A500111D62 /* ViewController.swift in Sources */,
 				7BE61C872B6D3476006E3CAF /* DetailViewController.swift in Sources */,
 				7BDEF2F92B6CC5F100111D62 /* DetailBaseView.swift in Sources */,
@@ -344,6 +354,7 @@
 				7BE61C822B6D26BF006E3CAF /* SectionText.swift in Sources */,
 				7BE61C852B6D2FC1006E3CAF /* TransitionStyles.swift in Sources */,
 				7BDEF2DB2B6CC2A500111D62 /* AppDelegate.swift in Sources */,
+				7BE61C972B6D6221006E3CAF /* DetailRecommendTableViewCell.swift in Sources */,
 				7BDEF3052B6CC8C200111D62 /* BaseView.swift in Sources */,
 				7BDEF3002B6CC70B00111D62 /* DetailView.swift in Sources */,
 				7BE61C902B6D3C17006E3CAF /* overviewView.swift in Sources */,
@@ -356,6 +367,7 @@
 				7BDEF2EF2B6CC2B300111D62 /* APIKey.swift in Sources */,
 				7BE61C8B2B6D3A1B006E3CAF /* BaseTableViewCell.swift in Sources */,
 				7BE61C892B6D3A07006E3CAF /* DetailPosterViewCell.swift in Sources */,
+				7BE61C992B6D65FC006E3CAF /* defaultHeaderLabel.swift in Sources */,
 				7BDEF2DD2B6CC2A500111D62 /* SceneDelegate.swift in Sources */,
 				7BE61C932B6D4165006E3CAF /* ReusableIdentifier.swift in Sources */,
 				7BE61C782B6CE301006E3CAF /* APIManager.swift in Sources */,

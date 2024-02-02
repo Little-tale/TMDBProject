@@ -36,14 +36,16 @@ class overviewView: BaseView {
         }
     }
     override func designView() {
-        overViewLabel.backgroundColor = .brown
-        nameLabel.backgroundColor = .cyan
-        overViewLabel.backgroundColor = .blue
-        overViewLabel.text = "시퍼런색"
+        //overViewLabel.backgroundColor = .brown
+        //nameLabel.backgroundColor = .cyan
+        //overViewLabel.backgroundColor = .blue
+
         overViewLabel.numberOfLines = 4
-        nameLabel.text = "파랑색dpdpdpdpdp"
-        dateLabel.text = "깜징"
-        dateLabel.backgroundColor = .black
+       
+        // dateLabel.backgroundColor = .black
+        self.backgroundColor = UIColor(white: 1, alpha: 0.4)
+        self.layer.cornerRadius = 12
+        self.clipsToBounds = true
     }
     override func layoutSubviews() {
         super.layoutSubviews()

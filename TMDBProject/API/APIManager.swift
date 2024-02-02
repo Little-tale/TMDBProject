@@ -22,6 +22,7 @@ class TMDBAPIManager {
     // type: T.Type 를 적은 이유 -> 메타 타입 즉 타입의 타입을 알고 즉 자체에 접근해서 사용하려는 건데
     // 중요한건 안쓴다는 거다. 몽말이냐? 내가 of: type 이라한다면 사용하는 거지만
     // 정작 T.self 메타타입(나야~) 를 사용하게 된다면 그저 타입을 명시하려는 목적에서 사용한다는 것이다.
+    // 제네릭 함수에서 타입 자체를 매개변수로 받고자 할 때는 T.Type을 사용하고, 이를 호출할 때는 타입.self를 사용하여 해당 타입의 메타 타입 인스턴스를 전달한다.
     func fetchSearchView<T: Decodable>(type: T.Type, api: TMDBAPI, compliteHandler : @escaping (T) -> Void ) {
         print(api.endPoint)
         print(api.baseUrl)
