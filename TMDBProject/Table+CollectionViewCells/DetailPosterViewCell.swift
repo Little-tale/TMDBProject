@@ -23,11 +23,13 @@ class DetailPosterViewCell : BaseTableViewCell {
     override func configureLayout() {
         ImageView.snp.makeConstraints { make in
             make.edges.equalTo(contentView.safeAreaLayoutGuide).inset(8)
-            make.height.equalTo(UIScreen.main.bounds.height / 1.7).priority(501)
+            make.height.equalTo(UIScreen.main.bounds.height / 1.7).priority(100)
         }
         detailView.snp.makeConstraints { make in
-            make.horizontalEdges.bottom.equalTo(ImageView)
-            make.height.equalTo(180).priority(502)
+            
+            make.horizontalEdges.equalTo(contentView).inset(20)
+            make.bottom.equalTo(ImageView.snp.bottom).inset(8)
+            make.height.equalTo(200)
         }
         
     }
@@ -39,7 +41,6 @@ class DetailPosterViewCell : BaseTableViewCell {
         self.clipsToBounds = true
         ImageView.layer.cornerRadius = 12
         ImageView.clipsToBounds = true
-        
         
     }
     

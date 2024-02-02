@@ -15,30 +15,39 @@ class overviewView: BaseView {
         self.addSubview(nameLabel)
         self.addSubview(dateLabel)
         self.addSubview(overViewLabel)
+    
     }
     override func configureLayout() {
+        overViewLabel.snp.makeConstraints { make in
+            make.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide)
+            make.height.equalTo(150)
+        }
         nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(self).inset(8)
-            make.leading.equalTo(self).inset(8)
-            make.height.equalTo(32)
+            make.bottom.equalTo(overViewLabel.snp.top)
+            make.leading.equalTo(safeAreaLayoutGuide).inset(12)
+            make.top.equalTo(safeAreaLayoutGuide)
+//            make.width.greaterThanOrEqualTo(80)
         }
         dateLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(nameLabel.snp.bottom)
-            make.height.equalTo(24)
-            make.leading.equalTo(nameLabel.snp.trailing).inset(4)
-            make.trailing.equalTo(self.safeAreaLayoutGuide)
-        }
-        overViewLabel.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(nameLabel)
-            make.bottom.equalTo(self.safeAreaLayoutGuide)
-            make.height.equalTo(40)
-            make.top.equalTo(nameLabel.snp.bottom)
+            make.top.trailing.greaterThanOrEqualTo(safeAreaLayoutGuide)
+            make.leading.equalTo(nameLabel.snp.trailing)
+            make.bottom.equalTo(overViewLabel.snp.top)
+            
         }
     }
     override func designView() {
         overViewLabel.backgroundColor = .brown
         nameLabel.backgroundColor = .cyan
+        overViewLabel.backgroundColor = .blue
+        overViewLabel.text = "시퍼런색"
+        overViewLabel.numberOfLines = 4
+        nameLabel.text = "파랑색dpdpdpdpdp"
+        dateLabel.text = "깜징"
+        dateLabel.backgroundColor = .black
     }
-    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+       
+    }
     
 }
