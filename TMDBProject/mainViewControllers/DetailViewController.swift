@@ -15,4 +15,8 @@ class DetailViewController : DetailBaseView {
         self.view = homeView
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print(#function)
+    }
 }

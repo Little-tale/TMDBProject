@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class DetailView: BaseView {
     let tableView = UITableView()
     
@@ -14,9 +15,12 @@ class DetailView: BaseView {
         self.addSubview(tableView)
     }
     override func configureLayout(){
-        
+        tableView.snp.makeConstraints { make in
+            make.edges.equalTo(self.safeAreaLayoutGuide)
+        }
     }
     override func designView(){
-        
+        self.backgroundColor = .black
+        tableView.backgroundColor = .green
     }
 }
