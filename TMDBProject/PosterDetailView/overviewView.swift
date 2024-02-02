@@ -36,7 +36,8 @@ class overviewView: BaseView {
         }
     }
     override func designView() {
-        
+        overViewLabel.backgroundColor = .brown
+        nameLabel.backgroundColor = .cyan
     }
     
     

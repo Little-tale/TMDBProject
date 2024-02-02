@@ -23,16 +23,24 @@ class DetailPosterViewCell : BaseTableViewCell {
     override func configureLayout() {
         ImageView.snp.makeConstraints { make in
             make.edges.equalTo(contentView.safeAreaLayoutGuide).inset(8)
-            make.height.equalTo(UIScreen.main.bounds.height / 2.4)
+            make.height.equalTo(UIScreen.main.bounds.height / 1.7).priority(501)
         }
         detailView.snp.makeConstraints { make in
             make.horizontalEdges.bottom.equalTo(ImageView)
-            make.height.equalTo(80).priority(500)
+            make.height.equalTo(180).priority(502)
         }
         
     }
     override func designView() {
         contentView.backgroundColor = .white
+        ImageView.backgroundColor = .red
+        detailView.backgroundColor = .gray
+        self.layer.cornerRadius = 12
+        self.clipsToBounds = true
+        ImageView.layer.cornerRadius = 12
+        ImageView.clipsToBounds = true
+        
+        
     }
     
     
