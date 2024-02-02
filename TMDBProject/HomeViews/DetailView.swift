@@ -7,28 +7,16 @@
 
 import UIKit
 
-class DetailView: UIView {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configureHierarchy()
-        configureLayout()
-        designView()
-    }
+class DetailView: BaseView {
+    let tableView = UITableView()
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        configureHierarchy()
-        configureLayout()
-        designView()
+    override func configureHierarchy(){
+        self.addSubview(tableView)
     }
-    
-    func configureHierarchy(){
+    override func configureLayout(){
         
     }
-    func configureLayout(){
-        
-    }
-    func designView(){
+    override func designView(){
         
     }
 }

@@ -35,6 +35,7 @@ class StartView: BaseView {
         // trendTableView.backgroundColor = .blue
         trendTableView.backgroundColor = .black
         register()
+        trendTableView.separatorStyle = .singleLine
     }
    
     func register() {

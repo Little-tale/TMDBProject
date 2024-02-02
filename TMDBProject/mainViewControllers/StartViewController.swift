@@ -63,7 +63,7 @@ extension StartViewController : UITableViewDelegate, UITableViewDataSource {
         cell.startCollectionView.delegate = self
         cell.startCollectionView.tag = indexPath.row
         cell.underLineLabel.text = SectionText.searchView.allCases[indexPath.row].rawValue
-        
+        cell.selectionStyle = .none 
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
