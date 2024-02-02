@@ -31,7 +31,7 @@ class overviewView: BaseView {
         overViewLabel.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(nameLabel)
             make.bottom.equalTo(self.safeAreaLayoutGuide)
-            make.height.equalTo(52)
+            make.height.equalTo(40)
             make.top.equalTo(nameLabel.snp.bottom)
         }
     }

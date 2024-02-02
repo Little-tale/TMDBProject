@@ -22,5 +22,7 @@ class DetailView: BaseView {
     override func designView(){
         self.backgroundColor = .black
         tableView.backgroundColor = .green
+        // MARK: 제네릭을 통해서 시도는 해봤는데 더 길어지니까 좋은 방법인가 애매해진다.
+        tableView.register(DetailPosterViewCell.self, forCellReuseIdentifier: ReusableIdentifier<DetailPosterViewCell>.reuseableItentifier )
     }
 }
