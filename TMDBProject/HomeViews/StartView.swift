@@ -32,7 +32,8 @@ class StartView: BaseView {
     override func designView() {
         // searchBar.backgroundColor = .red
         self.backgroundColor = .black
-        trendTableView.backgroundColor = .blue
+        // trendTableView.backgroundColor = .blue
+        trendTableView.backgroundColor = .black
         register()
     }
    

@@ -48,8 +48,9 @@ class StartViewControllerTableCell : UITableViewCell {
     
     func designView() {
         self.backgroundColor = .black
-        underLineLabel.text = "안녕하세요"
+        startCollectionView.backgroundColor = .black
         underLineLabel.setWidth(width: 10)
+        
     }
     
     override func layoutSubviews() {

@@ -39,13 +39,23 @@ class StartViewCollectIonvIewCell : UICollectionViewCell {
             make.edges.equalTo(contentView)
         }
         titleLabel.snp.makeConstraints { make in
-            make.horizontalEdges.bottom.equalTo(imageView)
-            make.height.equalTo(24)
+            make.center.equalTo(imageView)
+            make.horizontalEdges.equalTo(imageView).inset(8)
+            make.height.equalTo(40)
         }
     }
     func designView(){
         imageView.tintColor = .darkGray
+        titleLabel.numberOfLines = 2
+        titleLabel.textAlignment = .center
+        titleLabel.textColor = .white
     }
+    override func layoutSublayers(of layer: CALayer) {
+        super.layoutSublayers(of: layer)
+        self.layer.cornerRadius = (self.frame.width + self.frame.height) / 16
+        self.clipsToBounds = true
+    }
+    
     // 재사용 이슈 막기
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -56,7 +66,11 @@ class StartViewCollectIonvIewCell : UICollectionViewCell {
                    .transition(.fade(0.5)),
                    .forceTransition
                  ])
-        
+        guard let titleText = title else {
+            return
+        }
+        titleLabel.text = titleText
+        self.backgroundColor = .darkGray
     }
     
 }

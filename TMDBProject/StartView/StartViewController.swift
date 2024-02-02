@@ -61,6 +61,7 @@ extension StartViewController : UITableViewDelegate, UITableViewDataSource {
         cell.startCollectionView.dataSource = self
         cell.startCollectionView.delegate = self
         cell.startCollectionView.tag = indexPath.row
+        cell.underLineLabel.text = SectionText.searchView.allCases[indexPath.row].rawValue
         
         return cell
     }
