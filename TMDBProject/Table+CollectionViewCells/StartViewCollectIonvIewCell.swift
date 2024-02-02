@@ -3,6 +3,7 @@
  */
 import UIKit
 import SnapKit
+import Kingfisher
 
 class StartViewCollectIonvIewCell : UICollectionViewCell {
     
@@ -43,6 +44,18 @@ class StartViewCollectIonvIewCell : UICollectionViewCell {
         }
     }
     func designView(){
+        imageView.tintColor = .darkGray
+    }
+    // 재사용 이슈 막기
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        prepare(image: nil, title: nil)
+    }
+    func prepare(image : URL?, title: String?) {
+        imageView.kf.setImage(with: image, placeholder:.none ,options:[
+                   .transition(.fade(0.5)),
+                   .forceTransition
+                 ])
         
     }
     

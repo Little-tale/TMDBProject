@@ -33,6 +33,7 @@
 		7BE61C762B6CE2EB006E3CAF /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61C752B6CE2EB006E3CAF /* APIModel.swift */; };
 		7BE61C782B6CE301006E3CAF /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61C772B6CE301006E3CAF /* APIManager.swift */; };
 		7BE61C7A2B6CEFAD006E3CAF /* TMDBAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61C792B6CEFAD006E3CAF /* TMDBAPI.swift */; };
+		7BE61C7F2B6D11B3006E3CAF /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61C7E2B6D11B3006E3CAF /* ImageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		7BE61C752B6CE2EB006E3CAF /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		7BE61C772B6CE301006E3CAF /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		7BE61C792B6CEFAD006E3CAF /* TMDBAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAPI.swift; sourceTree = "<group>"; };
+		7BE61C7E2B6D11B3006E3CAF /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		7BDEF2D92B6CC2A500111D62 /* TMDBProject */ = {
 			isa = PBXGroup;
 			children = (
+				7BE61C7D2B6D1197006E3CAF /* ImageManager */,
 				7BE61C742B6CE2DA006E3CAF /* API */,
 				7BE61C6F2B6CD9EF006E3CAF /* CustomLabel+TextField */,
 				7BE61C692B6CD04E006E3CAF /* Table+CollectionViewCells */,
@@ -185,6 +188,14 @@
 				7BE61C792B6CEFAD006E3CAF /* TMDBAPI.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		7BE61C7D2B6D1197006E3CAF /* ImageManager */ = {
+			isa = PBXGroup;
+			children = (
+				7BE61C7E2B6D11B3006E3CAF /* ImageManager.swift */,
+			);
+			path = ImageManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,6 +291,7 @@
 				7BDEF2FC2B6CC69500111D62 /* StartView.swift in Sources */,
 				7BDEF3032B6CC7E100111D62 /* StartViewController.swift in Sources */,
 				7BE61C762B6CE2EB006E3CAF /* APIModel.swift in Sources */,
+				7BE61C7F2B6D11B3006E3CAF /* ImageManager.swift in Sources */,
 				7BDEF2EF2B6CC2B300111D62 /* APIKey.swift in Sources */,
 				7BDEF2DD2B6CC2A500111D62 /* SceneDelegate.swift in Sources */,
 				7BE61C782B6CE301006E3CAF /* APIManager.swift in Sources */,

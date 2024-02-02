@@ -56,5 +56,6 @@ struct Searchs: Decodable {
     let title: String?
     let name: String?
     let backdrop_path: String?
+    let poster_path: String?
 }
 
