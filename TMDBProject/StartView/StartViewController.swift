@@ -12,6 +12,7 @@ class StartViewController: StartBaseViewController {
 
     let startView = StartView()
     var data : [Int: [Searchs]] = [:]
+    let model = SearchModel.self
     
     override func loadView() {
         self.view = startView
@@ -24,17 +25,17 @@ class StartViewController: StartBaseViewController {
         let group = DispatchGroup()
         // MARK: 그니까 즉 여기서 타입을 적는 이유가 나 이거씀 을 명시 하기 위해서다 라는 것이다.
         group.enter()
-        TMDBAPIManager.shared.fetchSearchView(type: SearchModel.self, api: .trend(type: .day, language: .kor)) { results in
+        TMDBAPIManager.shared.fetchSearchView(type: model, api: .trend(type: .day, language: .kor)) { results in
             self.data[0] = results.results
             group.leave()
         }
         group.enter()
-        TMDBAPIManager.shared.fetchSearchView(type: SearchModel.self, api: .top(language: .kor)) { results in
+        TMDBAPIManager.shared.fetchSearchView(type: model, api: .top(language: .kor)) { results in
             self.data[1] = results.results
             group.leave()
         }
         group.enter()
-        TMDBAPIManager.shared.fetchSearchView(type: SearchModel.self, api: .popular(language: .kor)) { results in
+        TMDBAPIManager.shared.fetchSearchView(type: model, api: .popular(language: .kor)) { results in
             self.data[2] = results.results
             group.leave()
         }
@@ -102,5 +103,7 @@ extension StartViewController : UICollectionViewDelegate, UICollectionViewDataSo
         
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(data[collectionView.tag]?[indexPath.item].id ?? 0)
+    }
 }

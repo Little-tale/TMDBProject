@@ -35,6 +35,7 @@
 		7BE61C7A2B6CEFAD006E3CAF /* TMDBAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61C792B6CEFAD006E3CAF /* TMDBAPI.swift */; };
 		7BE61C7F2B6D11B3006E3CAF /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61C7E2B6D11B3006E3CAF /* ImageManager.swift */; };
 		7BE61C822B6D26BF006E3CAF /* SectionText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61C812B6D26BF006E3CAF /* SectionText.swift */; };
+		7BE61C852B6D2FC1006E3CAF /* TransitionStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61C842B6D2FC1006E3CAF /* TransitionStyles.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		7BE61C792B6CEFAD006E3CAF /* TMDBAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAPI.swift; sourceTree = "<group>"; };
 		7BE61C7E2B6D11B3006E3CAF /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		7BE61C812B6D26BF006E3CAF /* SectionText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionText.swift; sourceTree = "<group>"; };
+		7BE61C842B6D2FC1006E3CAF /* TransitionStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionStyles.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 		7BDEF2D92B6CC2A500111D62 /* TMDBProject */ = {
 			isa = PBXGroup;
 			children = (
+				7BE61C832B6D2F98006E3CAF /* NavigationPresentStyler */,
 				7BE61C802B6D26A3006E3CAF /* SectionText */,
 				7BE61C7D2B6D1197006E3CAF /* ImageManager */,
 				7BE61C742B6CE2DA006E3CAF /* API */,
@@ -209,6 +212,14 @@
 			path = SectionText;
 			sourceTree = "<group>";
 		};
+		7BE61C832B6D2F98006E3CAF /* NavigationPresentStyler */ = {
+			isa = PBXGroup;
+			children = (
+				7BE61C842B6D2FC1006E3CAF /* TransitionStyles.swift */,
+			);
+			path = NavigationPresentStyler;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -296,6 +307,7 @@
 				7BDEF2F92B6CC5F100111D62 /* DetailBaseView.swift in Sources */,
 				7BE61C712B6CDA0C006E3CAF /* UnderLineLabel.swift in Sources */,
 				7BE61C822B6D26BF006E3CAF /* SectionText.swift in Sources */,
+				7BE61C852B6D2FC1006E3CAF /* TransitionStyles.swift in Sources */,
 				7BDEF2DB2B6CC2A500111D62 /* AppDelegate.swift in Sources */,
 				7BDEF3052B6CC8C200111D62 /* BaseView.swift in Sources */,
 				7BDEF3002B6CC70B00111D62 /* DetailView.swift in Sources */,
