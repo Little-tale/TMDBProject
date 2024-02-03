@@ -1,9 +1,4 @@
-//
-//  SearchListView.swift
-//  TMDBProject
-//
-//  Created by Jae hyung Kim on 2/2/24.
-//
+
 
 import UIKit
 import SnapKit
@@ -42,17 +37,21 @@ class AllListView: UIView {
         
     }
     func register() {
-        
+        listCollectionView.register(AllListReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AllListReusableView.reuseableIdentiFier)
+        listCollectionView.register(StartViewCollectIonvIewCell.self, forCellWithReuseIdentifier: StartViewCollectIonvIewCell.reuseableIdentiFier)
     }
     
     func collectionViewLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 80, height: 120)
-        layout.minimumLineSpacing = 12
-        layout.minimumInteritemSpacing = 4
+        layout.itemSize = CGSize(width: 100, height: 150)
+        layout.minimumLineSpacing = 8
+        layout.minimumInteritemSpacing = 8
         
-        layout.sectionInset = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+        layout.sectionInset = UIEdgeInsets(top: 4, left: 12, bottom: 4, right: 12)
         layout.scrollDirection = .vertical
+        
+        // MARK: 여기서 헤더를 고정해야 고정됨  ㅠㅠㅠ
+        layout.sectionHeadersPinToVisibleBounds = true 
         
         return layout
     }

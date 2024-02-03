@@ -16,7 +16,7 @@ class StartViewControllerTableCell : UITableViewCell {
     
     
     let underLineLabel = UnderLineLabel()
-    
+    let button = UIButton()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -30,14 +30,18 @@ class StartViewControllerTableCell : UITableViewCell {
     
     func configureHierachy(){
         contentView.addSubview(underLineLabel)
+        contentView.addSubview(button)
         contentView.addSubview(startCollectionView)
     }
     
     func configureLayout(){
         underLineLabel.snp.makeConstraints { make in
             make.top.equalTo(contentView)
-            make.horizontalEdges.equalTo(contentView).inset(4)
+            make.leading.equalTo(contentView).inset(4)
             make.height.equalTo(40)
+        }
+        button.snp.makeConstraints { make in
+            make.
         }
         
         startCollectionView.snp.makeConstraints { make in

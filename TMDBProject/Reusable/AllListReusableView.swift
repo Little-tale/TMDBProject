@@ -44,7 +44,8 @@ class AllListReusableView : UICollectionReusableView {
         layout.minimumInteritemSpacing = 4
         layout.scrollDirection = .horizontal
         layout.sectionInset = .init(top: 4, left: 4, bottom: 4, right: 4)
-        
+        // 스태키 하게 하는법
+        layout.sectionHeadersPinToVisibleBounds = true
         return layout
     }
     

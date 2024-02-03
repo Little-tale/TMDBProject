@@ -133,11 +133,11 @@ enum DetailViewModels {
     
     var modelLayer : String {
         switch self {
-        case .detail(let detailModel):
+        case .detail(_):
             "DetailLayer"
-        case .cast(let castModel):
+        case .cast(_):
             "CastLayer"
-        case .recommendations(let detailModels):
+        case .recommendations(_):
             "Recommendations"
         }
     }
