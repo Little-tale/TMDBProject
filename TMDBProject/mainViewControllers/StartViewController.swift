@@ -44,10 +44,13 @@ class StartViewController: StartBaseViewController {
             self.startView.trendTableView.reloadData()
         }
         
-        
+        searchBarRegister()
         
     }
     
+    func searchBarRegister() {
+        startView.searchBar.delegate = self
+    }
 }
 
 
@@ -136,4 +139,13 @@ extension StartViewController : UICollectionViewDelegate, UICollectionViewDataSo
     }
 }
 
-
+extension StartViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let serchText = searchBar.text else {
+            return
+        }
+        TMDBAPIManager.shared.fetchSearchView(type: SearchModel.self , api: .search(query: serchText, language: .kor)) { result in
+            print(result.results)
+        }
+    }
+}
