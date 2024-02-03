@@ -79,7 +79,7 @@ extension StartViewController : UITableViewDelegate, UITableViewDataSource {
         let nextViewData = data[sender.tag]
         
         let vc = AllListViewControler()
-        vc.model = nextViewData
+        vc.modelList = nextViewData
         
         transitionView(view: vc , tresitionStyle: .present)
     }

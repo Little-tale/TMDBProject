@@ -6,7 +6,7 @@ import SnapKit
 class AllListView: UIView {
     
     var navigationTitle = ""
-    lazy var listCollectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
+    let listCollectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
     let reuseableView = AllListReusableView()
     
     override init(frame: CGRect) {
@@ -41,7 +41,7 @@ class AllListView: UIView {
         listCollectionView.register(StartViewCollectIonvIewCell.self, forCellWithReuseIdentifier: StartViewCollectIonvIewCell.reuseableIdentiFier)
     }
     
-    func collectionViewLayout() -> UICollectionViewFlowLayout {
+    static func collectionViewLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 100, height: 150)
         layout.minimumLineSpacing = 8

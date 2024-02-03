@@ -1,9 +1,4 @@
-//
-//  SearchListViewController.swift
-//  TMDBProject
-//
-//  Created by Jae hyung Kim on 2/3/24.
-//
+
 
 import UIKit
 
@@ -15,7 +10,14 @@ class AllListViewControler: AllListBaseViewController {
         self.view = allListHomeView
         self.view.backgroundColor = .black
     }
-    var model: [Searchs]? = []
+    var modelList: [Searchs]? = [] {
+        didSet {
+            print("값이 넘어옴")
+            // print(model)
+            // print(model?.count)
+            allListHomeView.listCollectionView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +32,8 @@ class AllListViewControler: AllListBaseViewController {
 
 extension AllListViewControler: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return model?.count ?? 0
+        
+        return modelList?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -38,6 +41,14 @@ extension AllListViewControler: UICollectionViewDelegate, UICollectionViewDataSo
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StartViewCollectIonvIewCell.reuseableIdentiFier, for: indexPath) as? StartViewCollectIonvIewCell else {
             return UICollectionViewCell()
         }
+        if let image = modelList?[indexPath.item].poster_path {
+            let url = ImageManager.getImage(imageCase: .trend, image: image)
+            cell.prepare(image: url, title: nil)
+        }
+        if let name = modelList?[indexPath.item].name {
+            cell.prepare(image: nil, title: name)
+        }
+        
         cell.backgroundColor = .brown
         return cell
     }

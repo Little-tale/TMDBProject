@@ -43,7 +43,7 @@ class StartViewControllerTableCell : UITableViewCell {
         }
         button.snp.makeConstraints { make in
             make.trailing.equalTo(contentView)
-            make.centerY.equalTo(contentView.safeAreaLayoutGuide)
+            make.centerY.equalTo(underLineLabel).offset(8)
         }
         
         startCollectionView.snp.makeConstraints { make in
