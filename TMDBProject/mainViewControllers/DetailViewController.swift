@@ -20,6 +20,17 @@ class DetailViewController : DetailBaseView {
     //  var detailViewModel : [DeDetailViewModels] = []
     // 또다른 문제 이렇게하면 순서가 보장이 안된다.
     // 딕셔너리로 순서 잡으려고 한다. 딕셔너리는 순서를 보장 못하지만 키가 인덱스 패스면 되지 않을까?
+    
+    // var detailViewModel : [Int: DetailViewModels] = [ : ]
+    // 좀더 뜯어 고쳐 볼 준비 하려고 한다....!
+    // Any? 로 다양하게 더 받은후에
+    // 키는 layer.name이나 다른게 들어갈수 있으면 넣으면 되지 않을까?
+    //var detailViewModel : [DetailViewModels.self: DetailViewModels] = [ : ]
+    
+    // 일단 위에처럼은 불가능
+    // 놀랍게도 이건또 됨
+    // var detailViewModel : [UIView: DetailViewModels] = [ : ]
+    // 전혀 생각이 안떠오른다....
     var detailViewModel : [Int: DetailViewModels] = [ : ]
     
     var id = 93405
@@ -66,6 +77,9 @@ class DetailViewController : DetailBaseView {
 //MARK: 테이블뷰 딜리게이트 데이타 소스
 extension DetailViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(#function)
+        print( tableView.layer.name )
+        print(section)
         return detailViewModel.count
     }
     
@@ -108,13 +122,17 @@ extension DetailViewController : UITableViewDelegate, UITableViewDataSource {
             cell.recommendColletionView.dataSource = self
             cell.recommendColletionView.delegate = self
             cell.recommendColletionView.tag = indexPath.row
+            cell.headetLabel.text = SectionText.DetailView.allCases[indexPath.row].rawValue
+            cell.selectionStyle = .none
             return cell
+            
         case .recommendations(let recommendInfo):
             let cell = tableView.dequeueReusableCell(withIdentifier: ReusableIdentifier<DetailRecommendTableViewCell>.reuseableItentifier, for: indexPath) as! DetailRecommendTableViewCell
             
             cell.recommendColletionView.dataSource = self // <- 무슨 인스턴스? 나 임마 DetailViewController()
             cell.recommendColletionView.delegate = self
             cell.recommendColletionView.tag = indexPath.row
+            cell.headetLabel.text = SectionText.DetailView.allCases[indexPath.row].rawValue
             cell.selectionStyle = .none
             return cell
         case .none:

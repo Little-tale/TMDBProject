@@ -48,6 +48,7 @@ class StartViewControllerTableCell : UITableViewCell {
     
     func designView() {
         self.backgroundColor = .black
+        self.contentView.backgroundColor = .black
         startCollectionView.backgroundColor = .black
         underLineLabel.setWidth(width: 10)
         

@@ -44,6 +44,7 @@ class DetailPosterViewCell : BaseTableViewCell {
     }
     override func designView() {
         contentView.backgroundColor = .black
+        self.backgroundColor = .black
        // backDropImageView.backgroundColor = .red
         // detailView.backgroundColor = .gray
         self.layer.cornerRadius = 12

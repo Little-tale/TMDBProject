@@ -13,4 +13,9 @@ enum SectionText {
         case TOP10
         case POPULAR
     }
+    enum DetailView: String, CaseIterable {
+        case Poster
+        case 출연진들
+        case 추천작들
+    }
 }

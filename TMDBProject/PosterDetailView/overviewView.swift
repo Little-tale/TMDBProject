@@ -19,7 +19,8 @@ class overviewView: BaseView {
     }
     override func configureLayout() {
         overViewLabel.snp.makeConstraints { make in
-            make.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide)
+            make.bottom.equalTo(safeAreaLayoutGuide)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(8)
             make.height.equalTo(150)
         }
         nameLabel.snp.makeConstraints { make in
@@ -36,12 +37,10 @@ class overviewView: BaseView {
         }
     }
     override func designView() {
-        //overViewLabel.backgroundColor = .brown
-        //nameLabel.backgroundColor = .cyan
-        //overViewLabel.backgroundColor = .blue
-
         overViewLabel.numberOfLines = 4
-       
+        overViewLabel.backgroundColor = .red
+        nameLabel.font = .systemFont(ofSize: 28, weight: .heavy)
+        dateLabel.backgroundColor = UIColor(white: 1, alpha: 0.4)
         // dateLabel.backgroundColor = .black
         self.backgroundColor = UIColor(white: 1, alpha: 0.4)
         self.layer.cornerRadius = 12

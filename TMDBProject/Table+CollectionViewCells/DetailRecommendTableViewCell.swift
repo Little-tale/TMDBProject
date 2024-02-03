@@ -36,9 +36,10 @@ class DetailRecommendTableViewCell : BaseTableViewCell {
     }
     
     override func designView() {
-        headetLabel.backgroundColor = .blue
-        recommendColletionView.backgroundColor = .brown
-        
+        headetLabel.backgroundColor = .black
+        recommendColletionView.backgroundColor = .black
+        self.backgroundColor = .black
+        self.contentView.backgroundColor = .black
         register()
     }
     func register() {
