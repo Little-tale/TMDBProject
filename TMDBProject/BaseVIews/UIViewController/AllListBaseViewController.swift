@@ -12,6 +12,7 @@ class AllListBaseViewController: UIViewController {
         configureHierarchy()
         configureLayout()
         designView()
+        print(#function, "베이스뷰컨")
     }
     
     func configureHierarchy(){

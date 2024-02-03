@@ -38,7 +38,10 @@ class AllListView: UIView {
     }
     func register() {
         listCollectionView.register(AllListReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AllListReusableView.reuseableIdentiFier)
+        
         listCollectionView.register(StartViewCollectIonvIewCell.self, forCellWithReuseIdentifier: StartViewCollectIonvIewCell.reuseableIdentiFier)
+        
+        
     }
     
     static func collectionViewLayout() -> UICollectionViewFlowLayout {

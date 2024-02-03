@@ -15,29 +15,43 @@ class AllListViewControler: AllListBaseViewController {
             print("값이 넘어옴")
             // print(model)
             print(modelList?.count)
-            // MARK: 리로드가 안됨
-            allListHomeView.listCollectionView.reloadData()
+            DispatchQueue.main.async {
+                self.allListHomeView.listCollectionView.reloadData()
+                print("디스페치 시점 ",self.modelList?.count)
+                print("리로드 시도")
+                self.testList = self.modelList!
+            }
+        }
+    }
+    var testList: [Searchs] = [] {
+        didSet {
+            print("값 받아옴")
+            self.allListHomeView.listCollectionView.reloadData()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(#function)
         allListHomeView.listCollectionView.dataSource = self
         allListHomeView.listCollectionView.delegate = self
         allListHomeView.reuseableView.collectionView.delegate = self
-    
-        DispatchQueue.main.async {
-            self.allListHomeView.listCollectionView.reloadData()
-        }
+        print("뷰 디드 로드 시점", modelList?.count)
+//        DispatchQueue.main.async {
+//            self.allListHomeView.listCollectionView.reloadData()
+//        }
+        
+        
     }
 }
 
 extension AllListViewControler: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("리로드 문제",modelList)
-        print(modelList?.count)
-        return modelList?.count ?? 0
+        // print("리로드 문제",modelList)
+        // modelList?.count
+        // fatalError("추적해야겠음")
+        print(testList)
+        return testList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

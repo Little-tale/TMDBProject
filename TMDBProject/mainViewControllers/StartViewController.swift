@@ -74,15 +74,20 @@ extension StartViewController : UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
+    
+    
     @objc func nextView(sender: UIButton) {
         
         let nextViewData = data[sender.tag]
         
         let vc = AllListViewControler()
         vc.modelList = nextViewData
-        
+        print(#function)
+        // dump(nextViewData)
         transitionView(view: vc , tresitionStyle: .present)
     }
+    
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UIScreen.main.bounds.height / 3.7
