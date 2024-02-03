@@ -27,6 +27,9 @@ enum TMDBAPI {
     
     
     // MARK: 앤드포인트 -> 이거 String으로도 되긴하는데 아마 알라모 파이어가 해주는거 같으니 정석으로 갑니다.
+    /// 몰랐던 사실 추가 만약 하나만 쓸거면 나머지는 _ 로 해야함 정상적으로 나온다 안그러면
+    /// id: 62819, language: TMDBProject.TMDBAPI.Language.kor) 같은 자기 맘대로 출력이 나온다.
+    /// 이유는 -> 하나만 쓰면 case 에서 각 문자열로 변환할때 단순한 값대신 예상값을 출력해 주기에 (기댓값? ) 그리하여 그렇다.
     var endPoint: URL {
         switch self {
         case .trend(let type,_):
@@ -41,10 +44,10 @@ enum TMDBAPI {
         case .search:
             let url: URL = URL(string:"\(baseUrl)search/tv")!
             return url
-        case .detail(id: let id):
+        case .detail(id: let id,_):
             let url: URL = URL(string:"\(baseUrl)tv/\(id)")!
             return url
-        case .recommend(id: let id, language: let language):
+        case .recommend(id: let id,_):
             let url: URL = URL(string:"\(baseUrl)tv/\(id)/recommendations")!
             return url
         case .crew(id: let id):

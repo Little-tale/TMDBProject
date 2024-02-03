@@ -66,12 +66,13 @@ struct DetailModel: Decodable {
     let backdropPath: String?
     // 프로필 사진위해
     let profilePath: String?
+    let poster_path: String?
     let name: String
     let overView: String
     let voteAverage : Double?
     
     enum CodingKeys:String, CodingKey{
-        case id, name
+        case id, name, poster_path
         case backdropPath = "backdrop_path"
         case profilePath = "profile_path"
         case overView = "overview"
@@ -79,6 +80,7 @@ struct DetailModel: Decodable {
     }
 }
 // MARK: Detail에서는 모델이 두개 정도 사용될 예정이다. 디테일이랑 리코멘드
+// 아니 새벽에 짜서 그런가 이거 왜있는 거지 일단 킵
 struct DetailModels: Decodable {
     let results : [DetailModel]
 }

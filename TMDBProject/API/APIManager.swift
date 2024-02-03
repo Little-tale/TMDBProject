@@ -43,10 +43,23 @@ class TMDBAPIManager {
     }
     
     func fetchDetailView<T:Decodable> (type: T.Type, api:TMDBAPI) {
-        
-        AF.request(api.endPoint, method: api.method, parameters: api.parametter, encoding: URLEncoding(destination: .queryString), headers: api.header).responseString { result in
-            print(result)
+        print(api.endPoint)
+        print(api.baseUrl)
+        print(api.parametter)
+        AF.request(api.endPoint,
+                   method: api.method,
+                   parameters: api.parametter,
+                   encoding: URLEncoding(destination: .queryString),
+                   headers: api.header).responseDecodable(of: T.self) { response in
+            switch response.result {
+            case .success(let success):
+                print(success)
+            case .failure(let failure):
+                print(failure)
+            }
         }
+            
+        
         
     }
 

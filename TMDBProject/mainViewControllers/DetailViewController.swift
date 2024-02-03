@@ -20,7 +20,7 @@ class DetailViewController : DetailBaseView {
         print(#function)
         delegateDateSource()
         
-        
+        TMDBAPIManager.shared.fetchDetailView(type: DetailModel.self, api: .detail(id: 62819, language: .kor))
     }
     func delegateDateSource() {
         homeView.tableView.delegate = self
