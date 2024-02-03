@@ -14,7 +14,8 @@ class AllListViewControler: AllListBaseViewController {
         didSet {
             print("값이 넘어옴")
             // print(model)
-            // print(model?.count)
+            print(modelList?.count)
+            // MARK: 리로드가 안됨
             allListHomeView.listCollectionView.reloadData()
         }
     }
@@ -26,21 +27,26 @@ class AllListViewControler: AllListBaseViewController {
         allListHomeView.listCollectionView.delegate = self
         allListHomeView.reuseableView.collectionView.delegate = self
     
-    
+        DispatchQueue.main.async {
+            self.allListHomeView.listCollectionView.reloadData()
+        }
     }
 }
 
 extension AllListViewControler: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
+        print("리로드 문제",modelList)
+        print(modelList?.count)
         return modelList?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
+        print(indexPath.row )
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StartViewCollectIonvIewCell.reuseableIdentiFier, for: indexPath) as? StartViewCollectIonvIewCell else {
+            print("레지스터 문제")
             return UICollectionViewCell()
         }
+        print("레지스터 등록 되서 넘어온거지? ")
         if let image = modelList?[indexPath.item].poster_path {
             let url = ImageManager.getImage(imageCase: .trend, image: image)
             cell.prepare(image: url, title: nil)
