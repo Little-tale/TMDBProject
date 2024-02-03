@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: scene)
         
-        window?.rootViewController = AllListViewControler() // DetailViewController() // StartViewController() // ViewController()
+        window?.rootViewController =  StartViewController() // ViewController()
         window?.makeKeyAndVisible()
         
         

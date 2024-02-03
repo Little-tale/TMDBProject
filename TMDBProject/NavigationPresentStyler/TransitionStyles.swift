@@ -27,7 +27,7 @@ enum TransitionStyles {
 
 extension UIViewController {
     
-    func transitionView<T: UIViewController>(view: T.Type, tresitionStyle: TransitionStyles) {
+    func transitionView<T: UIViewController>(view: T, tresitionStyle: TransitionStyles) {
         let vc = T.self()
         switch tresitionStyle {
         case .present:

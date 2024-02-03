@@ -43,6 +43,9 @@ class StartViewController: StartBaseViewController {
         group.notify(queue: .main) {
             self.startView.trendTableView.reloadData()
         }
+        
+        
+        
     }
     
 }
@@ -63,9 +66,24 @@ extension StartViewController : UITableViewDelegate, UITableViewDataSource {
         cell.startCollectionView.delegate = self
         cell.startCollectionView.tag = indexPath.row
         cell.underLineLabel.text = SectionText.searchView.allCases[indexPath.row].rawValue
-        cell.selectionStyle = .none 
+        
+        cell.button.tag = indexPath.row
+        cell.selectionStyle = .none
+        
+        cell.button.addTarget(self, action: #selector(nextView), for: .touchUpInside)
+        
         return cell
     }
+    @objc func nextView(sender: UIButton) {
+        
+        let nextViewData = data[sender.tag]
+        
+        let vc = AllListViewControler()
+        vc.model = nextViewData
+        
+        transitionView(view: vc , tresitionStyle: .present)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UIScreen.main.bounds.height / 3.7
     }
@@ -107,3 +125,5 @@ extension StartViewController : UICollectionViewDelegate, UICollectionViewDataSo
         print(data[collectionView.tag]?[indexPath.item].id ?? 0)
     }
 }
+
+

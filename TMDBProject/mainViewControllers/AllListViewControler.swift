@@ -15,7 +15,7 @@ class AllListViewControler: AllListBaseViewController {
         self.view = allListHomeView
         self.view.backgroundColor = .black
     }
-    var model: SearchModel?
+    var model: [Searchs]? = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,7 @@ class AllListViewControler: AllListBaseViewController {
 
 extension AllListViewControler: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return model?.results.count ?? 0
+        return model?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

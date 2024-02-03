@@ -22,6 +22,7 @@ class StartViewControllerTableCell : UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureHierachy()
         register()
+        designButton()
     }
     
     required init?(coder: NSCoder) {
@@ -41,7 +42,8 @@ class StartViewControllerTableCell : UITableViewCell {
             make.height.equalTo(40)
         }
         button.snp.makeConstraints { make in
-            make.
+            make.trailing.equalTo(contentView)
+            make.centerY.equalTo(contentView.safeAreaLayoutGuide)
         }
         
         startCollectionView.snp.makeConstraints { make in
@@ -57,6 +59,16 @@ class StartViewControllerTableCell : UITableViewCell {
         underLineLabel.setWidth(width: 10)
         
     }
+    func designButton(){
+        var config = UIButton.Configuration.filled()
+        config.baseBackgroundColor = .black
+        config.baseForegroundColor = .white
+        config.title = "크게보기"
+        config.cornerStyle = .large
+        config.buttonSize = .mini
+        button.configuration = config
+    }
+    
     
     override func layoutSubviews() {
         super.layoutSubviews()
