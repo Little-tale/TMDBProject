@@ -11,6 +11,7 @@ enum ImageManager {
     case trend
     case top
     case popular
+    case detail
     
     static var baseImageUrl : String {
         return "https://image.tmdb.org/t/p/w500/"
@@ -24,6 +25,8 @@ enum ImageManager {
         case .top:
             return URL(string: "\(baseImageUrl)\(image)") ?? emptyImage
         case .popular:
+            return URL(string: "\(baseImageUrl)\(image)") ?? emptyImage
+        case .detail:
             return URL(string: "\(baseImageUrl)\(image)") ?? emptyImage
         }
         

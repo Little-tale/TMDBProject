@@ -70,9 +70,10 @@ struct DetailModel: Decodable {
     let name: String
     let overView: String
     let voteAverage : Double?
+    let first_air_date: String?
     
     enum CodingKeys:String, CodingKey{
-        case id, name, poster_path
+        case id, name, poster_path, first_air_date
         case backdropPath = "backdrop_path"
         case profilePath = "profile_path"
         case overView = "overview"
@@ -92,9 +93,17 @@ struct Role: Decodable {
 struct Casts: Decodable{
     let name : String
     let roles: [Role]
+    let profilePath: String?
 }
 // 이거 한글 적용 안됨 그냥 영어로 받게 해놔야 할듯
 struct CastModel: Decodable {
     let cast : [Casts]
     let id : Int
+}
+
+// MARK: 모델 케이스별로 유연하게 처리하기 위한 준비
+enum DetailViewModels {
+    case detail(DetailModel)
+    case cast(CastModel)
+    case recommendations(DetailModels)
 }

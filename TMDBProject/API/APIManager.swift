@@ -42,7 +42,7 @@ class TMDBAPIManager {
         }
     }
     
-    func fetchDetailView<T:Decodable> (type: T.Type, api:TMDBAPI) {
+    func fetchDetailView<T:Decodable> (type: T.Type, api:TMDBAPI, compliteHandler : @escaping (T) -> Void) {
         print(api.endPoint)
         print(api.baseUrl)
         print(api.parametter)
@@ -53,9 +53,9 @@ class TMDBAPIManager {
                    headers: api.header).responseDecodable(of: T.self) { response in
             switch response.result {
             case .success(let success):
-                print(success)
+                compliteHandler(success)
             case .failure(let failure):
-                print(failure)
+                dump(failure)
             }
         }
             
