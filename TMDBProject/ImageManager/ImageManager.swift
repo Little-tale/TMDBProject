@@ -14,7 +14,7 @@ enum ImageManager {
     case detail
     
     static var baseImageUrl : String {
-        return "https://image.tmdb.org/t/p/w500/"
+        return "https://image.tmdb.org/t/p/w500"
     }
     
     static func getImage(imageCase: ImageManager, image: String) -> URL{

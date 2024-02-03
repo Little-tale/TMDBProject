@@ -49,6 +49,8 @@ class StartViewCollectIonvIewCell : UICollectionViewCell {
         titleLabel.numberOfLines = 2
         titleLabel.textAlignment = .center
         titleLabel.textColor = .white
+        titleLabel.layer.cornerRadius = 8
+        titleLabel.clipsToBounds = true
     }
     override func layoutSublayers(of layer: CALayer) {
         super.layoutSublayers(of: layer)
@@ -59,20 +61,58 @@ class StartViewCollectIonvIewCell : UICollectionViewCell {
     // 재사용 이슈 막기
     override func prepareForReuse() {
         super.prepareForReuse()
+        titleLabel.backgroundColor = .clear
         prepare(image: nil, title: nil)
+        prepareCrewPoster(image: nil, title: nil)
     }
     func prepare(image : URL?, title: String?) {
-        imageView.kf.setImage(with: image, placeholder:.none ,options:[
-                   .transition(.fade(0.5)),
-                   .forceTransition
-                 ])
-        guard let titleText = title else {
+        layoutOne()
+        
+        guard let image = image else {
+            titleLabel.text = title
+            self.backgroundColor = .darkGray
             return
         }
-        titleLabel.text = titleText
-        self.backgroundColor = .darkGray
+        imageView.kf.setImage(with: image,
+                              placeholder:.none ,
+                              options:[
+                                .transition(.fade(0.5)),
+                                .forceTransition
+                              ])
+        
     }
     
+    func prepareCrewPoster(image : URL?, title: String?) {
+        layoutTwo()
+        titleLabel.text = title
+        titleLabel.backgroundColor = UIColor(white: 1, alpha: 0.5)
+        imageView.kf.setImage(with: image,
+                              placeholder:.none ,
+                              options:[
+                                .transition(.fade(0.5)),
+                                .forceTransition
+                              ])
+        
+    }
+    // MARK: 특정상황에서 유동적으로 레이아웃 잡을때는 remakeConstraints 를 이용해야함 기억하도록
+    func layoutOne() {
+        titleLabel.snp.remakeConstraints { make in
+            make.center.equalTo(imageView)
+            make.horizontalEdges.equalTo(imageView).inset(8)
+            make.height.equalTo(40)
+        }
+        self.titleLabel.textColor = .white
+        self.titleLabel.backgroundColor = .clear
+    }
+    
+    func layoutTwo() {
+        titleLabel.snp.remakeConstraints { make in
+            make.bottom.equalTo(imageView.snp.bottom)
+            make.horizontalEdges.equalTo(imageView).inset(8)
+            make.height.equalTo(24)
+        }
+        self.titleLabel.textColor = .black
+    }
 }
 
 

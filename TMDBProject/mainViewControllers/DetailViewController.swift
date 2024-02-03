@@ -79,21 +79,29 @@ extension DetailViewController : UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: ReusableIdentifier<DetailPosterViewCell>.reuseableItentifier, for: indexPath) as! DetailPosterViewCell
             if let backdropString = detailInfo.backdropPath {
                
-                if let posterString = detailInfo.poster_path {
-                    print( posterString )
+                guard let posterString = detailInfo.poster_path else {
+                    
                     let backurl = ImageManager.getImage(imageCase: .detail , image: backdropString)
-                    let posterUrl = ImageManager.getImage(imageCase: .detail, image: posterString)
-                    cell.prepare(backDropImage: backurl, miniPoster: posterUrl)
+                    cell.prepare(backDropImage: backurl, miniPoster: nil)
+                    
+                    cell.detailView.nameLabel.text = detailInfo.name
+                    cell.detailView.overViewLabel.text = detailInfo.overView
+                    cell.detailView.dateLabel.text = detailInfo.first_air_date
+                    return cell
+    
                 }
                 let backurl = ImageManager.getImage(imageCase: .detail , image: backdropString)
-                cell.prepare(backDropImage: backurl, miniPoster: nil)
+                let posterUrl = ImageManager.getImage(imageCase: .detail, image: posterString)
+                cell.prepare(backDropImage: backurl, miniPoster: posterUrl)
+                
+                cell.detailView.nameLabel.text = detailInfo.name
+                cell.detailView.overViewLabel.text = detailInfo.overView
+                cell.detailView.dateLabel.text = detailInfo.first_air_date
+                
+                return cell
             }
             
-            cell.detailView.nameLabel.text = detailInfo.name
-            cell.detailView.overViewLabel.text = detailInfo.overView
-            cell.detailView.dateLabel.text = detailInfo.first_air_date
-            
-            return cell
+           
             
         case .cast(let castInfo):
             let cell = tableView.dequeueReusableCell(withIdentifier: ReusableIdentifier<DetailRecommendTableViewCell>.reuseableItentifier, for: indexPath) as! DetailRecommendTableViewCell
@@ -145,12 +153,13 @@ extension DetailViewController : UICollectionViewDelegate, UICollectionViewDataS
             let castInfos = castInfo.cast[indexPath.item]
             let name = castInfos.name
             
-            if let castProfile = castInfos.profilePath {
+            if let castProfile = castInfos.profile_path {
                 let posterUrl = ImageManager.getImage(imageCase: .detail, image: castProfile)
                 
-                cell.prepare(image: posterUrl, title: name)
+                cell.prepareCrewPoster(image: posterUrl, title: name)
                 return cell
             }
+            // print(castInfos.profile_path)
             cell.prepare(image: nil, title: name)
             return cell
             

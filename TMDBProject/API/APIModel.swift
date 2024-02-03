@@ -93,7 +93,7 @@ struct Role: Decodable {
 struct Casts: Decodable{
     let name : String
     let roles: [Role]
-    let profilePath: String?
+    let profile_path: String?
 }
 // 이거 한글 적용 안됨 그냥 영어로 받게 해놔야 할듯
 struct CastModel: Decodable {

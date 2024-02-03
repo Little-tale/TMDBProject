@@ -66,6 +66,7 @@ class DetailPosterViewCell : BaseTableViewCell {
     func prepare(backDropImage: URL?,miniPoster: URL?) {
         self.miniPosterView.isHidden = false
         if let backDrop = backDropImage {
+            
             guard let poster = miniPoster else {
                 self.backDropImageView.kf.setImage(with: backDrop,options:[
                     .transition(.fade(0.5)),
@@ -80,7 +81,7 @@ class DetailPosterViewCell : BaseTableViewCell {
                 .transition(.fade(0.5)),
                 .forceTransition
               ])
-            self.backDropImageView.kf.setImage(with: poster,options:[
+            self.miniPosterView.kf.setImage(with: poster,options:[
                 .transition(.fade(0.5)),
                 .forceTransition
               ])
