@@ -14,20 +14,36 @@ import SnapKit
 // 였는데요 그래도 연습이니까 계속 다시 만들어 봅니다
 
 class DetailRecommendTableViewCell : BaseTableViewCell {
-    
+    let headetLabel = DefaultHeaderLabel()
     
     lazy var recommendColletionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout )
     
     override func configureHierarchy() {
+        contentView.addSubview(headetLabel)
         contentView.addSubview(recommendColletionView)
     }
     override func configureLayout() {
+        headetLabel.snp.makeConstraints { make in
+            make.horizontalEdges.top.equalTo(contentView.safeAreaLayoutGuide).inset(8)
+            make.height.equalTo(40)
+        }
+        
         recommendColletionView.snp.makeConstraints { make in
             make.height.equalTo(160).priority(600)
-            make.edges.equalTo(contentView.safeAreaLayoutGuide)
+            make.top.equalTo(headetLabel.snp.bottom).inset( -4 )
+            make.horizontalEdges.bottom.equalTo(contentView.safeAreaLayoutGuide)
         }
     }
     
+    override func designView() {
+        headetLabel.backgroundColor = .blue
+        recommendColletionView.backgroundColor = .brown
+        
+        register()
+    }
+    func register() {
+        recommendColletionView.register(StartViewCollectIonvIewCell.self, forCellWithReuseIdentifier: StartViewCollectIonvIewCell.reuseIdentifier)
+    }
 }
 
 extension DetailRecommendTableViewCell {

@@ -17,7 +17,7 @@ class DefaultHeaderLabel : UILabel {
     }
     
     func design() {
-
+        self.font = .systemFont(ofSize: 20, weight: .heavy)
         self.textColor = .white
         
     }

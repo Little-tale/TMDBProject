@@ -47,7 +47,7 @@ results ->
     id
  */
 
-
+// MARK : 서치뷰 전용 모델
 struct SearchModel: Decodable {
     let results: [Searchs]
 }
@@ -59,3 +59,31 @@ struct Searchs: Decodable {
     let poster_path: String?
 }
 
+// MARK : Detail 전용 모델
+struct DetailModel: Decodable {
+    let id : Int
+    // 뒷배경 위해
+    let backdropPath: String?
+    let profilePath: String?
+    let name: String
+    let overView: String
+    
+    enum CodingKeys:String, CodingKey{
+        case id, name
+        case backdropPath = "backdrop_path"
+        case profilePath = "profile_path"
+        case overView = "overview"
+    }
+}
+// MARK: Detail에서는 모델이 두개 정도 사용될 예정이다.
+struct DetailModels: Decodable {
+    let results : [DetailModel]
+}
+
+struct Casts: Decodable{
+    
+}
+
+struct CastModel: Decodable {
+    let cast : [Casts]
+}
