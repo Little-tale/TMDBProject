@@ -19,6 +19,8 @@ class DetailViewController : DetailBaseView {
         super.viewDidLoad()
         print(#function)
         delegateDateSource()
+        
+        
     }
     func delegateDateSource() {
         homeView.tableView.delegate = self

@@ -13,6 +13,9 @@ enum TMDBAPI {
     case top(language: Language)
     case popular(language: Language)
     case search(query: String, language: Language)
+    case detail(id: Int, language: Language)
+    case recommend(id: Int, language: Language)
+    case crew(id:Int)
     
     var baseUrl : String {
         return "https://api.themoviedb.org/3/"
@@ -38,6 +41,15 @@ enum TMDBAPI {
         case .search:
             let url: URL = URL(string:"\(baseUrl)search/tv")!
             return url
+        case .detail(id: let id):
+            let url: URL = URL(string:"\(baseUrl)tv/\(id)")!
+            return url
+        case .recommend(id: let id, language: let language):
+            let url: URL = URL(string:"\(baseUrl)tv/\(id)/recommendations")!
+            return url
+        case .crew(id: let id):
+            let url: URL = URL(string:"\(baseUrl)tv/\(id)/aggregate_credits")!
+            return url
         }
     }
     
@@ -51,6 +63,12 @@ enum TMDBAPI {
             return ["language": language.get]
         case .search(let query,let language):
             return ["language": language.get,"query":query]
+        case .detail(_,language: let language):
+            return ["language": language.get]
+        case .recommend(_,language: let language):
+            return ["language": language.get]
+        case .crew:
+            return ["":""]
         }
     }
     var method: HTTPMethod {
