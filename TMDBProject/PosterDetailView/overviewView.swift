@@ -21,28 +21,39 @@ class overviewView: BaseView {
         overViewLabel.snp.makeConstraints { make in
             make.bottom.equalTo(safeAreaLayoutGuide)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(8)
-            make.height.equalTo(150)
+            make.height.equalTo(100)
         }
         nameLabel.snp.makeConstraints { make in
             make.bottom.equalTo(overViewLabel.snp.top)
             make.leading.equalTo(safeAreaLayoutGuide).inset(12)
             make.top.equalTo(safeAreaLayoutGuide)
+            make.trailing.lessThanOrEqualTo(safeAreaLayoutGuide).inset(12)
 //            make.width.greaterThanOrEqualTo(80)
         }
         dateLabel.snp.makeConstraints { make in
-            make.top.trailing.greaterThanOrEqualTo(safeAreaLayoutGuide)
-            make.leading.equalTo(nameLabel.snp.trailing)
+            make.top.trailing.greaterThanOrEqualTo(safeAreaLayoutGuide).inset(12)
+            // make.leading.equalTo(nameLabel.snp.trailing)
             make.bottom.equalTo(overViewLabel.snp.top)
             
         }
     }
+    func testColor() {
+        //overViewLabel.backgroundColor = .red
+        //nameLabel.backgroundColor = .blue
+       
+        
+        
+    }
     override func designView() {
         overViewLabel.numberOfLines = 4
-        overViewLabel.backgroundColor = .red
+        testColor()
+        
+        overViewLabel.textAlignment = .center
         nameLabel.font = .systemFont(ofSize: 28, weight: .heavy)
-        dateLabel.backgroundColor = UIColor(white: 1, alpha: 0.4)
-        // dateLabel.backgroundColor = .black
-        self.backgroundColor = UIColor(white: 1, alpha: 0.4)
+        overViewLabel.font = .systemFont(ofSize: 15, weight: .medium)
+        dateLabel.font = .systemFont(ofSize: 13, weight: .light)
+    
+        self.backgroundColor = UIColor(white: 1, alpha: 0.6)
         self.layer.cornerRadius = 12
         self.clipsToBounds = true
     }

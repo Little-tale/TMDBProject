@@ -32,7 +32,7 @@ class DetailPosterViewCell : BaseTableViewCell {
             
             make.horizontalEdges.equalTo(contentView).inset(20)
             make.bottom.equalTo(backDropImageView.snp.bottom).inset(8)
-            make.height.equalTo(200)
+            make.height.equalTo(170)
         }
         
         miniPosterView.snp.makeConstraints { make in

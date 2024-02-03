@@ -31,10 +31,8 @@ class DetailViewController : DetailBaseView {
     // 놀랍게도 이건또 됨
     // var detailViewModel : [UIView: DetailViewModels] = [ : ]
     // 전혀 생각이 안떠오른다....
-    var detailViewModel : [String: DetailViewModels] = [ : ]
+    var detailViewModel : [Int: DetailViewModels] = [ : ]
     // 한번에는 무린가?
-    var detailCellKey : [String] = []
-    
     
     var id = 93405
     
@@ -52,25 +50,19 @@ class DetailViewController : DetailBaseView {
             result in
             // MARK: 이때 어떤 케이스(이것도 타입이 됨) 인지 정하고 모델을 넣어주면 모델 타입의 손실을 막을수 있다.
             // [ V ] 모델레이어 이름 넣고 싶은데
-            let layerName = result.getLayer
-            self.detailCellKey.append(layerName)
-            self.detailViewModel[layerName] = .detail(result)
+            self.detailViewModel[0] = .detail(result)
             group.leave()
         }
         group.enter()
         TMDBAPIManager.shared.fetchDetailView(type: CastModel.self, api: .crew(id: self.id)) {
             result in
-            let layerName = result.getLayer
-            self.detailCellKey.append(layerName)
-            self.detailViewModel[layerName] = .cast(result)
+            self.detailViewModel[1] = .cast(result)
             group.leave()
         }
         group.enter()
         TMDBAPIManager.shared.fetchDetailView(type: DetailModels.self, api: .recommend(id: self.id, language: .kor)) {
             result in
-            let layerName = result.getLayer
-            self.detailCellKey.append(layerName)
-            self.detailViewModel[layerName] = .recommendations( result )
+            self.detailViewModel[2] = .recommendations( result )
             group.leave()
         }
         group.notify(queue: .main) {
@@ -88,30 +80,32 @@ class DetailViewController : DetailBaseView {
 extension DetailViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print(#function)
-        print( tableView.layer.name )
+        // print( tableView.layer.name )
         print(section)
         return detailViewModel.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // 진짜 다시봐도 이건 아닌것 같다 아마 이 제네릭은 여기까지다 개선된 버전으로 바꿔 보도록 노력해 보아야 한다. 멍청아
         
-        let layer = self.detailCellKey[indexPath.row]
         // 아니 왜자꾸 자동완성 안되누 다 쳐야 하누
-        let model = detailViewModel[layer]
+        let model = detailViewModel[indexPath.row]
         switch model {
         case .detail(let detailInfo):
             let cell = tableView.dequeueReusableCell(withIdentifier: ReusableIdentifier<DetailPosterViewCell>.reuseableItentifier, for: indexPath) as! DetailPosterViewCell
+            if detailInfo.first_air_date != nil {
+                cell.detailView.dateLabel.text = DateManager.shared.getKorDate(date: detailInfo.first_air_date!)
+            }
+            cell.detailView.nameLabel.text = detailInfo.name
+            cell.detailView.overViewLabel.text = detailInfo.overView
+            
             if let backdropString = detailInfo.backdropPath {
                
                 guard let posterString = detailInfo.poster_path else {
                     
                     let backurl = ImageManager.getImage(imageCase: .detail , image: backdropString)
                     cell.prepare(backDropImage: backurl, miniPoster: nil)
-                    
-                    cell.detailView.nameLabel.text = detailInfo.name
-                    cell.detailView.overViewLabel.text = detailInfo.overView
-                    cell.detailView.dateLabel.text = detailInfo.first_air_date
-        
+                   
                     return cell
     
                 }
@@ -119,24 +113,16 @@ extension DetailViewController : UITableViewDelegate, UITableViewDataSource {
                 let posterUrl = ImageManager.getImage(imageCase: .detail, image: posterString)
                 cell.prepare(backDropImage: backurl, miniPoster: posterUrl)
                 
-                cell.detailView.nameLabel.text = detailInfo.name
-                cell.detailView.overViewLabel.text = detailInfo.overView
-                cell.detailView.dateLabel.text = detailInfo.first_air_date
-                
                 return cell
             }
-            
-           
             
         case .cast(let castInfo):
             let cell = tableView.dequeueReusableCell(withIdentifier: ReusableIdentifier<DetailRecommendTableViewCell>.reuseableItentifier, for: indexPath) as! DetailRecommendTableViewCell
             cell.recommendColletionView.dataSource = self
             cell.recommendColletionView.delegate = self
-            // cell.recommendColletionView.tag = indexPath.row
+            cell.recommendColletionView.tag = indexPath.row
             cell.headetLabel.text = SectionText.DetailView.allCases[indexPath.row].rawValue
             cell.selectionStyle = .none
-            
-            cell.recommendColletionView.layer.name = layer
             return cell
             
         case .recommendations(let recommendInfo):
@@ -144,11 +130,9 @@ extension DetailViewController : UITableViewDelegate, UITableViewDataSource {
             
             cell.recommendColletionView.dataSource = self // <- 무슨 인스턴스? 나 임마 DetailViewController()
             cell.recommendColletionView.delegate = self
-            // cell.recommendColletionView.tag = indexPath.row
+            cell.recommendColletionView.tag = indexPath.row
             cell.headetLabel.text = SectionText.DetailView.allCases[indexPath.row].rawValue
             cell.selectionStyle = .none
-            
-            cell.recommendColletionView.layer.name = layer
             return cell
         case .none:
             print("none")
@@ -168,7 +152,7 @@ extension DetailViewController : UITableViewDelegate, UITableViewDataSource {
 
 extension DetailViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let datas = detailViewModel[collectionView.layer.name ?? ""]
+        let datas = detailViewModel[collectionView.tag]
         switch datas {
         case .cast(let castInfo):
             return castInfo.cast.count
@@ -180,7 +164,7 @@ extension DetailViewController : UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StartViewCollectIonvIewCell.reuseIdentifier, for: indexPath) as! StartViewCollectIonvIewCell
-        let datas = detailViewModel[collectionView.layer.name ?? ""]
+        let datas = detailViewModel[collectionView.tag]
         switch datas {
         case .cast(let castInfo):
             let castInfos = castInfo.cast[indexPath.item]

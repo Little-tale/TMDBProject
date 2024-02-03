@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchListBaseView: UIViewController {
+class AllListBaseViewController: UIViewController {
     override func viewDidLoad() {
         configureHierarchy()
         configureLayout()
