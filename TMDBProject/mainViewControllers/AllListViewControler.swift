@@ -13,9 +13,6 @@ class AllListViewControler: AllListBaseViewController {
     var modelList: [Searchs]? = [] {
         didSet {
             print("값이 넘어옴")
-            // print(model)
-            print(modelList?.count)
-            
             self.allListHomeView.listCollectionView.reloadData()
         }
     }
@@ -26,42 +23,41 @@ class AllListViewControler: AllListBaseViewController {
         allListHomeView.listCollectionView.dataSource = self
         allListHomeView.listCollectionView.delegate = self
         allListHomeView.reuseableView.collectionView.delegate = self
-        print("뷰 디드 로드 시점", modelList?.count)
-
+       
     }
 }
 
 extension AllListViewControler: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // print("리로드 문제",modelList)
-        // modelList?.count
-        // fatalError("추적해야겠음")
-        print(modelList)
+        
         return modelList?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print(indexPath.row )
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StartViewCollectIonvIewCell.reuseableIdentiFier, for: indexPath) as? StartViewCollectIonvIewCell else {
             print("레지스터 문제")
             return UICollectionViewCell()
         }
-        print("레지스터 등록 되서 넘어온거지? ")
+        cell.backgroundColor = .brown
+        
         if let image = modelList?[indexPath.item].poster_path {
             let url = ImageManager.getImage(imageCase: .trend, image: image)
             cell.prepare(image: url, title: nil)
+            return cell
         }
         if let name = modelList?[indexPath.item].name {
             cell.prepare(image: nil, title: name)
+            return cell
         }
-        
-        cell.backgroundColor = .brown
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if let reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: AllListReusableView.reuseableIdentiFier, for: indexPath) as? AllListReusableView {
-            reusableView.collectionView.backgroundColor = .cyan
+           
+            print("여긴되니?")
+            // reusableView.myProtocol = self
+            
             return reusableView
         }
         return UICollectionReusableView()
@@ -71,9 +67,31 @@ extension AllListViewControler: UICollectionViewDelegate, UICollectionViewDataSo
 
 extension AllListViewControler: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.bounds.width, height: 50)
+        return CGSize(width: collectionView.bounds.width, height: 60)
     }
     
 }
 
+
+
+
+
+//extension AllListViewControler: collectionReuseProtocl {
+//    func numberOfSectionForReuse(reusableView: AllListReusableView, section: Int) -> Int {
+//        print(modelList?.count)
+//        return modelList?.count ?? 0
+//    }
+//    
+//    func whereIndexOf(reusalveView: AllListReusableView, colletionView: UICollectionView, index: IndexPath) -> UICollectionViewCell {
+//        let cell = colletionView.dequeueReusableCell(withReuseIdentifier: HeaderCell.reuseableIdentiFier, for: index) as! HeaderCell
+//        
+//        let urlString = modelList?[index.row].backdrop_path
+//        let url = ImageManager.getImage(imageCase: .trend, image: urlString ?? "")
+//        cell.setImage(image: url)
+//        print("동작 되는가?")
+//        return cell
+//    }
+//    
+//    
+//}
 

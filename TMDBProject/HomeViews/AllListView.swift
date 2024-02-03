@@ -34,7 +34,8 @@ class AllListView: UIView {
         }
     }
     func designView(){
-        
+        self.backgroundColor = .darkGray
+        self.listCollectionView.backgroundColor = UIColor(red: 26 / 255, green: 14 / 255, blue: 42 / 255 , alpha: 0.9)
     }
     func register() {
         listCollectionView.register(AllListReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AllListReusableView.reuseableIdentiFier)

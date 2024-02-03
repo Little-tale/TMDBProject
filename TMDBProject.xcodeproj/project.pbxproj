@@ -48,6 +48,8 @@
 		7BE61C9C2B6E312F006E3CAF /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61C9B2B6E312F006E3CAF /* DateManager.swift */; };
 		7BE61C9E2B6E3D9C006E3CAF /* AllListViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61C9D2B6E3D9C006E3CAF /* AllListViewControler.swift */; };
 		7BE61CA12B6E40B7006E3CAF /* AllListReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61CA02B6E40B7006E3CAF /* AllListReusableView.swift */; };
+		7BE61CA32B6E7A7F006E3CAF /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61CA22B6E7A7F006E3CAF /* HeaderCell.swift */; };
+		7BE61CA62B6E7E02006E3CAF /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61CA52B6E7E02006E3CAF /* Test.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +92,8 @@
 		7BE61C9B2B6E312F006E3CAF /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		7BE61C9D2B6E3D9C006E3CAF /* AllListViewControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllListViewControler.swift; sourceTree = "<group>"; };
 		7BE61CA02B6E40B7006E3CAF /* AllListReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllListReusableView.swift; sourceTree = "<group>"; };
+		7BE61CA22B6E7A7F006E3CAF /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
+		7BE61CA52B6E7E02006E3CAF /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +131,7 @@
 		7BDEF2D92B6CC2A500111D62 /* TMDBProject */ = {
 			isa = PBXGroup;
 			children = (
+				7BE61CA42B6E7DF4006E3CAF /* DelegatePlactice */,
 				7BE61C9F2B6E409A006E3CAF /* Reusable */,
 				7BE61C9A2B6E311C006E3CAF /* DateFormetter */,
 				7BE61C912B6D4147006E3CAF /* ReueubleIdentigier */,
@@ -209,6 +214,7 @@
 				7BE61C882B6D3A07006E3CAF /* DetailPosterViewCell.swift */,
 				7BE61C942B6D61E7006E3CAF /* DetailRecommendCollectionViewCell.swift */,
 				7BE61C962B6D6221006E3CAF /* DetailRecommendTableViewCell.swift */,
+				7BE61CA22B6E7A7F006E3CAF /* HeaderCell.swift */,
 			);
 			path = "Table+CollectionViewCells";
 			sourceTree = "<group>";
@@ -286,6 +292,14 @@
 				7BE61CA02B6E40B7006E3CAF /* AllListReusableView.swift */,
 			);
 			path = Reusable;
+			sourceTree = "<group>";
+		};
+		7BE61CA42B6E7DF4006E3CAF /* DelegatePlactice */ = {
+			isa = PBXGroup;
+			children = (
+				7BE61CA52B6E7E02006E3CAF /* Test.swift */,
+			);
+			path = DelegatePlactice;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -376,6 +390,7 @@
 				7BE61C872B6D3476006E3CAF /* DetailViewController.swift in Sources */,
 				7BDEF2F92B6CC5F100111D62 /* DetailBaseView.swift in Sources */,
 				7BE61CA12B6E40B7006E3CAF /* AllListReusableView.swift in Sources */,
+				7BE61CA32B6E7A7F006E3CAF /* HeaderCell.swift in Sources */,
 				7BE61C9C2B6E312F006E3CAF /* DateManager.swift in Sources */,
 				7BE61C712B6CDA0C006E3CAF /* UnderLineLabel.swift in Sources */,
 				7BE61C822B6D26BF006E3CAF /* SectionText.swift in Sources */,
@@ -398,6 +413,7 @@
 				7BE61C992B6D65FC006E3CAF /* defaultHeaderLabel.swift in Sources */,
 				7BDEF2DD2B6CC2A500111D62 /* SceneDelegate.swift in Sources */,
 				7BE61C932B6D4165006E3CAF /* ReusableIdentifier.swift in Sources */,
+				7BE61CA62B6E7E02006E3CAF /* Test.swift in Sources */,
 				7BE61C782B6CE301006E3CAF /* APIManager.swift in Sources */,
 				7BE61C6C2B6CD078006E3CAF /* StartViewControllerTableCell.swift in Sources */,
 				7BDEF2FE2B6CC6EF00111D62 /* AllListView.swift in Sources */,
