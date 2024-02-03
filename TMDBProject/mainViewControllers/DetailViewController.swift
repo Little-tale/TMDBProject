@@ -68,7 +68,7 @@ class DetailViewController : DetailBaseView {
         group.notify(queue: .main) {
             self.homeView.tableView.reloadData()
         }
-        
+        navigationItem.title = "검색결과"
     }
     func delegateDateSource() {
         homeView.tableView.delegate = self

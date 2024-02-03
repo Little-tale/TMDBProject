@@ -45,7 +45,7 @@ class StartViewController: StartBaseViewController {
         }
         
         searchBarRegister()
-        
+        navigationItem.title = "요즘 영화 뭐보지?"
     }
     
     func searchBarRegister() {
@@ -136,6 +136,11 @@ extension StartViewController : UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(data[collectionView.tag]?[indexPath.item].id ?? 0)
+        
+        let vc = DetailViewController()
+        vc.id = (data[collectionView.tag]?[indexPath.item].id ?? 0)
+        transitionView(view: vc, tresitionStyle: .pushNavigation)
+        
     }
 }
 
@@ -145,7 +150,10 @@ extension StartViewController: UISearchBarDelegate {
             return
         }
         TMDBAPIManager.shared.fetchSearchView(type: SearchModel.self , api: .search(query: serchText, language: .kor)) { result in
-            print(result.results)
+            let vc = AllListViewControler()
+            vc.modelList = result.results
+            // spider man
+            self.transitionView(view: vc.self, tresitionStyle: .present)
         }
     }
 }

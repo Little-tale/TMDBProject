@@ -24,6 +24,7 @@ class AllListViewControler: AllListBaseViewController {
         allListHomeView.listCollectionView.delegate = self
         allListHomeView.reuseableView.collectionView.delegate = self
        
+       
     }
 }
 
