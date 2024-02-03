@@ -75,15 +75,20 @@ extension StartViewController : UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    
+    // MARK: 오늘 나의 소중한 3시간 12분 45초를 여기에 쏟았다.
+    // 다름아닌 저 제네릭을 이용한 전달방식으로 인해서...
+    // 이유는 간단했다.
+    ///func transitionView<T: UIViewController>(view: T, tresitionStyle: TransitionStyles) {
+    //// let vc = T.self()
+    ///이런식의 내용이였는데 난 바보다.....
+    ///T 즉 타입을 받아서 그걸 생성하고 ㅋㅋㅋㅋㅋㅋㅋㅋ
+    ///보내고 있다 참 어리석다.
     @objc func nextView(sender: UIButton) {
         
         let nextViewData = data[sender.tag]
-        
         let vc = AllListViewControler()
         vc.modelList = nextViewData
         print(#function)
-        // dump(nextViewData)
         transitionView(view: vc , tresitionStyle: .present)
     }
     

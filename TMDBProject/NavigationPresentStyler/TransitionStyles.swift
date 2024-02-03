@@ -26,22 +26,24 @@ enum TransitionStyles {
 }
 
 extension UIViewController {
+    // MARK: 와 이게 문제였다.
+    // 전환할때 요놈이 나를 망쳤다
     
     func transitionView<T: UIViewController>(view: T, tresitionStyle: TransitionStyles) {
-        let vc = T.self()
+        //let vc = view
         switch tresitionStyle {
         case .present:
-            present(vc, animated: true)
+            present(view, animated: true)
         case .presentFullScreen:
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: true)
+            view.modalPresentationStyle = .fullScreen
+            present(view, animated: true)
         case .pushNavigation:
-            navigationController?.pushViewController(vc, animated: true)
+            navigationController?.pushViewController(view, animated: true)
         case .presentOfNavigation:
-            let nav = UINavigationController(rootViewController: vc)
+            let nav = UINavigationController(rootViewController: view)
             present(nav,animated: true)
         case .presentOfNavigationFullScreen:
-            let nav = UINavigationController(rootViewController: vc)
+            let nav = UINavigationController(rootViewController: view)
             nav.modalPresentationStyle = .fullScreen
             present(nav,animated: true)
             
