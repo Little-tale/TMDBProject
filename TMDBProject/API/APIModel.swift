@@ -64,26 +64,35 @@ struct DetailModel: Decodable {
     let id : Int
     // 뒷배경 위해
     let backdropPath: String?
+    // 프로필 사진위해
     let profilePath: String?
     let name: String
     let overView: String
+    let voteAverage : Double?
     
     enum CodingKeys:String, CodingKey{
         case id, name
         case backdropPath = "backdrop_path"
         case profilePath = "profile_path"
         case overView = "overview"
+        case voteAverage = "vote_average"
     }
 }
-// MARK: Detail에서는 모델이 두개 정도 사용될 예정이다.
+// MARK: Detail에서는 모델이 두개 정도 사용될 예정이다. 디테일이랑 리코멘드
 struct DetailModels: Decodable {
     let results : [DetailModel]
 }
 
-struct Casts: Decodable{
-    
+struct Role: Decodable {
+    let character: String
 }
 
+struct Casts: Decodable{
+    let name : String
+    let roles: [Role]
+}
+// 이거 한글 적용 안됨 그냥 영어로 받게 해놔야 할듯
 struct CastModel: Decodable {
     let cast : [Casts]
+    let id : Int
 }
