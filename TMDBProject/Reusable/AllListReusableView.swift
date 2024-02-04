@@ -37,18 +37,33 @@ import SnapKit
 //    
 //    
 //}
+// MARK:  나의 뻘짓으로 시작된 딜리게이트 패턴 이용해보기 2탄
+// 1탄은 위에 코드 흔적들이 있을것이다. 증말 왜 안되는지 그래서 2탄~!
+/*
+ 자 다시 어제 블로그에서 본 글처럼 해볼려고 하는데
+ 딜리게이트 패턴인걸로 보인다.
+ 좀 ... 이해가 덜되는거 같은데 다시 쳐보겠다.
+ */
+
+// 1. 커스텀 프로토콜을 만든다. -> 이때 Anyobject 프로토콜를 채택한다.
+protocol headerCellForCollectionView: AnyObject {
+    // 2. 컬렉션뷰 컨트롤러 에서 사용하는 메서드처럼 여기서 사용할수 있게 메서드를 구현한다.
+    func numberOfItems(for reuseableView: AllListReusableView, numberOfItemsInSection section : Int) -> Int
+        
+    func cellForItemAt(for reuseableView: AllListReusableView, colletionView : UICollectionView , cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+}
 
 class AllListReusableView : UICollectionReusableView {
     
-//    //약한 참조를 통해 프로토콜 연결
-//    weak var myProtocol: collectionReuseProtocl?
-//    
-//    func colletionViewSet() {
-//        collectionView.dataSource = self
-//        collectionView.delegate = self
-//    }
+    // 3. 내가만든 프로토콜 프러퍼티를 생성하여 외부에서 구현한 객체를 박는다.
+    // 이게 이해가 덜갔는데 내용이
+    // A 가 B의 물건들중에 사용하려고 했는데
+    // A 가 짬때리고 싶은거임
+    // A 가 C에게 말함 B한테 가서 사용하라고
     
+    weak var myProtocol : headerCellForCollectionView?
     
+    // 영화이름 : -> 기생충
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout() )
     
     override init(frame: CGRect) {
@@ -90,5 +105,26 @@ class AllListReusableView : UICollectionReusableView {
         layout.sectionHeadersPinToVisibleBounds = true
         return layout
     }
+    
+}
+
+// 4. 이제 내가 구현한 프로토콜님을 여기에도 콜렉션뷰가 있으니까 짬때릴 준비를 함
+// 4.1 애플 내부 코드는 볼수 없으신 참 경이로운 딜리게이트를 모셔오기
+extension AllListReusableView: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    // 4.2 이제 신성하신 애플 딜리게이트님에게 갖다 바쳐야 하는 임무를
+    // 다른 이에게 전달할 것이다. 누구에게? 내 프로토콜을 구현하신 분에게
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return myProtocol?.numberOfItems(for: self, numberOfItemsInSection: section) ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return myProtocol?.cellForItemAt(for: self, colletionView: collectionView, cellForItemAt: indexPath) ?? UICollectionViewCell()
+    }
+    
+    // 5.은 이제 이걸 구현할 뷰컨으로 넘어와라 AllListViewCon
+    
+    
     
 }

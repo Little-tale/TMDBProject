@@ -6,6 +6,18 @@ import UIKit
  page 넘버를 쿼리 파라미터로 요청해야하닌 좀 뭔가 이 페이지를 위한 API METHOD 연기를 해보아야 할것같다.
  */
 
+/*
+ 자이제 재사용 헤더뷰 님의 조작을 어떻게 해야할지 생각해보아야 한다.
+ 일단 현재의 심정은 망했다.
+ 하는법이 딱히 떠오르지 않는다.
+ 저번처럼 컬렉션뷰 인스턴스가 여기에 있어서 가능했는가?
+ 아니!
+ 그렇다면 어떻게 해야 하는가 딜리게이트 패턴을 빠르게 배워서 해볼까?
+ 아니면 클로저에 담아서 여기서 가져오는가? 난 바보다
+ 답이 안떠오른다.
+ 
+ */
+
 class AllListViewControler: AllListBaseViewController {
     
     let allListHomeView = AllListView()
@@ -68,7 +80,7 @@ class AllListViewControler: AllListBaseViewController {
     }
     
 }
-
+// MARK: 컬렉션뷰 딜리게이트 데이터 소스
 extension AllListViewControler: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         presentItemCount = modelList?.count ?? 0
@@ -111,7 +123,7 @@ extension AllListViewControler: UICollectionViewDelegate, UICollectionViewDataSo
     }
 
 }
-
+// MARK: 페이지 네이션 구현란
 extension AllListViewControler: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         //print("프리패칭 인덱스 패스",indexPaths)
@@ -144,26 +156,5 @@ extension AllListViewControler: UICollectionViewDelegateFlowLayout {
     
 }
 
-
-
-
-
-//extension AllListViewControler: collectionReuseProtocl {
-//    func numberOfSectionForReuse(reusableView: AllListReusableView, section: Int) -> Int {
-//        print(modelList?.count)
-//        return modelList?.count ?? 0
-//    }
-//    
-//    func whereIndexOf(reusalveView: AllListReusableView, colletionView: UICollectionView, index: IndexPath) -> UICollectionViewCell {
-//        let cell = colletionView.dequeueReusableCell(withReuseIdentifier: HeaderCell.reuseableIdentiFier, for: index) as! HeaderCell
-//        
-//        let urlString = modelList?[index.row].backdrop_path
-//        let url = ImageManager.getImage(imageCase: .trend, image: urlString ?? "")
-//        cell.setImage(image: url)
-//        print("동작 되는가?")
-//        return cell
-//    }
-//    
-//    
-//}
+//MARK: 잘 찾아왔다 5번 설명 시작한다.
 

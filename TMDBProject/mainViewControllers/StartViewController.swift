@@ -1,11 +1,6 @@
-
 /*
- 해당 뷰에서 쓸것.
- 1. 서치바
- 2. 테이블뷰 ->
  
  */
-
 import UIKit
 
 class StartViewController: StartBaseViewController {
