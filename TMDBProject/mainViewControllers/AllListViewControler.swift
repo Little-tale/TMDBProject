@@ -14,6 +14,11 @@ class AllListViewControler: AllListBaseViewController {
         self.view = allListHomeView
         self.view.backgroundColor = .black
     }
+    var pageNum = 2
+    var presentItemCount = 0
+    /// 이건 트렌드나 pop 등의 페이지별 갯수가 다른 경우가 있을수도 있다고 생각해서 핸들링 시도
+    var pageInCount = 0
+    
     var modelList: [Searchs]? = [] {
         didSet {
             print("값이 넘어옴")
@@ -23,7 +28,7 @@ class AllListViewControler: AllListBaseViewController {
     var APIStyles : TMDBAPI? {
         didSet{
             print("에이피아이 받았어요!")
-            ApiRequest()
+            ApiRequest(pageNum: self.pageNum)
         }
     }
     
@@ -33,19 +38,37 @@ class AllListViewControler: AllListBaseViewController {
         allListHomeView.listCollectionView.dataSource = self
         allListHomeView.listCollectionView.delegate = self
         allListHomeView.reuseableView.collectionView.delegate = self
-       
+        allListHomeView.listCollectionView.prefetchDataSource = self
        
     }
-    func ApiRequest(){
-        TMDBAPIManager.shared.fetchSearchView(type: SearchModel.self, api: APIStyles ?? .top(language: .kor)) { searchModel in
+//    func ApiRequest(){
+////        TMDBAPIManager.shared.fetchSearchView(type: SearchModel.self, api: APIStyles ?? .top(language: .kor)) { searchModel in
+////            self.modelList?.append(contentsOf: searchModel.results)
+////        }
+//
+//    }
+    func ApiRequest(pageNum : Int){
+//        TMDBAPIManager.shared.fetchOnlyForAllListView(api: APIStyles ?? .top(language: .kor),
+//                                                      pageNum: pageNum) { searchModel in
+//            modelList?.append(contentsOf: searchModel.results )
+//        }
+        // 내가 만든 프로토콜로 하게 될경우 타입이 정확이 무엇인지 모르게 되어서 가 아니다.
+        // 이유는 간단한데 타입을 이친구가 추론을 하게될때 파라미터로 직접 받지 않는 메서드는
+        // 이렇게 타입이 무엇인지를 알려주어야 한다. 왜냐? 이친구는 무슨 특정한 타입이 올지 모르는 상황이 오기 때문이다.
+        // 잊어 먹지 않기 위해서 여기에 기록을 남겨 두었다.
+//        TMDBAPIManager.shared.fetchOnlyForAllListView(api: APIStyles ?? .top(language: .kor), pageNum: pageNum) { (searchModel: SearchModel) in
+//            <#code#>
+//        }
+        TMDBAPIManager.shared.fetchOnlyForAllListView(type: SearchModel.self, api: APIStyles ?? .top(language: .kor), pageNum: pageNum) { searchModel in
             self.modelList?.append(contentsOf: searchModel.results)
         }
     }
+    
 }
 
 extension AllListViewControler: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
+        presentItemCount = modelList?.count ?? 0
         return modelList?.count ?? 0
     }
     
@@ -55,6 +78,7 @@ extension AllListViewControler: UICollectionViewDelegate, UICollectionViewDataSo
             return UICollectionViewCell()
         }
         cell.backgroundColor = .brown
+        print("일반적인 인덱스 패스 아이템즈 넘버",indexPath.item)
         
         if let image = modelList?[indexPath.item].poster_path {
             let url = ImageManager.getImage(imageCase: .trend, image: image)
@@ -65,6 +89,9 @@ extension AllListViewControler: UICollectionViewDelegate, UICollectionViewDataSo
             cell.prepare(image: nil, title: name)
             return cell
         }
+        
+       
+        
         return cell
     }
     
@@ -74,11 +101,36 @@ extension AllListViewControler: UICollectionViewDelegate, UICollectionViewDataSo
             print("여긴되니?")
             // reusableView.myProtocol = self
             
+            
             return reusableView
         }
         return UICollectionReusableView()
     }
 
+}
+
+extension AllListViewControler: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        print("프리패칭 인덱스 패스",indexPaths)
+        
+        for indexPath in indexPaths {
+            print("프리패칭 인덱스 패스 : ",indexPath.row)
+            
+            if presentItemCount - 10 <= indexPath.row {
+                presentItemCount += pageInCount
+                pageNum += 1
+                TMDBAPIManager.shared.fetchOnlyForAllListView(type: SearchModel.self, api: APIStyles ?? .top(language: .kor), pageNum: pageNum) { results in
+                    self.modelList?.append(contentsOf: results.results)
+                }
+            }
+            
+        }
+        
+    }
+    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+        print("이건 전혀 감이 안온다.")
+    }
+    
 }
 
 extension AllListViewControler: UICollectionViewDelegateFlowLayout {

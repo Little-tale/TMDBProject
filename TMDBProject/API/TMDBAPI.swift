@@ -17,6 +17,7 @@ enum TMDBAPI {
     case recommend(id: Int, language: Language)
     case crew(id:Int)
     
+    
     var baseUrl : String {
         return "https://api.themoviedb.org/3/"
     }
@@ -60,10 +61,10 @@ enum TMDBAPI {
         switch self {
         case .trend(_, let language):
             return ["language": language.get]
-        case .top(let language):
+        case .top (let language):
             return ["language": language.get]
         case .popular(let language):
-            return ["language": language.get]
+                return ["language": language.get]
         case .search(let query,let language):
             return ["language": language.get,"query":query]
         case .detail(_,language: let language):
