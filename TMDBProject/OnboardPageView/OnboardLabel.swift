@@ -19,7 +19,7 @@ class OnboardLabel: UILabel {
     }
     
     func designLabel() {
-        self.font = .systemFont(ofSize: 26, weight: .bold)
+        self.font = .systemFont(ofSize: 34, weight: .bold)
         self.textColor = .white
         self.numberOfLines = 3
         self.textAlignment = .center

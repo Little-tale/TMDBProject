@@ -1,15 +1,13 @@
 //
-//  FirstOnBoard.swift
+//  SecondOnBoard.swift
 //  TMDBProject
 //
 //  Created by Jae hyung Kim on 2/4/24.
 //
 
 import UIKit
-import SnapKit
 
-
-class StartOnBoard: StartBaseViewController {
+class SecondOnBoard: StartBaseViewController {
     let imageView = OnboardSampleImageView(frame: .zero)
     let explainLabel = OnboardLabel()
     
@@ -38,15 +36,13 @@ class StartOnBoard: StartBaseViewController {
     }
     override func designView() {
         imageView.backgroundColor = .brown
-        imageView.image = UIImage(named: OnboardEnum.first.image)
+        imageView.image = UIImage(named: OnboardEnum.second.image)
         imageView.contentMode = .scaleAspectFill
         // explainLabel.backgroundColor = .red
         explainLabel.numberOfLines = 3
         explainLabel.clipsToBounds = true
-        explainLabel.text = OnboardEnum.first.text
+        explainLabel.text = OnboardEnum.second.text
     }
     
     
 }
-
-

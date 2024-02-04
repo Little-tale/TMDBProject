@@ -27,7 +27,7 @@ enum OnboardEnum{
     var text: String {
         switch self {
         case.first:
-            return "영화 뭐볼지\n고민이신가요?"
+            return "요즘 영화 뭘 볼지\n고민이신가요?"
         case .second:
             return "다양한 영화들을\n찾아보세요"
         case .third:
