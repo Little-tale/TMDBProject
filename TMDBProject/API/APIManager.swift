@@ -8,6 +8,10 @@
 import UIKit
 import Alamofire
 
+/*
+ 잭천사님이 각 API 호출시 만약 실패하게 된다면 어떻게 처리하게 될지 고민하라고 하셨다.
+ 일단 대기
+ */
 
 
 
@@ -41,6 +45,25 @@ class TMDBAPIManager {
             }
         }
     }
+    ///해당 메서드는 페이지 숫자도 받아서 사용할수 있는 메서드로 리스트 뷰에서 사용하시길 바랍니다.
+    ///환불은 여렵습니다. <T: SearchModel> 를 넣으면 클래스도 아니고 프로토콜도 아니니까 나가 죽으라고 합니다,.
+    func fetchOnlyForAllListView<T: onlySearchViewFetch>(api: TMDBAPI, complitionHandler : (T) -> Void) {
+        
+        AF.request(api.endPoint,
+                   method: api.method,
+                   parameters: api.parametter,
+                   encoding: URLEncoding(destination: .queryString),
+                   headers: api.header).responseDecodable(of: T.self) {
+            response in
+            switch response.result {
+            case .success(let success):
+                print("성공쓰",success)
+            case .failure(let failure):
+                print(failure)
+            }
+        }
+    }
+    
     
     func fetchDetailView<T:Decodable> (type: T.Type, api:TMDBAPI, compliteHandler : @escaping (T) -> Void) {
         print(api.endPoint)

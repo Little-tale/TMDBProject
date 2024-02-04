@@ -51,6 +51,7 @@ class DetailViewController : DetailBaseView {
             // MARK: 이때 어떤 케이스(이것도 타입이 됨) 인지 정하고 모델을 넣어주면 모델 타입의 손실을 막을수 있다.
             // [ V ] 모델레이어 이름 넣고 싶은데
             self.detailViewModel[0] = .detail(result)
+            //self.detailViewModel.
             group.leave()
         }
         group.enter()

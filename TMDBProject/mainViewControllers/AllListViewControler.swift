@@ -1,6 +1,10 @@
 
 
 import UIKit
+/*
+ 여기는 이제 페이지 네이션을 다시 연습하기 위해서
+ page 넘버를 쿼리 파라미터로 요청해야하닌 좀 뭔가 이 페이지를 위한 API METHOD 연기를 해보아야 할것같다.
+ */
 
 class AllListViewControler: AllListBaseViewController {
     
@@ -16,6 +20,12 @@ class AllListViewControler: AllListBaseViewController {
             self.allListHomeView.listCollectionView.reloadData()
         }
     }
+    var APIStyles : TMDBAPI? {
+        didSet{
+            print("에이피아이 받았어요!")
+            ApiRequest()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +35,11 @@ class AllListViewControler: AllListBaseViewController {
         allListHomeView.reuseableView.collectionView.delegate = self
        
        
+    }
+    func ApiRequest(){
+        TMDBAPIManager.shared.fetchSearchView(type: SearchModel.self, api: APIStyles ?? .top(language: .kor)) { searchModel in
+            self.modelList?.append(contentsOf: searchModel.results)
+        }
     }
 }
 

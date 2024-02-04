@@ -47,8 +47,12 @@ results ->
     id
  */
 
+protocol onlySearchViewFetch: Decodable {
+    
+}
+
 // MARK : 서치뷰 전용 모델
-struct SearchModel: Decodable {
+struct SearchModel: Decodable, onlySearchViewFetch {
     let results: [Searchs]
 }
 struct Searchs: Decodable {
@@ -58,6 +62,15 @@ struct Searchs: Decodable {
     let backdrop_path: String?
     let poster_path: String?
 }
+
+///////// 각 모델별로 그... 다시 나누고 그 모델을 보내서 재사용 뷰에서 그 모델을 분기점을 주어서 페이지 네이션을 해보려고 합니다.
+///// 그럴 필요가 있을까? 하나의 모델인데 Enum으로 나눠서 가능할것 같다
+enum StartViewControllerModels {
+    case trend(SearchModel)
+    case top10(SearchModel)
+    case popular(SearchModel)
+}
+
 
 // MARK : Detail 전용 모델
 struct DetailModel: Decodable {
@@ -95,6 +108,9 @@ struct DetailModels: Decodable {
     }
 }
 
+
+
+/////////////////
 struct Role: Decodable {
     let character: String
 }
@@ -143,3 +159,30 @@ enum DetailViewModels {
     }
 }
 
+
+
+/*
+results ->
+   backdrop_path
+   id
+   original_language X
+   original_title
+   poster_path
+   title (name과 비슷해 보임)
+*/
+
+/* Trend
+results ->
+   backdrop_path
+   id
+   name
+   original_name
+*/
+/* TOP + POP
+results ->
+   backdrop_path
+   poster_path
+   name
+   original_name
+   id
+*/

@@ -11,8 +11,10 @@ import UIKit
 class StartViewController: StartBaseViewController {
 
     let startView = StartView()
-    var data : [Int: [Searchs]] = [:]
-    let model = SearchModel.self
+    // var data : [Int: [Searchs]] = [:]
+    var model = SearchModel.self
+    
+    var dataModels : [Int: StartViewControllerModels] = [:]
     
     override func loadView() {
         self.view = startView
@@ -26,17 +28,21 @@ class StartViewController: StartBaseViewController {
         // MARK: 그니까 즉 여기서 타입을 적는 이유가 나 이거씀 을 명시 하기 위해서다 라는 것이다.
         group.enter()
         TMDBAPIManager.shared.fetchSearchView(type: model, api: .trend(type: .day, language: .kor)) { results in
-            self.data[0] = results.results
+            //self.data[0] = results.results
+            self.dataModels[0] = .trend(results)
+            
             group.leave()
         }
         group.enter()
         TMDBAPIManager.shared.fetchSearchView(type: model, api: .top(language: .kor)) { results in
-            self.data[1] = results.results
+            //self.data[1] = results.results
+            self.dataModels[1] = .top10(results)
             group.leave()
         }
         group.enter()
         TMDBAPIManager.shared.fetchSearchView(type: model, api: .popular(language: .kor)) { results in
-            self.data[2] = results.results
+            //self.data[2] = results.results
+            self.dataModels[2] = .popular(results)
             group.leave()
         }
         
@@ -59,7 +65,7 @@ class StartViewController: StartBaseViewController {
 
 extension StartViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return dataModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -88,9 +94,24 @@ extension StartViewController : UITableViewDelegate, UITableViewDataSource {
     ///보내고 있다 참 어리석다.
     @objc func nextView(sender: UIButton) {
         
-        let nextViewData = data[sender.tag]
+        let nextViewData = dataModels[sender.tag]
+        
         let vc = AllListViewControler()
-        vc.modelList = nextViewData
+        
+        switch nextViewData{
+        case .top10(let model):
+            vc.modelList = model.results
+            vc.APIStyles = .top(language: .kor)
+        case .trend(let model):
+            vc.modelList = model.results
+            vc.APIStyles = .trend(type: .day, language: .kor)
+        case .popular(let model):
+            vc.modelList = model.results
+            vc.APIStyles = .popular(language: .kor)
+        default : break
+        }
+            
+        //vc.modelList = nextViewData
         print(#function)
         transitionView(view: vc , tresitionStyle: .present)
     }
@@ -113,32 +134,53 @@ extension StartViewController : UITableViewDelegate, UITableViewDataSource {
 
 extension StartViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data[collectionView.tag]?.count ?? 0
+        let results = dataModels[collectionView.tag]
+        switch results{
+        case.top10(let datas) : return datas.results.count
+        case.popular(let datas) : return datas.results.count
+        case.trend(let datas) : return datas.results.count
+        default : return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StartViewCollectIonvIewCell.reuseIdentifier, for: indexPath) as! StartViewCollectIonvIewCell
+        var cellForData: Searchs?
         
-        let datas = data[collectionView.tag]?[indexPath.item]
+        let results = dataModels[collectionView.tag]
         
-        if let urlString = datas?.poster_path {
+        switch results{
+        case.top10(let datas) : cellForData = datas.results[indexPath.item]
+        case.popular(let datas) : cellForData = datas.results[indexPath.item]
+        case.trend(let datas) : cellForData = datas.results[indexPath.item]
+        default : break
+        }
+        
+        
+        if let urlString = cellForData?.poster_path {
             let url = URL(string: ImageManager.baseImageUrl + urlString)
             cell.prepare(image: url , title: nil)
             return cell
         }
         
-        cell.prepare(image: nil, title: datas?.name)
+        cell.prepare(image: nil, title: cellForData?.name)
         
-        // cell.backgroundColor = .red
         return cell
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(data[collectionView.tag]?[indexPath.item].id ?? 0)
+        let results = dataModels[collectionView.tag]
+        var id = 0
+        switch results{
+        case.top10(let datas) : id = datas.results[indexPath.item].id
+        case.popular(let datas) : id = datas.results[indexPath.item].id
+        case.trend(let datas) : id = datas.results[indexPath.item].id
+        default : break
+        }
         
         let vc = DetailViewController()
-        vc.id = (data[collectionView.tag]?[indexPath.item].id ?? 0)
+        vc.id = id
         transitionView(view: vc, tresitionStyle: .pushNavigation)
         
     }

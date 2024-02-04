@@ -55,7 +55,7 @@ enum TMDBAPI {
             return url
         }
     }
-    
+    ////파라미터별 값을 줄건데 Defalt 처리로 좀더 코드수를 줄인순 있었겠지만 확실하게 어떤건지 보여주고싶어서 다 적었다.
     var parametter : Parameters {
         switch self {
         case .trend(_, let language):
