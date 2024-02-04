@@ -50,6 +50,12 @@
 		7BE61CA12B6E40B7006E3CAF /* AllListReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61CA02B6E40B7006E3CAF /* AllListReusableView.swift */; };
 		7BE61CA32B6E7A7F006E3CAF /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61CA22B6E7A7F006E3CAF /* HeaderCell.swift */; };
 		7BE61CA62B6E7E02006E3CAF /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61CA52B6E7E02006E3CAF /* Test.swift */; };
+		7BE61CAB2B6F9B94006E3CAF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61CAA2B6F9B94006E3CAF /* ViewController.swift */; };
+		7BE61CAD2B6F9BB4006E3CAF /* BasePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61CAC2B6F9BB4006E3CAF /* BasePageViewController.swift */; };
+		7BE61CAF2B6F9DC0006E3CAF /* StartOnBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61CAE2B6F9DC0006E3CAF /* StartOnBoard.swift */; };
+		7BE61CB22B6F9E40006E3CAF /* OnboardSampleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61CB12B6F9E40006E3CAF /* OnboardSampleImageView.swift */; };
+		7BE61CB42B6FA540006E3CAF /* OnboardEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61CB32B6FA540006E3CAF /* OnboardEnum.swift */; };
+		7BE61CB62B6FA75D006E3CAF /* OnboardLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61CB52B6FA75D006E3CAF /* OnboardLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +100,12 @@
 		7BE61CA02B6E40B7006E3CAF /* AllListReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllListReusableView.swift; sourceTree = "<group>"; };
 		7BE61CA22B6E7A7F006E3CAF /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		7BE61CA52B6E7E02006E3CAF /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		7BE61CAA2B6F9B94006E3CAF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7BE61CAC2B6F9BB4006E3CAF /* BasePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePageViewController.swift; sourceTree = "<group>"; };
+		7BE61CAE2B6F9DC0006E3CAF /* StartOnBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartOnBoard.swift; sourceTree = "<group>"; };
+		7BE61CB12B6F9E40006E3CAF /* OnboardSampleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardSampleImageView.swift; sourceTree = "<group>"; };
+		7BE61CB32B6FA540006E3CAF /* OnboardEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardEnum.swift; sourceTree = "<group>"; };
+		7BE61CB52B6FA75D006E3CAF /* OnboardLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +143,8 @@
 		7BDEF2D92B6CC2A500111D62 /* TMDBProject */ = {
 			isa = PBXGroup;
 			children = (
+				7BE61CB02B6F9E1B006E3CAF /* ImageVIews */,
+				7BE61CA72B6F9A65006E3CAF /* OnboardPageView */,
 				7BE61CA42B6E7DF4006E3CAF /* DelegatePlactice */,
 				7BE61C9F2B6E409A006E3CAF /* Reusable */,
 				7BE61C9A2B6E311C006E3CAF /* DateFormetter */,
@@ -302,6 +316,42 @@
 			path = DelegatePlactice;
 			sourceTree = "<group>";
 		};
+		7BE61CA72B6F9A65006E3CAF /* OnboardPageView */ = {
+			isa = PBXGroup;
+			children = (
+				7BE61CB32B6FA540006E3CAF /* OnboardEnum.swift */,
+				7BE61CA92B6F9B77006E3CAF /* ViewController */,
+				7BE61CA82B6F9B69006E3CAF /* PageViewController */,
+				7BE61CAC2B6F9BB4006E3CAF /* BasePageViewController.swift */,
+				7BE61CB52B6FA75D006E3CAF /* OnboardLabel.swift */,
+			);
+			path = OnboardPageView;
+			sourceTree = "<group>";
+		};
+		7BE61CA82B6F9B69006E3CAF /* PageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7BE61CAA2B6F9B94006E3CAF /* ViewController.swift */,
+			);
+			path = PageViewController;
+			sourceTree = "<group>";
+		};
+		7BE61CA92B6F9B77006E3CAF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7BE61CAE2B6F9DC0006E3CAF /* StartOnBoard.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		7BE61CB02B6F9E1B006E3CAF /* ImageVIews */ = {
+			isa = PBXGroup;
+			children = (
+				7BE61CB12B6F9E40006E3CAF /* OnboardSampleImageView.swift */,
+			);
+			path = ImageVIews;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -388,8 +438,10 @@
 				7BE61C952B6D61E7006E3CAF /* DetailRecommendCollectionViewCell.swift in Sources */,
 				7BDEF2DF2B6CC2A500111D62 /* ReusabelIdentifier.swift in Sources */,
 				7BE61C872B6D3476006E3CAF /* DetailViewController.swift in Sources */,
+				7BE61CB22B6F9E40006E3CAF /* OnboardSampleImageView.swift in Sources */,
 				7BDEF2F92B6CC5F100111D62 /* DetailBaseView.swift in Sources */,
 				7BE61CA12B6E40B7006E3CAF /* AllListReusableView.swift in Sources */,
+				7BE61CAD2B6F9BB4006E3CAF /* BasePageViewController.swift in Sources */,
 				7BE61CA32B6E7A7F006E3CAF /* HeaderCell.swift in Sources */,
 				7BE61C9C2B6E312F006E3CAF /* DateManager.swift in Sources */,
 				7BE61C712B6CDA0C006E3CAF /* UnderLineLabel.swift in Sources */,
@@ -402,6 +454,8 @@
 				7BE61C902B6D3C17006E3CAF /* overviewView.swift in Sources */,
 				7BE61C7A2B6CEFAD006E3CAF /* TMDBAPI.swift in Sources */,
 				7BE61C8D2B6D3ABE006E3CAF /* BaseCollectionViewCell.swift in Sources */,
+				7BE61CAB2B6F9B94006E3CAF /* ViewController.swift in Sources */,
+				7BE61CB42B6FA540006E3CAF /* OnboardEnum.swift in Sources */,
 				7BDEF2FC2B6CC69500111D62 /* StartView.swift in Sources */,
 				7BDEF3032B6CC7E100111D62 /* StartViewController.swift in Sources */,
 				7BE61C762B6CE2EB006E3CAF /* APIModel.swift in Sources */,
@@ -414,8 +468,10 @@
 				7BDEF2DD2B6CC2A500111D62 /* SceneDelegate.swift in Sources */,
 				7BE61C932B6D4165006E3CAF /* ReusableIdentifier.swift in Sources */,
 				7BE61CA62B6E7E02006E3CAF /* Test.swift in Sources */,
+				7BE61CB62B6FA75D006E3CAF /* OnboardLabel.swift in Sources */,
 				7BE61C782B6CE301006E3CAF /* APIManager.swift in Sources */,
 				7BE61C6C2B6CD078006E3CAF /* StartViewControllerTableCell.swift in Sources */,
+				7BE61CAF2B6F9DC0006E3CAF /* StartOnBoard.swift in Sources */,
 				7BDEF2FE2B6CC6EF00111D62 /* AllListView.swift in Sources */,
 				7BDEF2F52B6CC51400111D62 /* StartBaseView.swift in Sources */,
 				7BE61C732B6CDE60006E3CAF /* StartViewCollectIonvIewCell.swift in Sources */,

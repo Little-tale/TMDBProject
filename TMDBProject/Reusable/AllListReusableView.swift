@@ -79,6 +79,7 @@ class AllListReusableView : UICollectionReusableView {
         // colletionViewSet()
         collectionView.register(HeaderCell.self, forCellWithReuseIdentifier: HeaderCell.reuseableIdentiFier)
         ///아.... 여기에다가 콜렉션뷰 딜리게이트 등록을 안하면 안되지
+        // MARK: 7. 딜리게이트, 데이타 소스는 여기서 등록
         collectionView.delegate = self
         collectionView.dataSource = self
         print(#function)
