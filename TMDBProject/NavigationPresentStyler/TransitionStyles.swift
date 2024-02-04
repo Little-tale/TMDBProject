@@ -29,24 +29,45 @@ extension UIViewController {
     // MARK: 와 이게 문제였다.
     // 전환할때 요놈이 나를 망쳤다
     
-    func transitionView<T: UIViewController>(view: T, tresitionStyle: TransitionStyles) {
+    func transitionView<T: UIViewController>(viewInstens: T, tresitionStyle: TransitionStyles) {
         //let vc = view
         switch tresitionStyle {
         case .present:
-            present(view, animated: true)
+            present(viewInstens, animated: true)
         case .presentFullScreen:
-            view.modalPresentationStyle = .fullScreen
-            present(view, animated: true)
+            viewInstens.modalPresentationStyle = .fullScreen
+            present(viewInstens, animated: true)
         case .pushNavigation:
-            navigationController?.pushViewController(view, animated: true)
+            navigationController?.pushViewController(viewInstens, animated: true)
         case .presentOfNavigation:
-            let nav = UINavigationController(rootViewController: view)
+            let nav = UINavigationController(rootViewController: viewInstens)
             present(nav,animated: true)
         case .presentOfNavigationFullScreen:
-            let nav = UINavigationController(rootViewController: view)
+            let nav = UINavigationController(rootViewController: viewInstens)
             nav.modalPresentationStyle = .fullScreen
             present(nav,animated: true)
             
         }
     }
+    func transitionView<T: UIViewController>(viewType: T.Type, tresitionStyle: TransitionStyles) {
+        let vc = T.self()
+        switch tresitionStyle {
+        case .present:
+            present(vc, animated: true)
+        case .presentFullScreen:
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
+        case .pushNavigation:
+            navigationController?.pushViewController(vc, animated: true)
+        case .presentOfNavigation:
+            let nav = UINavigationController(rootViewController: vc)
+            present(nav,animated: true)
+        case .presentOfNavigationFullScreen:
+            let nav = UINavigationController(rootViewController: vc)
+            nav.modalPresentationStyle = .fullScreen
+            present(nav,animated: true)
+            
+        }
+    }
+    
 }

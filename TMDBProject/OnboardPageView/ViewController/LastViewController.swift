@@ -38,7 +38,7 @@ class LastViewController: StartBaseViewController {
         startButton.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.height.equalTo(40)
-            make.top.equalTo(explainLabel.snp.bottom).inset(12)
+            make.top.equalTo(explainLabel.snp.bottom).inset( -24 )
         }
         
     }
@@ -62,6 +62,23 @@ class LastViewController: StartBaseViewController {
         config.cornerStyle = .large
         
         startButton.configuration = config
+        
+        startButton.addTarget(self, action: #selector(startButtonClicked), for: .touchUpInside)
+    }
+    @objc func startButtonClicked(for sender: UIButton) {
+        print("클릭됨")
+        
+        UserDefaltsManager.shared.userInfo = true
+        
+        let vc = StartViewController()
+        let nbc = UINavigationController(rootViewController: vc)
+        
+        if let window = UIApplication.shared.windows.first {
+            window.rootViewController = nbc
+            window.makeKeyAndVisible()
+        }
+        // transitionView(viewType: StartViewController.self, tresitionStyle: .pushNavigation)
+        transitionView(viewInstens: nbc, tresitionStyle: .pushNavigation)
     }
     
 }

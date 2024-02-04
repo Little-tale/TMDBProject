@@ -114,7 +114,7 @@ extension StartViewController : UITableViewDelegate, UITableViewDataSource {
             
         //vc.modelList = nextViewData
         print(#function)
-        transitionView(view: vc , tresitionStyle: .present)
+        transitionView(viewInstens: vc , tresitionStyle: .present)
     }
     
     
@@ -182,7 +182,7 @@ extension StartViewController : UICollectionViewDelegate, UICollectionViewDataSo
         
         let vc = DetailViewController()
         vc.id = id
-        transitionView(view: vc, tresitionStyle: .pushNavigation)
+        transitionView(viewInstens: vc, tresitionStyle: .pushNavigation)
         
     }
 }
@@ -196,7 +196,7 @@ extension StartViewController: UISearchBarDelegate {
             let vc = AllListViewControler()
             vc.modelList = result.results
             // spider man
-            self.transitionView(view: vc.self, tresitionStyle: .present)
+            self.transitionView(viewInstens: vc.self, tresitionStyle: .present)
         }
     }
 }
