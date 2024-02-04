@@ -61,7 +61,12 @@ class AllListReusableView : UICollectionReusableView {
     // A 가 짬때리고 싶은거임
     // A 가 C에게 말함 B한테 가서 사용하라고
     
-    weak var myProtocol : headerCellForCollectionView?
+    weak var myProtocol : headerCellForCollectionView? {
+        didSet{
+            print("마이 프로토콜 변경 감지")
+            collectionView.reloadData()
+        }
+    }
     
     // 영화이름 : -> 기생충
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout() )
@@ -73,6 +78,10 @@ class AllListReusableView : UICollectionReusableView {
         designView()
         // colletionViewSet()
         collectionView.register(HeaderCell.self, forCellWithReuseIdentifier: HeaderCell.reuseableIdentiFier)
+        ///아.... 여기에다가 콜렉션뷰 딜리게이트 등록을 안하면 안되지
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        print(#function)
     }
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -117,7 +126,7 @@ extension AllListReusableView: UICollectionViewDelegate, UICollectionViewDataSou
     // 4.2 이제 신성하신 애플 딜리게이트님에게 갖다 바쳐야 하는 임무를
     // 다른 이에게 전달할 것이다. 누구에게? 내 프로토콜을 구현하신 분에게
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
+        print("신성하신 애플 딜리게이트님에게 받칩니다.🤗🤗🤗🤗🤗🤗🤗🤗🤗")
         return myProtocol?.numberOfItems(for: self, numberOfItemsInSection: section) ?? 0
     }
     

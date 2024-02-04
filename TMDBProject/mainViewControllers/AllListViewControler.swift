@@ -52,7 +52,8 @@ class AllListViewControler: AllListBaseViewController {
         print(#function)
         allListHomeView.listCollectionView.dataSource = self
         allListHomeView.listCollectionView.delegate = self
-        allListHomeView.reuseableView.collectionView.delegate = self
+        // 이놈이 범인인가...
+        // allListHomeView.reuseableView.collectionView.delegate = self
         allListHomeView.listCollectionView.prefetchDataSource = self
        
     }
@@ -154,6 +155,8 @@ extension AllListViewControler: UICollectionViewDataSourcePrefetching {
 
 extension AllListViewControler: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        print("헤더뷰 높이 조절은 될텐데?")
         return CGSize(width: collectionView.bounds.width, height: 60)
     }
     
@@ -164,7 +167,7 @@ extension AllListViewControler: UICollectionViewDelegateFlowLayout {
 extension AllListViewControler: headerCellForCollectionView {
     // 5.2 짬맞은 불쌍한 뷰컨이 이것을 구현해 준다.
     func numberOfItems(for reuseableView: AllListReusableView, numberOfItemsInSection section: Int) -> Int {
-        print(modelList?.count)
+        print(modelList?.count, "🧐🧐🧐🧐🧐🧐🧐🧐")
         return modelList?.count ?? 0
     }
     

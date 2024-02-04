@@ -32,7 +32,8 @@ class HeaderCell: BaseCollectionViewCell {
         setImage(image: nil)
     }
     func setImage(image: URL?) {
-        print(image)
+        // print(image)
+        print("🫥🫥🫥🫥🫥🫥🫥🫥🫥")
         backDrop.kf.setImage(with: image, options: [.transition(.fade(0.4)), .forceTransition])
     }
     
