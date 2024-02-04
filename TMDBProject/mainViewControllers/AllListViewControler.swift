@@ -18,6 +18,7 @@ class AllListViewControler: AllListBaseViewController {
     var presentItemCount = 0
     /// 이건 트렌드나 pop 등의 페이지별 갯수가 다른 경우가 있을수도 있다고 생각해서 핸들링 시도
     var pageInCount = 0
+    var totalPageCount = 0
     
     var modelList: [Searchs]? = [] {
         didSet {
@@ -100,7 +101,7 @@ extension AllListViewControler: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if let reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: AllListReusableView.reuseableIdentiFier, for: indexPath) as? AllListReusableView {
            
-            print("여긴되니?")
+            //print("여긴되니?")
             // reusableView.myProtocol = self
             
             
@@ -113,12 +114,12 @@ extension AllListViewControler: UICollectionViewDelegate, UICollectionViewDataSo
 
 extension AllListViewControler: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        print("프리패칭 인덱스 패스",indexPaths)
+        //print("프리패칭 인덱스 패스",indexPaths)
         
         for indexPath in indexPaths {
-            print("프리패칭 인덱스 패스 : ",indexPath.row)
+            //print("프리패칭 인덱스 패스 : ",indexPath.row)
             
-            if presentItemCount - 10 <= indexPath.row {
+            if presentItemCount - 10 <= indexPath.row && pageNum <= totalPageCount{
                 presentItemCount += pageInCount
                 pageNum += 1
                 TMDBAPIManager.shared.fetchOnlyForAllListView(type: SearchModel.self, api: APIStyles ?? .top(language: .kor), pageNum: pageNum) { results in
@@ -130,7 +131,8 @@ extension AllListViewControler: UICollectionViewDataSourcePrefetching {
         
     }
     func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
-        print("이건 전혀 감이 안온다.")
+        print("불러오기 안할꼬야 ", indexPaths)
+        //print("이건 전혀 감이 안온다.")
     }
     
 }

@@ -54,6 +54,7 @@ protocol onlySearchViewFetch: Decodable {
 // MARK : 서치뷰 전용 모델
 struct SearchModel: Decodable, onlySearchViewFetch {
     let results: [Searchs]
+    let total_pages: Int
 }
 struct Searchs: Decodable {
     let id : Int

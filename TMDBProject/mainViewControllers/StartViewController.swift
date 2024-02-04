@@ -103,14 +103,17 @@ extension StartViewController : UITableViewDelegate, UITableViewDataSource {
             vc.modelList = model.results
             vc.pageInCount = model.results.count
             vc.APIStyles = .top(language: .kor)
+            vc.totalPageCount = model.total_pages
         case .trend(let model):
             vc.modelList = model.results
             vc.pageInCount = model.results.count
             vc.APIStyles = .trend(type: .day, language: .kor)
+            vc.totalPageCount = model.total_pages
         case .popular(let model):
             vc.modelList = model.results
             vc.pageInCount = model.results.count
             vc.APIStyles = .popular(language: .kor)
+            vc.totalPageCount = model.total_pages
         default : break
         }
             
