@@ -57,6 +57,7 @@
 		7BE61CB42B6FA540006E3CAF /* OnboardEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61CB32B6FA540006E3CAF /* OnboardEnum.swift */; };
 		7BE61CB62B6FA75D006E3CAF /* OnboardLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61CB52B6FA75D006E3CAF /* OnboardLabel.swift */; };
 		7BE61CB82B6FB81F006E3CAF /* SecondOnBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61CB72B6FB81F006E3CAF /* SecondOnBoard.swift */; };
+		7BE61CBA2B6FBFAF006E3CAF /* LastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61CB92B6FBFAF006E3CAF /* LastViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +109,7 @@
 		7BE61CB32B6FA540006E3CAF /* OnboardEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardEnum.swift; sourceTree = "<group>"; };
 		7BE61CB52B6FA75D006E3CAF /* OnboardLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardLabel.swift; sourceTree = "<group>"; };
 		7BE61CB72B6FB81F006E3CAF /* SecondOnBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondOnBoard.swift; sourceTree = "<group>"; };
+		7BE61CB92B6FBFAF006E3CAF /* LastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,6 +345,7 @@
 			children = (
 				7BE61CAE2B6F9DC0006E3CAF /* StartOnBoard.swift */,
 				7BE61CB72B6FB81F006E3CAF /* SecondOnBoard.swift */,
+				7BE61CB92B6FBFAF006E3CAF /* LastViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				7BE61C992B6D65FC006E3CAF /* defaultHeaderLabel.swift in Sources */,
 				7BDEF2DD2B6CC2A500111D62 /* SceneDelegate.swift in Sources */,
 				7BE61C932B6D4165006E3CAF /* ReusableIdentifier.swift in Sources */,
+				7BE61CBA2B6FBFAF006E3CAF /* LastViewController.swift in Sources */,
 				7BE61CA62B6E7E02006E3CAF /* Test.swift in Sources */,
 				7BE61CB62B6FA75D006E3CAF /* OnboardLabel.swift in Sources */,
 				7BE61C782B6CE301006E3CAF /* APIManager.swift in Sources */,

@@ -6,15 +6,18 @@ import UIKit
 class OnBoardPageViewController: BasePageViewController {
     
     
-    var viewContollers: [UIViewController?] =  []
+    var viewContollerList: [UIViewController?] =  []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         let firstViewCon = StartOnBoard()
         let secondViewCon = SecondOnBoard()
-        //let thirdViewCon = StartOnBoard()
-        viewContollers = [firstViewCon, secondViewCon] //, thirdViewCon]
+        let thirdViewCon = LastViewController()
+        // 한 1시간 정도 왜 자꾸 갯수가 한개지 하고 테스트 해본결과
+        // 원래 아래 변수님 성함이 viewControllers 이셨는데
+        // 원래있는 이름이랑 충돌이 났었나봄 ㅠ
+        viewContollerList = [firstViewCon, secondViewCon, thirdViewCon]
         register()
     }
     
@@ -28,7 +31,7 @@ class OnBoardPageViewController: BasePageViewController {
         // 이건 첫뷰컨트롤러가 무엇인지 정하는 거였다.
         
         // 첫번째 뷰 컨트롤러를 보여질 화면 즉 현재 페이지로 구성
-        guard let firstViewCon = viewContollers[0] else {
+        guard let firstViewCon = viewContollerList[0] else {
             return
         }
         
@@ -43,31 +46,36 @@ extension OnBoardPageViewController: UIPageViewControllerDelegate, UIPageViewCon
         // 뷰컨과 이뷰컨을 비교하라는줄 알았다 멍청이다
         // 그게아니라 처음부터 쭉 보다가 첫번째로 같은 인덱스를 반환하는 메서드 였던 거시기
         //  Array<UIViewController>.Index
-        guard let nowIndex = viewControllers?.firstIndex(of: viewController) else {
+        print(#function)
+        print(viewContollerList.count)
+        guard let nowIndex = viewContollerList.firstIndex(of: viewController) else {
             // 즉
             // 내 배열에 없는 뷰컨을 주신다면 때려 치세요 라는 내용
             return nil
         }
         // 이제 여기서 현재 -1 은 전뷰 인덱스 겠지?
         let beforeIndex = nowIndex - 1
+        print(beforeIndex,"전 인덱스")
         // 만약 전뷰인덱스가 0보다 작다고?
-        if beforeIndex - 1 < 0 {
+        if beforeIndex < 0 {
             // 그램 때려쳐
             return nil
         }
         // 전뷰인덱스가 맞다면
-        return viewContollers[beforeIndex]
+        print(beforeIndex,"전 인덱스")
+        return viewContollerList[beforeIndex]
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let nowIndex = viewContollers.firstIndex(of: viewController) else {
+        print(#function)
+        
+        guard let nowIndex = viewContollerList.firstIndex(of: viewController) else {
             return nil
         }
         
         let nextIndex = nowIndex + 1
-        
-        
-        return nextIndex > viewControllers?.count ?? 0 ? nil : viewContollers[nextIndex]
+        print(nextIndex,"다음인덱스")
+        return nextIndex >= viewContollerList.count ? nil : viewContollerList[nextIndex]
         
     }
     
