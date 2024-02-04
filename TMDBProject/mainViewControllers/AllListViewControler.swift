@@ -22,6 +22,8 @@ class AllListViewControler: AllListBaseViewController {
     var modelList: [Searchs]? = [] {
         didSet {
             print("값이 넘어옴")
+            // 리로드 할때 모든 이미지들이 킹피셔의 페이드 효과를 다시 함.
+            print("리로두 시도!!!!!!!😇😇😇😇😇😇")
             self.allListHomeView.listCollectionView.reloadData()
         }
     }

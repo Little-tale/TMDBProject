@@ -73,11 +73,13 @@ class StartViewCollectIonvIewCell : UICollectionViewCell {
             self.backgroundColor = .darkGray
             return
         }
+        // .forceTransition 때문에 이미지가 자꾸 깜빡인거임 할필요 없었을때도 ㅠㅠ
+        
         imageView.kf.setImage(with: image,
                               placeholder:.none ,
                               options:[
-                                .transition(.fade(0.5)),
-                                .forceTransition
+                                .transition(.fade(0.5))//,
+                                //.forceTransition
                               ])
         
     }
@@ -89,8 +91,8 @@ class StartViewCollectIonvIewCell : UICollectionViewCell {
         imageView.kf.setImage(with: image,
                               placeholder:.none ,
                               options:[
-                                .transition(.fade(0.5)),
-                                .forceTransition
+                                .transition(.fade(0.5))//,
+                                //.forceTransition
                               ])
         
     }
