@@ -10,7 +10,7 @@ class OnBoardPageViewController: BasePageViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         let firstViewCon = StartOnBoard()
         let secondViewCon = SecondOnBoard()
         let thirdViewCon = LastViewController()
@@ -78,7 +78,48 @@ extension OnBoardPageViewController: UIPageViewControllerDelegate, UIPageViewCon
         return nextIndex >= viewContollerList.count ? nil : viewContollerList[nextIndex]
         
     }
-    
-    
+    // UIPageViewController Indicators 추가방법
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
+        return viewContollerList.count
+    }
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+        print(pageViewController, "🔥")
+        print(viewContollerList.first,"☑️")
+        print(viewControllers?.first,"👺")
+        
+        // 밑에 출력결과를 보면 알수 있듯이 viewControllerList와 viewControllers의 각 시작이 같은지가
+        // 중요하다 하지만 위에서 잘맞추었다고 해서 변경되지 않을 보장은 없을것이다.
+//        guard let viewFirst =  viewControllers?.first,
+//              let myviewListFirst = viewContollerList.first else {
+//            return 0
+//        }
+//        if viewFirst == myviewListFirst {
+//            return 0
+//        }
+//        return 0
+        
+        // 하지만 위에 코드는 항상 인스턴스의 주소가 같다는 보장이 없다
+        // 주소를 떠나서 런타임중 뷰컨트롤러 인스턴스가 변경된다면?
+        // 어느위치에 있는지 알아내는 방법도 아니게 될거다.
+        // 그렇기 때문에 차라리
+        
+        // 뷰컨스에 계신 신성한 첫번째 뷰시여
+            // 만약 저의 리스트에서 신성하신 첫번째 뷰가 계신다면...
+        guard let viewFirst = viewControllers?.first,
+              let myViewIndexOf = viewContollerList.firstIndex(of: viewFirst) else{
+            // 그것이 첫번째 이오니 0을 반환하겠나이다.
+            return 0
+        }
+        return 0
+        // 그래서 이방법을 잭님이 알려주신거다.
+    }
+    /*
+     <TMDBProject.OnBoardPageViewController: 0x13d80f400> 🔥
+     Optional(Optional(<TMDBProject.StartOnBoard: 0x13af06900>)) ☑️
+     Optional(<TMDBProject.StartOnBoard: 0x13af06900>) 👺
+     <TMDBProject.OnBoardPageViewController: 0x13d80f400> 🔥
+     Optional(Optional(<TMDBProject.StartOnBoard: 0x13af06900>)) ☑️
+     Optional(<TMDBProject.StartOnBoard: 0x13af06900>) 👺
+     */
 }
 
