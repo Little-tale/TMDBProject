@@ -11,6 +11,8 @@ class StartViewController: StartBaseViewController {
     
     var dataModels : [Int: StartViewControllerModels] = [:]
     
+    var startViewGeture: UITapGestureRecognizer?
+    
     override func loadView() {
         self.view = startView
     }
@@ -47,6 +49,19 @@ class StartViewController: StartBaseViewController {
         
         searchBarRegister()
         navigationItem.title = "요즘 영화 뭐보지?"
+        // 아ㅏ... 왜 자꾸 이름이 브싯해가지고 나를 이렇게 까지 고생시키는거야 망할 제스처 놈아
+//        let uiViewGesture = UIGestureRecognizer(target: self.startView.self , action: #selector(viewEndEdition) )
+//        uiViewGesture.isEnabled = true
+//        self.startView.addGestureRecognizer(uiViewGesture)
+        
+        startViewGeture = UITapGestureRecognizer(target: self, action: #selector(viewEndEdition))
+        startViewGeture?.isEnabled = false
+        self.startView.addGestureRecognizer(startViewGeture ?? UITapGestureRecognizer())
+    }
+    @objc func viewEndEdition() {
+        print(#function)
+        startView.endEditing(true)
+        startView.isUserInteractionEnabled = true
     }
     
     func searchBarRegister() {
@@ -198,5 +213,15 @@ extension StartViewController: UISearchBarDelegate {
             // spider man
             self.transitionView(viewInstens: vc.self, tresitionStyle: .present)
         }
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        startViewGeture?.isEnabled = true
+        print(startViewGeture?.isEnabled)
+        return true
+    }
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        startViewGeture?.isEnabled = false
+        return true
     }
 }
