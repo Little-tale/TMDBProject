@@ -72,6 +72,7 @@ class AllListReusableView : UICollectionReusableView {
         configureLayout()
         designView()
         // colletionViewSet()
+        collectionView.register(HeaderCell.self, forCellWithReuseIdentifier: HeaderCell.reuseableIdentiFier)
     }
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -79,6 +80,7 @@ class AllListReusableView : UICollectionReusableView {
         configureLayout()
         designView()
         //colletionViewSet()
+        collectionView.register(HeaderCell.self, forCellWithReuseIdentifier: HeaderCell.reuseableIdentiFier)
     }
     
     func configureHierarchy(){

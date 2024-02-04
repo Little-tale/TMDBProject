@@ -115,7 +115,10 @@ extension AllListViewControler: UICollectionViewDelegate, UICollectionViewDataSo
            
             //print("여긴되니?")
             // reusableView.myProtocol = self
-            
+            // MARK: 6. 자 여기다 5번 에서 왔을것이다
+            // 6.1 딜리게이트 설정한거처럼 여기에다가 내 프로토콜을 설정한다.
+            reusableView.myProtocol = self
+            print("마이 프로토콜 동작하나요!~~!!~!~!!😡😡😡😡😡😡")
             
             return reusableView
         }
@@ -157,4 +160,27 @@ extension AllListViewControler: UICollectionViewDelegateFlowLayout {
 }
 
 //MARK: 잘 찾아왔다 5번 설명 시작한다.
-
+// 5.1 이제 내가 만든 프로토콜님을 채택해준다...
+extension AllListViewControler: headerCellForCollectionView {
+    // 5.2 짬맞은 불쌍한 뷰컨이 이것을 구현해 준다.
+    func numberOfItems(for reuseableView: AllListReusableView, numberOfItemsInSection section: Int) -> Int {
+        print(modelList?.count)
+        return modelList?.count ?? 0
+    }
+    
+    func cellForItemAt(for reuseableView: AllListReusableView, colletionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let cell = colletionView.dequeueReusableCell(withReuseIdentifier: HeaderCell.reuseableIdentiFier, for: indexPath) as? HeaderCell else {
+            fatalError("왜 안될까 진짜 왜 안될까 왜 ㅗ왜 왜오애ㅗ애ㅗ애ㅗ애ㅗ애ㅗ애ㅗㅇ")
+        }
+        let imageString = modelList?[indexPath.item].backdrop_path
+        let url = ImageManager.getImage(imageCase: .trend, image: imageString ?? "")
+        
+        cell.setImage(image: url)
+        
+        return cell
+    }
+    // 5.3 구현이 완료되었다면 이걸 구현하시는분이 야! 내가 구현했다 임마 를 시전해야한다.
+    // 위로 올라와 보거라
+    
+}

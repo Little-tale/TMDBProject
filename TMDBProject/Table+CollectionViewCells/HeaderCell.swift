@@ -24,6 +24,7 @@ class HeaderCell: BaseCollectionViewCell {
     }
     override func designView() {
         backDrop.contentMode = .scaleAspectFill
+        backDrop.backgroundColor = .white
     }
     
     override func prepareForReuse() {
