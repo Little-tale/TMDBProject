@@ -36,7 +36,7 @@ class GenreHomeView: BaseView {
         }
     }
     func register() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.reuseableIdentiFier)
+        tableView.register(GenreTableViewCell.self, forCellReuseIdentifier: GenreTableViewCell.reuseableIdentiFier)
         buttonsHeaderView.clipsToBounds = true
     }
 }

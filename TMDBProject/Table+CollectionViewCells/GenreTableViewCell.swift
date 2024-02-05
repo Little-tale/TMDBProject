@@ -17,7 +17,12 @@ protocol GenreTableViewDelegate: AnyObject {
 
 class GenreTableViewCell : BaseTableViewCell {
     
-    weak var delegate: GenreTableViewDelegate?
+    weak var delegate: GenreTableViewDelegate? {
+        didSet {
+            print("딜리게이트 변경 감지 ")
+            // GenreCollecitonview.reloadData()
+        }
+    }
     
     lazy var GenreCollecitonview = UICollectionView(frame: .zero, collectionViewLayout: configureCollectionViewLayout())
     
@@ -32,7 +37,9 @@ class GenreTableViewCell : BaseTableViewCell {
     }
     
     override func designView() {
-        
+        GenreCollecitonview.register(StartViewCollectIonvIewCell.self, forCellWithReuseIdentifier: StartViewCollectIonvIewCell.reuseableIdentiFier)
+        GenreCollecitonview.delegate = self
+        GenreCollecitonview.dataSource = self 
     }
     
     func configureCollectionViewLayout() -> UICollectionViewLayout {
