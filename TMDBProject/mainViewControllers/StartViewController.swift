@@ -46,6 +46,9 @@ class StartViewController: StartBaseViewController {
         group.notify(queue: .main) {
             self.startView.trendTableView.reloadData()
         }
+        /// 테스트를 위한 공간
+        URLSessionManager.Shared.fetchSearchView(api: .popular(language: .kor))
+        
         
         searchBarRegister()
         navigationItem.title = "요즘 영화 뭐보지?"

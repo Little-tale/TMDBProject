@@ -59,6 +59,8 @@
 		7BE61CB82B6FB81F006E3CAF /* SecondOnBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61CB72B6FB81F006E3CAF /* SecondOnBoard.swift */; };
 		7BE61CBA2B6FBFAF006E3CAF /* LastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61CB92B6FBFAF006E3CAF /* LastViewController.swift */; };
 		7BE61CBD2B6FC871006E3CAF /* UserDefaltsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61CBC2B6FC871006E3CAF /* UserDefaltsManager.swift */; };
+		7BE61CC12B709C9B006E3CAF /* URLSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61CC02B709C9B006E3CAF /* URLSessionManager.swift */; };
+		7BE61CC32B709EA7006E3CAF /* URLSessionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61CC22B709EA7006E3CAF /* URLSessionAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +114,8 @@
 		7BE61CB72B6FB81F006E3CAF /* SecondOnBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondOnBoard.swift; sourceTree = "<group>"; };
 		7BE61CB92B6FBFAF006E3CAF /* LastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastViewController.swift; sourceTree = "<group>"; };
 		7BE61CBC2B6FC871006E3CAF /* UserDefaltsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaltsManager.swift; sourceTree = "<group>"; };
+		7BE61CC02B709C9B006E3CAF /* URLSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionManager.swift; sourceTree = "<group>"; };
+		7BE61CC22B709EA7006E3CAF /* URLSessionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +259,8 @@
 				7BE61C752B6CE2EB006E3CAF /* APIModel.swift */,
 				7BE61C772B6CE301006E3CAF /* APIManager.swift */,
 				7BE61C792B6CEFAD006E3CAF /* TMDBAPI.swift */,
+				7BE61CC02B709C9B006E3CAF /* URLSessionManager.swift */,
+				7BE61CC22B709EA7006E3CAF /* URLSessionAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -451,12 +457,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BE61CC32B709EA7006E3CAF /* URLSessionAPI.swift in Sources */,
 				7BE61C682B6CCF5C006E3CAF /* StartViewSearchBar.swift in Sources */,
 				7BE61C952B6D61E7006E3CAF /* DetailRecommendCollectionViewCell.swift in Sources */,
 				7BDEF2DF2B6CC2A500111D62 /* ReusabelIdentifier.swift in Sources */,
 				7BE61C872B6D3476006E3CAF /* DetailViewController.swift in Sources */,
 				7BE61CB82B6FB81F006E3CAF /* SecondOnBoard.swift in Sources */,
 				7BE61CB22B6F9E40006E3CAF /* OnboardSampleImageView.swift in Sources */,
+				7BE61CC12B709C9B006E3CAF /* URLSessionManager.swift in Sources */,
 				7BDEF2F92B6CC5F100111D62 /* DetailBaseView.swift in Sources */,
 				7BE61CA12B6E40B7006E3CAF /* AllListReusableView.swift in Sources */,
 				7BE61CAD2B6F9BB4006E3CAF /* BasePageViewController.swift in Sources */,
