@@ -10,6 +10,8 @@
 		7B69FB642B70B4C200598DF1 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69FB632B70B4C200598DF1 /* AlertManager.swift */; };
 		7B69FB662B70EE4B00598DF1 /* GenreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69FB652B70EE4B00598DF1 /* GenreViewController.swift */; };
 		7B69FB682B70F2B500598DF1 /* GenreHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69FB672B70F2B500598DF1 /* GenreHomeView.swift */; };
+		7B69FB6C2B70FDA000598DF1 /* GenreTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69FB6B2B70FDA000598DF1 /* GenreTableHeaderView.swift */; };
+		7B69FB6E2B70FEC800598DF1 /* HeaderButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69FB6D2B70FEC800598DF1 /* HeaderButtonCell.swift */; };
 		7BDEF2DB2B6CC2A500111D62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDEF2DA2B6CC2A500111D62 /* AppDelegate.swift */; };
 		7BDEF2DD2B6CC2A500111D62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDEF2DC2B6CC2A500111D62 /* SceneDelegate.swift */; };
 		7BDEF2DF2B6CC2A500111D62 /* ReusabelIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDEF2DE2B6CC2A500111D62 /* ReusabelIdentifier.swift */; };
@@ -70,6 +72,8 @@
 		7B69FB632B70B4C200598DF1 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		7B69FB652B70EE4B00598DF1 /* GenreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreViewController.swift; sourceTree = "<group>"; };
 		7B69FB672B70F2B500598DF1 /* GenreHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreHomeView.swift; sourceTree = "<group>"; };
+		7B69FB6B2B70FDA000598DF1 /* GenreTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreTableHeaderView.swift; sourceTree = "<group>"; };
+		7B69FB6D2B70FEC800598DF1 /* HeaderButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderButtonCell.swift; sourceTree = "<group>"; };
 		7BDEF2D72B6CC2A500111D62 /* TMDBProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDBProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BDEF2DA2B6CC2A500111D62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BDEF2DC2B6CC2A500111D62 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +165,7 @@
 		7B69FB6A2B70F7BE00598DF1 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				7B69FB6B2B70FDA000598DF1 /* GenreTableHeaderView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -273,6 +278,7 @@
 				7BE61C942B6D61E7006E3CAF /* DetailRecommendCollectionViewCell.swift */,
 				7BE61C962B6D6221006E3CAF /* DetailRecommendTableViewCell.swift */,
 				7BE61CA22B6E7A7F006E3CAF /* HeaderCell.swift */,
+				7B69FB6D2B70FEC800598DF1 /* HeaderButtonCell.swift */,
 			);
 			path = "Table+CollectionViewCells";
 			sourceTree = "<group>";
@@ -519,6 +525,7 @@
 				7BE61CB42B6FA540006E3CAF /* OnboardEnum.swift in Sources */,
 				7BDEF2FC2B6CC69500111D62 /* StartView.swift in Sources */,
 				7BDEF3032B6CC7E100111D62 /* StartViewController.swift in Sources */,
+				7B69FB6C2B70FDA000598DF1 /* GenreTableHeaderView.swift in Sources */,
 				7B69FB662B70EE4B00598DF1 /* GenreViewController.swift in Sources */,
 				7BE61C762B6CE2EB006E3CAF /* APIModel.swift in Sources */,
 				7BE61C7F2B6D11B3006E3CAF /* ImageManager.swift in Sources */,
@@ -527,6 +534,7 @@
 				7B69FB642B70B4C200598DF1 /* AlertManager.swift in Sources */,
 				7BE61C9E2B6E3D9C006E3CAF /* AllListViewControler.swift in Sources */,
 				7BE61C892B6D3A07006E3CAF /* DetailPosterViewCell.swift in Sources */,
+				7B69FB6E2B70FEC800598DF1 /* HeaderButtonCell.swift in Sources */,
 				7BE61C992B6D65FC006E3CAF /* defaultHeaderLabel.swift in Sources */,
 				7BDEF2DD2B6CC2A500111D62 /* SceneDelegate.swift in Sources */,
 				7BE61C932B6D4165006E3CAF /* ReusableIdentifier.swift in Sources */,

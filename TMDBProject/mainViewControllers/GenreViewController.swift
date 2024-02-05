@@ -17,7 +17,8 @@ class GenreViewController : StartBaseViewController {
     override func designView() {
         homeView.tableView.delegate = self
         homeView.tableView.dataSource = self
-        
+        homeView.buttonsHeaderView.buttonsColletionView.delegate = self
+        homeView.buttonsHeaderView.buttonsColletionView.dataSource = self
     }
 }
 
@@ -47,6 +48,21 @@ extension GenreViewController : UITableViewDataSource, UITableViewDelegate {
     
 }
 
-//#Preview{
-//    GenreViewController()
-//}
+extension GenreViewController : UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: HeaderButtonCell.reuseableIdentiFier, for: indexPath) as? HeaderButtonCell else {
+            print("레지스터 문제?")
+            return UICollectionViewCell()
+        }
+       
+        cell.backgroundColor = .red
+        return cell
+        
+    }
+    
+    
+}
