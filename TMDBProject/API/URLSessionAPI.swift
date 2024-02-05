@@ -7,6 +7,15 @@
 
 import UIKit
 
+
+// 1. 청사진 만들어 전혀 이해 못하겠음
+protocol URLSessionRequests {
+    var url: URL {get}
+    var method: String {get}
+    var headers: [String: String] { get }
+}
+
+
 enum URLAPI {
     case trend(type: TrendType,language: Language?)
     case top(language: Language?)

@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum URLError{
+enum URLError: Error{
     case noData
     case noResponse
     case errorResponse
@@ -105,9 +105,46 @@ class URLSessionManager {
         }
     }
    
+//    func requestSearchView< T: Decodable >(api: URLAPI, compltionHandelr: @escaping (Result<T,URLError>) -> Void)
+//    
     
+//    enum Result<Success, Fail: Error> {
+//        case success(Success)
+//        case failure(Fail)
+//    }
+//    func reqeust<T:Decodable>(request: RequestURLSession, complitionHandeler: @escaping (Result<T,URLError>) -> Void) {
+//        
+//    }
+    
+    /*
+     @frozen public enum Result<Success, Failure> where Failure : Error {
+
+         /// A success, storing a `Success` value.
+         case success(Success)
+
+         /// A failure, storing a `Failure` value.
+         case failure(Failure)
+     */
+    // 위에 Result 열거형의 제네릭이
+    // success, Failure 이다.
+    // 그렇다면 success에 T를 주고 fail에는 내가 위에서 정의했던 에러를 전달해주면 어떨까?
+//    func request<T: Decodable>(request: RequestURLSession, completion: @escaping (Result<T, URLError>) -> Void) {
+//        var urlRequest = URLRequest(url: request.url)
+//    }
 }
 
+//protocol RequestURLSession {
+//    var url: URL { get }
+//    var method: String { get }
+//    var headers: [String: String] { get }
+//}
+//
+//class test  {
+//    static func testFunc() {
+//        URLSessionManager.Shared.request(request: <#T##RequestURLSession#>, completion: <#T##(Result<T, URLError>) -> Void#>)
+//    }
+//    
+//}
 
 /*
  헤더도 안넣어주고
@@ -172,3 +209,12 @@ class URLSessionManager {
  
  
  */
+
+
+// 1. 청사진 만들어
+protocol URLSessionRequest{
+    
+}
+
+
+
