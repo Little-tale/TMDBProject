@@ -71,6 +71,7 @@ class StartViewCollectIonvIewCell : UICollectionViewCell {
         guard let image = image else {
             titleLabel.text = title
             self.backgroundColor = .darkGray
+            imageView.image = nil
             return
         }
         // .forceTransition 때문에 이미지가 자꾸 깜빡인거임 할필요 없었을때도 ㅠㅠ

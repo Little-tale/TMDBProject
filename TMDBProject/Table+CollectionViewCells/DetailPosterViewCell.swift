@@ -97,8 +97,17 @@ class DetailPosterViewCell : BaseTableViewCell {
     
     func prepareForInfo(name: String?, overView: String?, date: String?) {
         detailView.nameLabel.text = name
-        detailView.overViewLabel.text = overView
+        // print(overView,"✂️✂️✂️✂️✂️✂️✂️✂️")
+        
+        if overView == "" {
+            detailView.overViewLabel.text = "현재는 줄거리 정보가 없어요 빠르게 준비 할께요!"
+        } else {
+            detailView.overViewLabel.text = overView
+        }
+        
         guard let dateinfo = date else {
+            
+            detailView.dateLabel.text = ""
             return
         }
         detailView.dateLabel.text = dateinfo

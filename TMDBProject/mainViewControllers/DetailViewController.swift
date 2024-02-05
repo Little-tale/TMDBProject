@@ -116,7 +116,7 @@ extension DetailViewController : UITableViewDelegate, UITableViewDataSource {
         case .recommendations(let recommendInfo):
             let cell = tableView.dequeueReusableCell(withIdentifier: ReusableIdentifier<DetailRecommendTableViewCell>.reuseableItentifier, for: indexPath) as! DetailRecommendTableViewCell
             
-            cell.recommendColletionView.dataSource = self // <- 무슨 인스턴스? 나 임마 DetailViewController()
+            cell.recommendColletionView.dataSource = self 
             cell.recommendColletionView.delegate = self
             cell.recommendColletionView.tag = indexPath.row
             cell.headetLabel.text = SectionText.DetailView.allCases[indexPath.row].rawValue
@@ -161,27 +161,16 @@ extension DetailViewController : UICollectionViewDelegate, UICollectionViewDataS
             let imageString = ImageManager.getImage(imageCase: .detail, image: castInfos.profile_path)
             cell.prepareCrewPoster(image: imageString, title: name)
             print(name)
-//            if let castProfile = castInfos.profile_path {
-//                let posterUrl = ImageManager.getImage(imageCase: .detail, image: castProfile)
-//                
-//                cell.prepareCrewPoster(image: posterUrl, title: name)
-//                return cell
-//            }
-//            // print(castInfos.profile_path)
-//            cell.prepare(image: nil, title: name)
+            
             return cell
             
         case .recommendations(let recommedInfo):
             let recommeds = recommedInfo.results[indexPath.item]
             let name = recommeds.name
+            let castPoster = recommeds.poster_path
+            let posterUrl = ImageManager.getImage(imageCase: .detail, image: castPoster)
+            cell.prepare(image: posterUrl, title: name)
             
-            if let castPoster = recommeds.poster_path {
-                let posterUrl = ImageManager.getImage(imageCase: .detail, image: castPoster)
-                
-                cell.prepare(image: posterUrl, title: name)
-                return cell
-            }
-            cell.prepare(image: nil, title: name)
             return cell
         default : return cell
         }
