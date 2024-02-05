@@ -22,90 +22,16 @@ class StartViewController: StartBaseViewController {
         /// 서치 됨. 탑 됨, pop안됨 -> 트렌드 안됨 -> 모두 해결돰
         
         let group = DispatchGroup()
-        // MARK: 그니까 즉 여기서 타입을 적는 이유가 나 이거씀 을 명시 하기 위해서다 라는 것이다.
-//        group.enter()
-//        TMDBAPIManager.shared.fetchSearchView(type: model, api: .trend(type: .day, language: .kor)) { results in
-//            //self.data[0] = results.results
-//            self.dataModels[0] = .trend(results)
-//            
-//            group.leave()
-//        }
-//        group.enter()
-//        TMDBAPIManager.shared.fetchSearchView(type: model, api: .top(language: .kor)) { results in
-//            //self.data[1] = results.results
-//            self.dataModels[1] = .top10(results)
-//            group.leave()
-//        }
-//        group.enter()
-//        TMDBAPIManager.shared.fetchSearchView(type: model, api: .popular(language: .kor)) { results in
-//            //self.data[2] = results.results
-//            self.dataModels[2] = .popular(results)
-//            group.leave()
-//        }
+
         
-        /// 테스트를 위한 공간
-        group.enter()
-        URLSessionManager.Shared.fetchSearchView(type: model, api: .trend(type: .day, language: .kor)) { success, error in
-            dump(error)
-            guard error == nil else{
-                if let errorSelf = error.self {
-                    self.present(AlertManager.shared.getAlert(error: errorSelf), animated: true)
-                }else {
-                    self.present(AlertManager.shared.getAlert(error: .unknownError), animated: true)
-                }
-                group.leave()
-                return
-            }
-            guard let success = success else{
-                self.present(AlertManager.shared.getAlert(error: .noData), animated: true)
-                group.leave()
-                return
-            }
-            
-            self.dataModels[0] = .trend(success)
-            group.leave()
+        URLSessionManager.Shared.fetchSuccesORFailForStartView(type: model, dispatchGroup: group, viewController: self) { results in
+            self.dataModels[0] = .trend(results)
         }
-        group.enter()
-        URLSessionManager.Shared.fetchSearchView(type: model, api: .top(language: .kor)) { success, error in
-            dump(error)
-            guard error == nil else{
-                if let errorSelf = error.self {
-                    self.present(AlertManager.shared.getAlert(error: errorSelf), animated: true)
-                }else {
-                    self.present(AlertManager.shared.getAlert(error: .unknownError), animated: true)
-                }
-                group.leave()
-                return
-            }
-            guard let success = success else{
-                self.present(AlertManager.shared.getAlert(error: .noData), animated: true)
-                group.leave()
-                return
-            }
-            
-            self.dataModels[1] = .trend(success)
-            group.leave()
+        URLSessionManager.Shared.fetchSuccesORFailForStartView(type: model, dispatchGroup: group, viewController: self) { results in
+            self.dataModels[1] = .trend(results)
         }
-        group.enter()
-        URLSessionManager.Shared.fetchSearchView(type: model, api: .popular(language: .kor)) { success, error in
-            dump(error)
-            guard error == nil else{
-                if let errorSelf = error.self {
-                    self.present(AlertManager.shared.getAlert(error: errorSelf), animated: true)
-                }else {
-                    self.present(AlertManager.shared.getAlert(error: .unknownError), animated: true)
-                }
-                group.leave()
-                return
-            }
-            guard let success = success else{
-                self.present(AlertManager.shared.getAlert(error: .noData), animated: true)
-                group.leave()
-                return
-            }
-            
-            self.dataModels[2] = .trend(success)
-            group.leave()
+        URLSessionManager.Shared.fetchSuccesORFailForStartView(type: model, dispatchGroup: group, viewController: self) { results in
+            self.dataModels[2] = .trend(results)
         }
         
         group.notify(queue: .main) {
@@ -289,3 +215,90 @@ extension StartViewController: UISearchBarDelegate {
         return true
     }
 }
+
+
+// MARK: 그니까 즉 여기서 타입을 적는 이유가 나 이거씀 을 명시 하기 위해서다 라는 것이다.
+//        group.enter()
+//        TMDBAPIManager.shared.fetchSearchView(type: model, api: .trend(type: .day, language: .kor)) { results in
+//            //self.data[0] = results.results
+//            self.dataModels[0] = .trend(results)
+//
+//            group.leave()
+//        }
+//        group.enter()
+//        TMDBAPIManager.shared.fetchSearchView(type: model, api: .top(language: .kor)) { results in
+//            //self.data[1] = results.results
+//            self.dataModels[1] = .top10(results)
+//            group.leave()
+//        }
+//        group.enter()
+//        TMDBAPIManager.shared.fetchSearchView(type: model, api: .popular(language: .kor)) { results in
+//            //self.data[2] = results.results
+//            self.dataModels[2] = .popular(results)
+//            group.leave()
+//        }
+
+/// 테스트를 위한 공간
+//        group.enter()
+//        URLSessionManager.Shared.fetchSearchView(type: model, api: .trend(type: .day, language: .kor)) { success, error in
+//            dump(error)
+//            guard error == nil else{
+//                if let errorSelf = error.self {
+//                    self.present(AlertManager.shared.getAlert(error: errorSelf), animated: true)
+//                }else {
+//                    self.present(AlertManager.shared.getAlert(error: .unknownError), animated: true)
+//                }
+//                group.leave()
+//                return
+//            }
+//            guard let success = success else{
+//                self.present(AlertManager.shared.getAlert(error: .noData), animated: true)
+//                group.leave()
+//                return
+//            }
+//
+//            self.dataModels[0] = .trend(success)
+//            group.leave()
+//        }
+//        group.enter()
+//        URLSessionManager.Shared.fetchSearchView(type: model, api: .top(language: .kor)) { success, error in
+//            dump(error)
+//            guard error == nil else{
+//                if let errorSelf = error.self {
+//                    self.present(AlertManager.shared.getAlert(error: errorSelf), animated: true)
+//                }else {
+//                    self.present(AlertManager.shared.getAlert(error: .unknownError), animated: true)
+//                }
+//                group.leave()
+//                return
+//            }
+//            guard let success = success else{
+//                self.present(AlertManager.shared.getAlert(error: .noData), animated: true)
+//                group.leave()
+//                return
+//            }
+//
+//            self.dataModels[1] = .top10(success)
+//            group.leave()
+//        }
+//        group.enter()
+//        URLSessionManager.Shared.fetchSearchView(type: model, api: .popular(language: .kor)) { success, error in
+//            dump(error)
+//            guard error == nil else{
+//                if let errorSelf = error.self {
+//                    self.present(AlertManager.shared.getAlert(error: errorSelf), animated: true)
+//                }else {
+//                    self.present(AlertManager.shared.getAlert(error: .unknownError), animated: true)
+//                }
+//                group.leave()
+//                return
+//            }
+//            guard let success = success else{
+//                self.present(AlertManager.shared.getAlert(error: .noData), animated: true)
+//                group.leave()
+//                return
+//            }
+//
+//            self.dataModels[2] = .popular(success)
+//            group.leave()
+//        }

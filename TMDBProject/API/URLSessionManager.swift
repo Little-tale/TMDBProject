@@ -80,10 +80,31 @@ class URLSessionManager {
         // 자이제 통신 데이터 음답 테스트는 완료 했으나 예외는 는 발생할수 있다.
         // 그래서 컴플리셔 이스케이핑 통해 밖에서도 어떻게 처리하게 할지 해보자
     }
-    
-    func succesORError<T: Decodable>(type: T.Type, data: T?, error: Error?) {
-        
+    // 반복되는게 많고 가독성도 떨어져 보여서 줄여줄려고 한다.
+    func fetchSuccesORFailForStartView<T: Decodable>(type: T.Type, dispatchGroup: DispatchGroup, viewController: UIViewController, complitionHandeler: @escaping (T)-> Void) {
+        dispatchGroup.enter()
+        URLSessionManager.Shared.fetchSearchView(type: T.self, api: .trend(type: .day, language: .kor)) { success, error in
+            dump(error)
+            guard error == nil else{
+                if let errorSelf = error.self {
+                    viewController.present(AlertManager.shared.getAlert(error: errorSelf), animated: true)
+                }else {
+                    viewController.present(AlertManager.shared.getAlert(error: .unknownError), animated: true)
+                }
+                dispatchGroup.leave()
+                return
+            }
+            guard let success = success else{
+                viewController.present(AlertManager.shared.getAlert(error: .noData), animated: true)
+                dispatchGroup.leave()
+                return
+            }
+            
+            complitionHandeler(success)
+            dispatchGroup.leave()
+        }
     }
+   
     
 }
 
