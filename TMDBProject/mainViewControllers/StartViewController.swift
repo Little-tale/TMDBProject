@@ -47,8 +47,13 @@ class StartViewController: StartBaseViewController {
             self.startView.trendTableView.reloadData()
         }
         /// 테스트를 위한 공간
-        URLSessionManager.Shared.fetchSearchView(api: .popular(language: .kor))
-        
+        URLSessionManager.Shared.fetchSearchView(type: model, api: .trend(type: .day, language: .kor)) { success, error in
+            guard error != nil else{
+                
+                return
+            }
+            self.dataModels[0] = .trend(success?.results)
+        }
         
         searchBarRegister()
         navigationItem.title = "요즘 영화 뭐보지?"
