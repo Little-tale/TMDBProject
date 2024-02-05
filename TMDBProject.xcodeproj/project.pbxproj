@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B69FB642B70B4C200598DF1 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69FB632B70B4C200598DF1 /* AlertManager.swift */; };
 		7BDEF2DB2B6CC2A500111D62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDEF2DA2B6CC2A500111D62 /* AppDelegate.swift */; };
 		7BDEF2DD2B6CC2A500111D62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDEF2DC2B6CC2A500111D62 /* SceneDelegate.swift */; };
 		7BDEF2DF2B6CC2A500111D62 /* ReusabelIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDEF2DE2B6CC2A500111D62 /* ReusabelIdentifier.swift */; };
@@ -64,6 +65,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B69FB632B70B4C200598DF1 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		7BDEF2D72B6CC2A500111D62 /* TMDBProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDBProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BDEF2DA2B6CC2A500111D62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BDEF2DC2B6CC2A500111D62 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +135,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B69FB622B70B4A400598DF1 /* AllertManager */ = {
+			isa = PBXGroup;
+			children = (
+				7B69FB632B70B4C200598DF1 /* AlertManager.swift */,
+			);
+			path = AllertManager;
+			sourceTree = "<group>";
+		};
 		7BDEF2CE2B6CC2A500111D62 = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +163,7 @@
 		7BDEF2D92B6CC2A500111D62 /* TMDBProject */ = {
 			isa = PBXGroup;
 			children = (
+				7B69FB622B70B4A400598DF1 /* AllertManager */,
 				7BE61CBB2B6FC85D006E3CAF /* UserDefaultsManager */,
 				7BE61CB02B6F9E1B006E3CAF /* ImageVIews */,
 				7BE61CA72B6F9A65006E3CAF /* OnboardPageView */,
@@ -489,6 +500,7 @@
 				7BE61C7F2B6D11B3006E3CAF /* ImageManager.swift in Sources */,
 				7BDEF2EF2B6CC2B300111D62 /* APIKey.swift in Sources */,
 				7BE61C8B2B6D3A1B006E3CAF /* BaseTableViewCell.swift in Sources */,
+				7B69FB642B70B4C200598DF1 /* AlertManager.swift in Sources */,
 				7BE61C9E2B6E3D9C006E3CAF /* AllListViewControler.swift in Sources */,
 				7BE61C892B6D3A07006E3CAF /* DetailPosterViewCell.swift in Sources */,
 				7BE61C992B6D65FC006E3CAF /* defaultHeaderLabel.swift in Sources */,

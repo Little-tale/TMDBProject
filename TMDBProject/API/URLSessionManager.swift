@@ -13,6 +13,7 @@ enum URLError{
     case errorResponse
     case failRequest
     case errorDecoding
+    case unknownError
 }
 
 class URLSessionManager {
@@ -22,7 +23,7 @@ class URLSessionManager {
     /// 해당함수는 URL 세션을 이용하여 통신을 시도할수 있는 메서드 입니다.
     /// T에는 각종 모델을 넣어줄수 있습니다.
     /// 에러 처리와 성공 처리에 대한 컴플리셔 핸들러를 제공합니다.
-    func fetchSearchView<T:Decodable >(type: T.Type, api: URLAPI, complitionHandler: @escaping (T? , URLError?) -> () ) {
+    func fetchSearchView<T:Decodable >(type: T.Type, api: URLAPI, complitionHandler: @escaping (T? , URLError?) -> Void ) {
         
         //var url = URLRequest(url: api.endPoint)
         var url = api.endPoint
@@ -37,48 +38,50 @@ class URLSessionManager {
         URLSession.shared.dataTask(with: url) { data, response, error in
             // print(data, response, error)
         
-            // 에러가 없어야만
-            guard error == nil else{
-                
-                complitionHandler(nil, .failRequest)
-                return
-            }
-            // 데이타가 있어야만
-            guard let data = data else {
-                
-                complitionHandler(nil, .noData)
-                return
-            }
-            dump(String(data: data, encoding: .utf8))
+            DispatchQueue.main.async {
+                // 에러가 없어야만
+                guard error == nil else{
+                    
+                    complitionHandler(nil, .failRequest)
+                    return
+                }
+                // 데이타가 있어야만
+                guard let data = data else {
+                    
+                    complitionHandler(nil, .noData)
+                    return
+                }
+                dump(String(data: data, encoding: .utf8))
 
-            
-            // 정정 리스폰 코드가 있을때만
-            guard let response = response as? HTTPURLResponse else {
-                complitionHandler(nil, .noResponse)
-                return
+                
+                // 정정 리스폰 코드가 있을때만
+                guard let response = response as? HTTPURLResponse else {
+                    complitionHandler(nil, .noResponse)
+                    return
+                }
+                guard response.statusCode >= 200 && response.statusCode<300 else {
+                    complitionHandler(nil, .errorResponse)
+                    return
+                }
+                
+                var json = JSONDecoder()
+                
+                
+                do{
+                    let result = try json.decode(T.self, from: data)
+                    complitionHandler(result, nil)
+                }catch let error {
+                    complitionHandler(nil, .errorDecoding)
+                    return
+                }
             }
-            guard response.statusCode >= 200 && response.statusCode<300 else {
-                complitionHandler(nil, .errorResponse)
-                return
-            }
-            
-            var json = JSONDecoder()
-            
-            
-            do{
-                try let result = json.decode(T.self, from: data)
-                complitionHandler(result, nil)
-            }catch let error {
-                complitionHandler(nil, .errorDecoding)
-                return
-            }
-           
-            
             
         }.resume() // 유아레 리슘! 꼭 호출
         // 자이제 통신 데이터 음답 테스트는 완료 했으나 예외는 는 발생할수 있다.
         // 그래서 컴플리셔 이스케이핑 통해 밖에서도 어떻게 처리하게 할지 해보자
     }
+    
+    
     
 }
 

@@ -48,11 +48,21 @@ class StartViewController: StartBaseViewController {
         }
         /// 테스트를 위한 공간
         URLSessionManager.Shared.fetchSearchView(type: model, api: .trend(type: .day, language: .kor)) { success, error in
-            guard error != nil else{
-                
+            dump(error)
+            guard error == nil else{
+                if let errorSelf = error.self {
+                    self.present(AlertManager.shared.getAlert(error: errorSelf), animated: true)
+                }else {
+                    self.present(AlertManager.shared.getAlert(error: .unknownError), animated: true)
+                }
                 return
             }
-            self.dataModels[0] = .trend(success?.results)
+            guard let success = success else{
+                self.present(AlertManager.shared.getAlert(error: .noData), animated: true)
+                return
+            }
+            
+            self.dataModels[0] = .trend(success)
         }
         
         searchBarRegister()
