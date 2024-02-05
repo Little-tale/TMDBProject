@@ -74,11 +74,14 @@ class LastViewController: StartBaseViewController {
         let nbc = UINavigationController(rootViewController: vc)
         
         if let window = UIApplication.shared.windows.first {
+//            transitrionView(viewInstens: nbc, tresitionStyle: .pushNavigation)
+            
             window.rootViewController = nbc
             window.makeKeyAndVisible()
         }
-        // transitionView(viewType: StartViewController.self, tresitionStyle: .pushNavigation)
-        transitionView(viewInstens: nbc, tresitionStyle: .pushNavigation)
+//         transitionView(viewType: StartViewController.self, tresitionStyle: .pushNavigation)
+//        transitrionView(viewInstens: nbc, tresitionStyle: .pushNavigation)
+        //transitionView(viewType: StartViewController.self, tresitionStyle: .pushNavigation)
     }
     
 }

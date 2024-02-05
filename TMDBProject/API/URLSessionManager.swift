@@ -81,9 +81,9 @@ class URLSessionManager {
         // 그래서 컴플리셔 이스케이핑 통해 밖에서도 어떻게 처리하게 할지 해보자
     }
     // 반복되는게 많고 가독성도 떨어져 보여서 줄여줄려고 한다.
-    func fetchSuccesORFailForStartView<T: Decodable>(type: T.Type, dispatchGroup: DispatchGroup, viewController: UIViewController, complitionHandeler: @escaping (T)-> Void) {
+    func fetchSuccesORFailForStartView<T: Decodable>(type: T.Type, api: URLAPI,dispatchGroup: DispatchGroup, viewController: UIViewController, complitionHandeler: @escaping (T)-> Void) {
         dispatchGroup.enter()
-        URLSessionManager.Shared.fetchSearchView(type: T.self, api: .trend(type: .day, language: .kor)) { success, error in
+        URLSessionManager.Shared.fetchSearchView(type: T.self, api: api) { success, error in
             dump(error)
             guard error == nil else{
                 if let errorSelf = error.self {

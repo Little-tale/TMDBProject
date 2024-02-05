@@ -23,14 +23,14 @@ class StartViewController: StartBaseViewController {
         
         let group = DispatchGroup()
 
-        
-        URLSessionManager.Shared.fetchSuccesORFailForStartView(type: model, dispatchGroup: group, viewController: self) { results in
+        URLSessionManager.Shared.fetchSuccesORFailForStartView(type: model, api: .trend(type: .day, language: .kor), dispatchGroup: group, viewController: self) { results in
             self.dataModels[0] = .trend(results)
         }
-        URLSessionManager.Shared.fetchSuccesORFailForStartView(type: model, dispatchGroup: group, viewController: self) { results in
+        
+        URLSessionManager.Shared.fetchSuccesORFailForStartView(type: model, api: .top(language: .kor), dispatchGroup: group, viewController: self) { results in
             self.dataModels[1] = .trend(results)
         }
-        URLSessionManager.Shared.fetchSuccesORFailForStartView(type: model, dispatchGroup: group, viewController: self) { results in
+        URLSessionManager.Shared.fetchSuccesORFailForStartView(type: model, api: .popular(language: .kor), dispatchGroup: group, viewController: self) { results in
             self.dataModels[2] = .trend(results)
         }
         

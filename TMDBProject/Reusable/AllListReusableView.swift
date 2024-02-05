@@ -133,6 +133,7 @@ extension AllListReusableView: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return myProtocol?.cellForItemAt(for: self, colletionView: collectionView, cellForItemAt: indexPath) ?? UICollectionViewCell()
+        
     }
     
     // 5.은 이제 이걸 구현할 뷰컨으로 넘어와라 AllListViewCon
