@@ -15,14 +15,12 @@ class URLSessionManager {
     /// 해당함수는 URL 세션을 이용하여 통신을 시도할수 있는 메서드 입니다.
     /// T에는 각종 모델을 넣어줄수 있습니다.
     /// 에러 처리와 성공 처리에 대한 컴플리셔 핸들러를 제공합니다.
-    func fetchSearchView(api: URLAPI) {
+    func fetchSearchView<T:Decodable >(type: T.Type, api: URLAPI, complitionHandler: @escaping (T? , Error?) -> () ) {
         
         //var url = URLRequest(url: api.endPoint)
         var url = api.endPoint
         url.httpMethod = api.method
-        //url.addValue(<#T##value: String##String#>, forHTTPHeaderField: <#T##String#>)
-        //url.setValue(<#T##value: String?##String?#>, forHTTPHeaderField: <#T##String#>)
-        //url.allHTTPHeaderFields
+        
         let header = api.Header
         for (key,value) in header {
             url.addValue(value, forHTTPHeaderField: key)
@@ -30,30 +28,42 @@ class URLSessionManager {
         
         // 1. URL 세션. 싱글톤. 데이타 URL
         URLSession.shared.dataTask(with: url) { data, response, error in
-            print(data, response, error)
+            // print(data, response, error)
         
             // 에러가 없어야만
             guard error == nil else{
                 
+                complitionHandler(nil, error)
                 return
             }
             // 데이타가 있어야만
             guard let data = data else {
                 
+                complitionHandler(nil, error)
                 return
             }
             dump(String(data: data, encoding: .utf8))
             // 응답이 이있어야만
             guard let response = response else{
-                
+                complitionHandler(nil, error)
                 return
             }
             // 에러가 없어야만
+            var json = JSONDecoder()
             
-            
+            var result : T
+            do{
+                try result = json.decode(T.self, from: data)
+            }catch let error {
+                print(error)
+                return
+            }
+           
+            complitionHandler(result, nil)
             
         }.resume() // 유아레 리슘! 꼭 호출
-        
+        // 자이제 통신 데이터 음답 테스트는 완료 했으나 예외는 는 발생할수 있다.
+        // 그래서 컴플리셔 이스케이핑 통해 밖에서도 어떻게 처리하게 할지 해보자
     }
     
 }
