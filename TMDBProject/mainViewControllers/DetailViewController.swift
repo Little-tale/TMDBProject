@@ -87,36 +87,22 @@ extension DetailViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // 진짜 다시봐도 이건 아닌것 같다 아마 이 제네릭은 여기까지다 개선된 버전으로 바꿔 보도록 노력해 보아야 한다. 멍청아
-        
-        // 아니 왜자꾸 자동완성 안되누 다 쳐야 하누
+
         let model = detailViewModel[indexPath.row]
         switch model {
         case .detail(let detailInfo):
             let cell = tableView.dequeueReusableCell(withIdentifier: ReusableIdentifier<DetailPosterViewCell>.reuseableItentifier, for: indexPath) as! DetailPosterViewCell
-            if detailInfo.first_air_date != nil {
-                cell.detailView.dateLabel.text = DateManager.shared.getKorDate(date: detailInfo.first_air_date!)
-            }
-            cell.detailView.nameLabel.text = detailInfo.name
-            cell.detailView.overViewLabel.text = detailInfo.overView
             
-            if let backdropString = detailInfo.backdropPath {
-               
-                guard let posterString = detailInfo.poster_path else {
-                    
-                    let backurl = ImageManager.getImage(imageCase: .detail , image: backdropString)
-                    cell.prepare(backDropImage: backurl, miniPoster: nil)
-                   
-                    return cell
-    
-                }
-                let backurl = ImageManager.getImage(imageCase: .detail , image: backdropString)
-                let posterUrl = ImageManager.getImage(imageCase: .detail, image: posterString)
-                cell.prepare(backDropImage: backurl, miniPoster: posterUrl)
-                
-                return cell
-            }
+            // 수정중
+            cell.prepareForInfo(name: detailInfo.name, overView: detailInfo.overView, date: detailInfo.first_air_date)
             
+            let backUrl = ImageManager.getImage(imageCase: .detail, image: detailInfo.backdropPath)
+            let posterUrl = ImageManager.getImage(imageCase: .detail, image: detailInfo.poster_path)
+            
+            cell.prepare(backDropImage: backUrl, miniPoster: posterUrl)
+            return cell
+            
+            // 캐스트 모델
         case .cast(let castInfo):
             let cell = tableView.dequeueReusableCell(withIdentifier: ReusableIdentifier<DetailRecommendTableViewCell>.reuseableItentifier, for: indexPath) as! DetailRecommendTableViewCell
             cell.recommendColletionView.dataSource = self
@@ -126,6 +112,7 @@ extension DetailViewController : UITableViewDelegate, UITableViewDataSource {
             cell.selectionStyle = .none
             return cell
             
+            // 추천 모델 스타일
         case .recommendations(let recommendInfo):
             let cell = tableView.dequeueReusableCell(withIdentifier: ReusableIdentifier<DetailRecommendTableViewCell>.reuseableItentifier, for: indexPath) as! DetailRecommendTableViewCell
             
@@ -153,6 +140,7 @@ extension DetailViewController : UITableViewDelegate, UITableViewDataSource {
 
 extension DetailViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        // 데이타 별 갯수가 다른 경우대비
         let datas = detailViewModel[collectionView.tag]
         switch datas {
         case .cast(let castInfo):
@@ -170,15 +158,17 @@ extension DetailViewController : UICollectionViewDelegate, UICollectionViewDataS
         case .cast(let castInfo):
             let castInfos = castInfo.cast[indexPath.item]
             let name = castInfos.name
-            
-            if let castProfile = castInfos.profile_path {
-                let posterUrl = ImageManager.getImage(imageCase: .detail, image: castProfile)
-                
-                cell.prepareCrewPoster(image: posterUrl, title: name)
-                return cell
-            }
-            // print(castInfos.profile_path)
-            cell.prepare(image: nil, title: name)
+            let imageString = ImageManager.getImage(imageCase: .detail, image: castInfos.profile_path)
+            cell.prepareCrewPoster(image: imageString, title: name)
+            print(name)
+//            if let castProfile = castInfos.profile_path {
+//                let posterUrl = ImageManager.getImage(imageCase: .detail, image: castProfile)
+//                
+//                cell.prepareCrewPoster(image: posterUrl, title: name)
+//                return cell
+//            }
+//            // print(castInfos.profile_path)
+//            cell.prepare(image: nil, title: name)
             return cell
             
         case .recommendations(let recommedInfo):

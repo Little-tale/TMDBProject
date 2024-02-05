@@ -86,14 +86,18 @@ class StartViewCollectIonvIewCell : UICollectionViewCell {
     
     func prepareCrewPoster(image : URL?, title: String?) {
         layoutTwo()
+        if let image = image {
+
+            imageView.kf.setImage(with: image,
+                                  placeholder:.none ,
+                                  options:[
+                                    .transition(.fade(0.5))])
+        } else {
+            imageView.image = UIImage(systemName: "person.fill")
+            imageView.tintColor = .gray
+        }
         titleLabel.text = title
         titleLabel.backgroundColor = UIColor(white: 1, alpha: 0.5)
-        imageView.kf.setImage(with: image,
-                              placeholder:.none ,
-                              options:[
-                                .transition(.fade(0.5))//,
-                                //.forceTransition
-                              ])
         
     }
     // MARK: 특정상황에서 유동적으로 레이아웃 잡을때는 remakeConstraints 를 이용해야함 기억하도록
@@ -105,6 +109,7 @@ class StartViewCollectIonvIewCell : UICollectionViewCell {
         }
         self.titleLabel.textColor = .white
         self.titleLabel.backgroundColor = .clear
+
     }
     
     func layoutTwo() {

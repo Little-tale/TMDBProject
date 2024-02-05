@@ -55,7 +55,7 @@ class AllListView: UIView {
         layout.scrollDirection = .vertical
         
         // MARK: 여기서 헤더를 고정해야 고정됨  ㅠㅠㅠ
-        layout.sectionHeadersPinToVisibleBounds = true 
+        layout.sectionHeadersPinToVisibleBounds = true
         
         return layout
     }

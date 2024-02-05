@@ -40,9 +40,6 @@ class overviewView: BaseView {
     func testColor() {
         //overViewLabel.backgroundColor = .red
         //nameLabel.backgroundColor = .blue
-       
-        
-        
     }
     override func designView() {
         overViewLabel.numberOfLines = 4
@@ -61,5 +58,7 @@ class overviewView: BaseView {
         super.layoutSubviews()
        
     }
-    
+    func setInfo() {
+        
+    }
 }

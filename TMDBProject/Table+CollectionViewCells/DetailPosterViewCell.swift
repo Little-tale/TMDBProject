@@ -63,11 +63,15 @@ class DetailPosterViewCell : BaseTableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         prepare(backDropImage: nil, miniPoster: nil)
+        prepareForInfo(name: nil, overView: nil, date: nil)
     }
     func prepare(backDropImage: URL?,miniPoster: URL?) {
         self.miniPosterView.isHidden = false
+        
+    
+        
         if let backDrop = backDropImage {
-            
+            print(backDrop)
             guard let poster = miniPoster else {
                 self.backDropImageView.kf.setImage(with: backDrop,options:[
                     .transition(.fade(0.5)),
@@ -89,6 +93,15 @@ class DetailPosterViewCell : BaseTableViewCell {
         }
         backDropImageView.backgroundColor = .darkGray
         miniPosterView.backgroundColor = .gray
+    }
+    
+    func prepareForInfo(name: String?, overView: String?, date: String?) {
+        detailView.nameLabel.text = name
+        detailView.overViewLabel.text = overView
+        guard let dateinfo = date else {
+            return
+        }
+        detailView.dateLabel.text = dateinfo
     }
     
 }
