@@ -81,7 +81,9 @@ class URLSessionManager {
         // 그래서 컴플리셔 이스케이핑 통해 밖에서도 어떻게 처리하게 할지 해보자
     }
     
-    
+    func succesORError<T: Decodable>(type: T.Type, data: T?, error: Error?) {
+        
+    }
     
 }
 

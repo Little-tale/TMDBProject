@@ -23,30 +23,28 @@ class StartViewController: StartBaseViewController {
         
         let group = DispatchGroup()
         // MARK: 그니까 즉 여기서 타입을 적는 이유가 나 이거씀 을 명시 하기 위해서다 라는 것이다.
-        group.enter()
-        TMDBAPIManager.shared.fetchSearchView(type: model, api: .trend(type: .day, language: .kor)) { results in
-            //self.data[0] = results.results
-            self.dataModels[0] = .trend(results)
-            
-            group.leave()
-        }
-        group.enter()
-        TMDBAPIManager.shared.fetchSearchView(type: model, api: .top(language: .kor)) { results in
-            //self.data[1] = results.results
-            self.dataModels[1] = .top10(results)
-            group.leave()
-        }
-        group.enter()
-        TMDBAPIManager.shared.fetchSearchView(type: model, api: .popular(language: .kor)) { results in
-            //self.data[2] = results.results
-            self.dataModels[2] = .popular(results)
-            group.leave()
-        }
+//        group.enter()
+//        TMDBAPIManager.shared.fetchSearchView(type: model, api: .trend(type: .day, language: .kor)) { results in
+//            //self.data[0] = results.results
+//            self.dataModels[0] = .trend(results)
+//            
+//            group.leave()
+//        }
+//        group.enter()
+//        TMDBAPIManager.shared.fetchSearchView(type: model, api: .top(language: .kor)) { results in
+//            //self.data[1] = results.results
+//            self.dataModels[1] = .top10(results)
+//            group.leave()
+//        }
+//        group.enter()
+//        TMDBAPIManager.shared.fetchSearchView(type: model, api: .popular(language: .kor)) { results in
+//            //self.data[2] = results.results
+//            self.dataModels[2] = .popular(results)
+//            group.leave()
+//        }
         
-        group.notify(queue: .main) {
-            self.startView.trendTableView.reloadData()
-        }
         /// 테스트를 위한 공간
+        group.enter()
         URLSessionManager.Shared.fetchSearchView(type: model, api: .trend(type: .day, language: .kor)) { success, error in
             dump(error)
             guard error == nil else{
@@ -55,16 +53,64 @@ class StartViewController: StartBaseViewController {
                 }else {
                     self.present(AlertManager.shared.getAlert(error: .unknownError), animated: true)
                 }
+                group.leave()
                 return
             }
             guard let success = success else{
                 self.present(AlertManager.shared.getAlert(error: .noData), animated: true)
+                group.leave()
                 return
             }
             
             self.dataModels[0] = .trend(success)
+            group.leave()
+        }
+        group.enter()
+        URLSessionManager.Shared.fetchSearchView(type: model, api: .top(language: .kor)) { success, error in
+            dump(error)
+            guard error == nil else{
+                if let errorSelf = error.self {
+                    self.present(AlertManager.shared.getAlert(error: errorSelf), animated: true)
+                }else {
+                    self.present(AlertManager.shared.getAlert(error: .unknownError), animated: true)
+                }
+                group.leave()
+                return
+            }
+            guard let success = success else{
+                self.present(AlertManager.shared.getAlert(error: .noData), animated: true)
+                group.leave()
+                return
+            }
+            
+            self.dataModels[1] = .trend(success)
+            group.leave()
+        }
+        group.enter()
+        URLSessionManager.Shared.fetchSearchView(type: model, api: .popular(language: .kor)) { success, error in
+            dump(error)
+            guard error == nil else{
+                if let errorSelf = error.self {
+                    self.present(AlertManager.shared.getAlert(error: errorSelf), animated: true)
+                }else {
+                    self.present(AlertManager.shared.getAlert(error: .unknownError), animated: true)
+                }
+                group.leave()
+                return
+            }
+            guard let success = success else{
+                self.present(AlertManager.shared.getAlert(error: .noData), animated: true)
+                group.leave()
+                return
+            }
+            
+            self.dataModels[2] = .trend(success)
+            group.leave()
         }
         
+        group.notify(queue: .main) {
+            self.startView.trendTableView.reloadData()
+        }
         searchBarRegister()
         navigationItem.title = "요즘 영화 뭐보지?"
         // 아ㅏ... 왜 자꾸 이름이 브싯해가지고 나를 이렇게 까지 고생시키는거야 망할 제스처 놈아
