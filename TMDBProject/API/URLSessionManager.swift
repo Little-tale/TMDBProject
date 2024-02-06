@@ -139,7 +139,7 @@ class URLSessionManager {
                 complitionHandler(.failure(.errorDecoding))
             }
             
-        }
+        }.resume()
     }
    
 //    func requestSearchView< T: Decodable >(api: URLAPI, compltionHandelr: @escaping (Result<T,URLError>) -> Void)
