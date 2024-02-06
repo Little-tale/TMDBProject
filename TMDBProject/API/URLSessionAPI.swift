@@ -20,7 +20,7 @@ enum URLAPI: URLSessionRequest {
     case trend(type: TrendType,language: Language?)
     case top(language: Language?)
     case popular(language: Language?)
-    // case genre(language: Language?)
+    case genre(language: Language?)
     
     var baseUrl : String {
         return "https://api.themoviedb.org/3/"
@@ -40,6 +40,10 @@ enum URLAPI: URLSessionRequest {
             let url: URL = URL(string:"\(baseUrl)tv/popular")!
             let urlRequest = URLRequest(url: url)
             return urlRequest
+        case .genre:
+            let url: URL = URL(string:"\(baseUrl)genre/tv/list")!
+            let urlRequest = URLRequest(url: url)
+            return urlRequest
         }
     }
     
@@ -48,6 +52,7 @@ enum URLAPI: URLSessionRequest {
         default:  return ["Authorization":APIKey.tmdb]
         }
     }
+    
     enum TrendType {
         case day
         case week
@@ -61,6 +66,7 @@ enum URLAPI: URLSessionRequest {
             }
         }
     }
+    
     enum Language {
         case kor
         case eng
@@ -83,6 +89,8 @@ enum URLAPI: URLSessionRequest {
         case .top:
             "GET"
         case .popular:
+            "GET"
+        case .genre:
             "GET"
         }
     }

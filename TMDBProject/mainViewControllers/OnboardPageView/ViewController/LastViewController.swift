@@ -65,18 +65,31 @@ class LastViewController: StartBaseViewController {
         
         startButton.addTarget(self, action: #selector(startButtonClicked), for: .touchUpInside)
     }
+    
+    // MARK: 시작 버튼 클릭시 루트뷰 변경
     @objc func startButtonClicked(for sender: UIButton) {
         print("클릭됨")
         
         UserDefaltsManager.shared.userInfo = true
         
-        let vc = StartViewController()
-        let nbc = UINavigationController(rootViewController: vc)
+        let nav = UINavigationController(rootViewController: StartViewController())
+        
+        let secondNav = UINavigationController(rootViewController:  GenreViewCon())
+        let tabber = UITabBarController()
+        
+        let firstTab = UITabBarItem(title: "검색", image: UIImage(systemName: "magnifyingglass.circle"), tag: 0)
+        let seccondTab = UITabBarItem(title: "장르", image: UIImage(systemName: "fleuron"), tag: 1)
+        
+        nav.tabBarItem = firstTab
+        secondNav.tabBarItem = seccondTab
+        
+        tabber.viewControllers = [nav, secondNav]
         
         if let window = UIApplication.shared.windows.first {
 //            transitrionView(viewInstens: nbc, tresitionStyle: .pushNavigation)
-            
-            window.rootViewController = nbc
+            UIView.transition(with: window, duration: 0.6, options: .transitionCrossDissolve) {
+                window.rootViewController = tabber
+            }
             window.makeKeyAndVisible()
         }
 //         transitionView(viewType: StartViewController.self, tresitionStyle: .pushNavigation)

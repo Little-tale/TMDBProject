@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+//
 class AlertManager {
     private init() {}
     static let shared = AlertManager()

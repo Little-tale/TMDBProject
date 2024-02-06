@@ -19,7 +19,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if UserDefaltsManager.shared.userInfo {
             let nav = UINavigationController(rootViewController: StartViewController())
-            window?.rootViewController = GenreViewCon() // nav //TestClass() // GenreViewCon() //  // GenreViewController() // nav //TestClass() // GenreViewController()//// nav
+            
+            let secondNav = UINavigationController(rootViewController:  GenreViewCon())
+            let tabber = UITabBarController()
+            
+            let firstTab = UITabBarItem(title: "검색", image: UIImage(systemName: "magnifyingglass.circle"), tag: 0)
+            let seccondTab = UITabBarItem(title: "장르", image: UIImage(systemName: "fleuron"), tag: 1)
+            
+            nav.tabBarItem = firstTab
+            secondNav.tabBarItem = seccondTab
+            
+            tabber.viewControllers = [nav, secondNav]
+            
+            window?.rootViewController = tabber  // GenreViewCon() // //TestClass() // GenreViewCon() //  // GenreViewController() // nav //TestClass() // GenreViewController()//// nav
             window?.makeKeyAndVisible()
         } else{
             window?.rootViewController = OnBoardPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)  // StartOnBoard() // nav  // ViewController()

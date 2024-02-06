@@ -19,7 +19,12 @@ class GenreHomeVIew: BaseView {
         genreCollectionView.snp.makeConstraints { make in
             make.edges.equalTo(self.safeAreaLayoutGuide)
         }
-        genreCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: UICollectionViewCell.reuseableIdentiFier)
+        genreCollectionView.register(GenreCollectionViewCells.self, forCellWithReuseIdentifier: GenreCollectionViewCells.reuseableIdentiFier)
+    }
+    
+    override func designView() {
+        genreCollectionView.backgroundColor = .black
+        genreCollectionView.clipsToBounds = true
     }
     
     func colletionViewLayout() -> UICollectionViewFlowLayout{
@@ -31,6 +36,7 @@ class GenreHomeVIew: BaseView {
         layout.minimumLineSpacing = 20
         layout.minimumInteritemSpacing = 10
         layout.sectionInset = UIEdgeInsets(top: 12, left: 24, bottom: 12, right: 24)
+        
         layout.scrollDirection = .vertical
         
         return layout

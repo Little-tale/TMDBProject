@@ -187,3 +187,19 @@ results ->
    original_name
    id
 */
+
+
+//-> 급히 추가 장르 모델
+
+// MARK: - Genre
+struct Genre: Decodable {
+    let genres: [GenreElement]
+}
+
+// MARK: - GenreElement
+struct GenreElement: Decodable {
+    let id: Int
+    let name: String
+}
+
+

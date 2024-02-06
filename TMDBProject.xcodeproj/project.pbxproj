@@ -81,7 +81,7 @@
 		7B69FB6D2B70FEC800598DF1 /* HeaderButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderButtonCell.swift; sourceTree = "<group>"; };
 		7B69FB6F2B71034B00598DF1 /* GenreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreTableViewCell.swift; sourceTree = "<group>"; };
 		7B69FB792B71E78E00598DF1 /* GenreViewCon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreViewCon.swift; sourceTree = "<group>"; };
-		7B69FB7B2B71E96300598DF1 /* GenreHomeVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreHomeVIew.swift; sourceTree = "<group>"; };
+		7B69FB7B2B71E96300598DF1 /* GenreHomeVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GenreHomeVIew.swift; path = ../TestGroup/GenreHomeVIew.swift; sourceTree = "<group>"; };
 		7B69FB7D2B71EB5200598DF1 /* GenreTableVIewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreTableVIewCells.swift; sourceTree = "<group>"; };
 		7B69FB7F2B721EED00598DF1 /* GenreCollectionViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCollectionViewCells.swift; sourceTree = "<group>"; };
 		7BDEF2D72B6CC2A500111D62 /* TMDBProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDBProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,10 +192,6 @@
 		7B69FB762B71E6CA00598DF1 /* TestGroup */ = {
 			isa = PBXGroup;
 			children = (
-				7B69FB792B71E78E00598DF1 /* GenreViewCon.swift */,
-				7B69FB7B2B71E96300598DF1 /* GenreHomeVIew.swift */,
-				7B69FB7D2B71EB5200598DF1 /* GenreTableVIewCells.swift */,
-				7B69FB7F2B721EED00598DF1 /* GenreCollectionViewCells.swift */,
 			);
 			path = TestGroup;
 			sourceTree = "<group>";
@@ -273,6 +269,7 @@
 		7BDEF2FA2B6CC68200111D62 /* HomeViews */ = {
 			isa = PBXGroup;
 			children = (
+				7B69FB7B2B71E96300598DF1 /* GenreHomeVIew.swift */,
 				7BDEF2FB2B6CC69500111D62 /* StartView.swift */,
 				7BDEF2FD2B6CC6EF00111D62 /* AllListView.swift */,
 				7BDEF2FF2B6CC70B00111D62 /* DetailView.swift */,
@@ -288,6 +285,7 @@
 				7BDEF3022B6CC7E100111D62 /* StartViewController.swift */,
 				7BE61C862B6D3476006E3CAF /* DetailViewController.swift */,
 				7BE61C9D2B6E3D9C006E3CAF /* AllListViewControler.swift */,
+				7B69FB792B71E78E00598DF1 /* GenreViewCon.swift */,
 			);
 			path = mainViewControllers;
 			sourceTree = "<group>";
@@ -303,6 +301,8 @@
 		7BE61C692B6CD04E006E3CAF /* Table+CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				7B69FB7F2B721EED00598DF1 /* GenreCollectionViewCells.swift */,
+				7B69FB7D2B71EB5200598DF1 /* GenreTableVIewCells.swift */,
 				7BE61C6B2B6CD078006E3CAF /* StartViewControllerTableCell.swift */,
 				7BE61C722B6CDE60006E3CAF /* StartViewCollectIonvIewCell.swift */,
 				7BE61C882B6D3A07006E3CAF /* DetailPosterViewCell.swift */,
