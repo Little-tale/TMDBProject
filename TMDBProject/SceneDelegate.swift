@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if UserDefaltsManager.shared.userInfo {
             let nav = UINavigationController(rootViewController: StartViewController())
-            window?.rootViewController = GenreViewController()//nav
+            window?.rootViewController = TestClass() // GenreViewController()//nav
             window?.makeKeyAndVisible()
         } else{
             window?.rootViewController = OnBoardPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)  // StartOnBoard() // nav  // ViewController()

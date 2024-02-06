@@ -15,7 +15,7 @@ class TestClass: StartBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        URLSessionManager.Shared.requestOfSession(type: DetailModel.self, request: URLAPI.top(language: .kor)) { response in
+        URLSessionManager.Shared.requestOfSession(type: SearchModel.self, request: URLAPI.top(language: .kor)) { response in
             switch response {
             case .success(let success):
                 print(success)
