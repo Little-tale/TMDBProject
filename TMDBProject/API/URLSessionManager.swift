@@ -105,7 +105,10 @@ class URLSessionManager {
         }
     }
     
-    func requestOfSession<T:Decodable>(type: T.Type, request: URLSessionRequest, complitionHandler: @escaping(Result<T, URLError> ) -> Void) {
+    typealias URLSessionError<T:Decodable> = (Result<T, URLError> ) -> Void
+    typealias resultError<T:Decodable> = Result<T, URLError>
+    
+    func requestOfSession<T:Decodable>(type: T.Type, request: URLSessionRequest, complitionHandler: @escaping URLSessionError<T>) {
         var url = request.endPoint
         let header = request.Header
         for (key,value) in header {
@@ -113,33 +116,39 @@ class URLSessionManager {
         }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
-            guard error == nil else {
-                complitionHandler(.failure(.failRequest))
-                return
-            }
-            
-            guard let data = data else {
-                complitionHandler(.failure(.noData))
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse else {
-                complitionHandler(.failure(.noResponse))
-                return
-            }
-            guard response.statusCode >= 200 && response.statusCode < 300 else {
-                complitionHandler(.failure(.errorResponse))
-                return
-            }
-            
-            do {
-                let result = try JSONDecoder().decode(T.self, from: data)
-                complitionHandler(.success(result))
-            } catch {
-                complitionHandler(.failure(.errorDecoding))
-            }
+
+            complitionHandler(self.errorHandler(data: data, response: response, error: error))
             
         }.resume()
+    }
+    
+    
+    func errorHandler<T:Decodable>(data: Data?, response: URLResponse? , error: Error?) -> resultError<T> {
+        guard error == nil else {
+            return resultError.failure(.failRequest)
+        }
+        
+        guard let data = data else {
+//            complitionHandler(.failure(.noData))
+            return .failure(.noData)
+        }
+        
+        guard let response = response as? HTTPURLResponse else {
+//            complitionHandler(.failure(.noResponse))
+            return .failure(.noResponse)
+        }
+        guard response.statusCode >= 200 && response.statusCode < 300 else {
+//            complitionHandler(.failure(.errorResponse))
+            return .failure(.errorResponse)
+        }
+        
+        do {
+            let result = try JSONDecoder().decode(T.self, from: data)
+            return resultError.success(result)
+            // complitionHandler(.success(result))
+        } catch {
+            return.failure(.errorDecoding)
+        }
     }
    
 //    func requestSearchView< T: Decodable >(api: URLAPI, compltionHandelr: @escaping (Result<T,URLError>) -> Void)
