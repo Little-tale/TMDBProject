@@ -16,7 +16,7 @@ enum URLError: Error{
     case unknownError
 }
 
-class URLSessionManager {
+final class URLSessionManager {
     static let Shared = URLSessionManager()
     private init () {}
     
@@ -116,13 +116,12 @@ class URLSessionManager {
         }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
-
-            complitionHandler(self.errorHandler(data: data, response: response, error: error))
-            
+            DispatchQueue.main.async {
+                complitionHandler(self.errorHandler(data: data, response: response, error: error))
+            }
         }.resume()
     }
-    
-    
+
     func errorHandler<T:Decodable>(data: Data?, response: URLResponse? , error: Error?) -> resultError<T> {
         guard error == nil else {
             return resultError.failure(.failRequest)

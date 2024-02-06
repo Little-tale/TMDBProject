@@ -20,6 +20,7 @@ enum URLAPI: URLSessionRequest {
     case trend(type: TrendType,language: Language?)
     case top(language: Language?)
     case popular(language: Language?)
+    // case genre(language: Language?)
     
     var baseUrl : String {
         return "https://api.themoviedb.org/3/"
@@ -71,6 +72,7 @@ enum URLAPI: URLSessionRequest {
             case .eng:
                 "en-US"
             }
+            
         }
     }
     

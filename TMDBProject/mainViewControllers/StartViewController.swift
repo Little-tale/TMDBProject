@@ -23,15 +23,51 @@ class StartViewController: StartBaseViewController {
         
         let group = DispatchGroup()
 
-        URLSessionManager.Shared.fetchSuccesORFailForStartView(type: model, api: .trend(type: .day, language: .kor), dispatchGroup: group, viewController: self) { results in
-            self.dataModels[0] = .trend(results)
+//        URLSessionManager.Shared.fetchSuccesORFailForStartView(type: model, api: .trend(type: .day, language: .kor), dispatchGroup: group, viewController: self) { results in
+//            self.dataModels[0] = .trend(results)
+//        }
+//        
+//        URLSessionManager.Shared.fetchSuccesORFailForStartView(type: model, api: .top(language: .kor), dispatchGroup: group, viewController: self) { results in
+//            self.dataModels[1] = .trend(results)
+//        }
+//        URLSessionManager.Shared.fetchSuccesORFailForStartView(type: model, api: .popular(language: .kor), dispatchGroup: group, viewController: self) { results in
+//            self.dataModels[2] = .trend(results)
+//        }
+        group.enter()
+        URLSessionManager.Shared.requestOfSession(type: model, request:  URLAPI.trend(type: .day, language: .kor)) { response in
+            switch response {
+            case .success(let success) :
+                print("통신에 성공했습니다.")
+                self.dataModels[0] = .trend(success)
+            case .failure(let fail):
+                let alert = AlertManager.shared.getAlert(error: fail)
+                self.present(alert, animated: true)
+            }
+            group.leave()
         }
-        
-        URLSessionManager.Shared.fetchSuccesORFailForStartView(type: model, api: .top(language: .kor), dispatchGroup: group, viewController: self) { results in
-            self.dataModels[1] = .trend(results)
+        group.enter()
+        URLSessionManager.Shared.requestOfSession(type: model, request:  URLAPI.top(language: .kor)) { response in
+            switch response {
+            case .success(let success) :
+                print("통신에 성공했습니다.")
+                self.dataModels[1] = .trend(success)
+            case .failure(let fail):
+                let alert = AlertManager.shared.getAlert(error: fail)
+                self.present(alert, animated: true)
+            }
+            group.leave()
         }
-        URLSessionManager.Shared.fetchSuccesORFailForStartView(type: model, api: .popular(language: .kor), dispatchGroup: group, viewController: self) { results in
-            self.dataModels[2] = .trend(results)
+        group.enter()
+        URLSessionManager.Shared.requestOfSession(type: model, request:  URLAPI.popular(language: .kor)) { response in
+            switch response {
+            case .success(let success) :
+                print("통신에 성공했습니다.")
+                self.dataModels[2] = .trend(success)
+            case .failure(let fail):
+                let alert = AlertManager.shared.getAlert(error: fail)
+                self.present(alert, animated: true)
+            }
+            group.leave()
         }
         
         group.notify(queue: .main) {
