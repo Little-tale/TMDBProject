@@ -104,6 +104,43 @@ class URLSessionManager {
             dispatchGroup.leave()
         }
     }
+    
+    func requestOfSession<T:Decodable>(type: T.Type, request: URLSessionRequest, complitionHandler: @escaping(Result<T, URLError> ) -> Void) {
+        var url = request.endPoint
+        let header = request.Header
+        for (key,value) in header {
+            url.addValue(value, forHTTPHeaderField: key)
+        }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard error == nil else {
+                complitionHandler(.failure(.failRequest))
+                return
+            }
+            
+            guard let data = data else {
+                complitionHandler(.failure(.noData))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse else {
+                complitionHandler(.failure(.noResponse))
+                return
+            }
+            guard response.statusCode >= 200 && response.statusCode < 300 else {
+                complitionHandler(.failure(.errorResponse))
+                return
+            }
+            
+            do {
+                let result = try JSONDecoder().decode(T.self, from: data)
+                complitionHandler(.success(result))
+            } catch {
+                complitionHandler(.failure(.errorDecoding))
+            }
+            
+        }
+    }
    
 //    func requestSearchView< T: Decodable >(api: URLAPI, compltionHandelr: @escaping (Result<T,URLError>) -> Void)
 //    
@@ -209,12 +246,6 @@ class URLSessionManager {
  
  
  */
-
-
-// 1. 청사진 만들어
-protocol URLSessionRequest{
-    
-}
 
 
 
