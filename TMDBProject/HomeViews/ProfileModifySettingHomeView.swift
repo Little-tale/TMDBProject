@@ -13,11 +13,22 @@ class ProfileModifySettingHomeView: BaseView {
     // let nickNameLabel = UILabel()
     // let tableView = UITableView(frame: .zero, style: .insetGrouped)
     let nameSettingView = settingBoxView()
+    let userNameView = settingBoxView()
+    let genderNameView = settingBoxView()
+    let introduceView = settingBoxView()
+    let linkView = settingBoxView()
+    
+    lazy var settingViews = [nameSettingView, userNameView, genderNameView, introduceView, linkView]
+    let fieldNames = ["이름","사용자이름","성별 대명사", "소개", "링크"]
+
     
     override func configureHierarchy() {
         self.addSubview(profileImageView)
         self.addSubview(nameSettingView)
-        
+        self.addSubview(userNameView)
+        self.addSubview(genderNameView)
+        self.addSubview(introduceView)
+        self.addSubview(linkView)
         // self.addSubview(nickNameLabel)
         // self.addSubview(tableView)
     }
@@ -33,22 +44,46 @@ class ProfileModifySettingHomeView: BaseView {
             make.height.equalTo(60)
             make.horizontalEdges.equalTo(self.safeAreaLayoutGuide)
         }
-
+        userNameView.snp.makeConstraints { make in
+            make.top.equalTo(nameSettingView.snp.bottom).inset( -8 )
+            make.height.equalTo(60)
+            make.horizontalEdges.equalTo(self.safeAreaLayoutGuide)
+        }
+        genderNameView.snp.makeConstraints { make in
+            make.top.equalTo(userNameView.snp.bottom).inset( -8 )
+            make.height.equalTo(60)
+            make.horizontalEdges.equalTo(self.safeAreaLayoutGuide)
+        }
+        introduceView.snp.makeConstraints { make in
+            make.top.equalTo(genderNameView.snp.bottom).inset( -8 )
+            make.height.equalTo(60)
+            make.horizontalEdges.equalTo(self.safeAreaLayoutGuide)
+        }
+        linkView.snp.makeConstraints { make in
+            make.top.equalTo(introduceView.snp.bottom).inset( -8 )
+            make.height.equalTo(60)
+            make.horizontalEdges.equalTo(self.safeAreaLayoutGuide)
+        }
+        
         
     }
     override func designView() {
         self.backgroundColor = .black
-        // profileImageView.backgroundColor = .brown
+       
         profileImageView.clipsToBounds = true
-        // tableView.backgroundColor = .blue
-        // profileImageView.
-        // profileImageView.ProfileImageView.backgroundColor = .lightGray]
-        // nameSettingView.backgroundColor = .blue
+        
         nameSettingView.nameTextLabel.backgroundColor = .blue
         nameSettingView.nmaeInputTextField.backgroundColor = .red
         nameSetting()
         
-        nameSettingView.nmaeInputTextField.placeholder = "이름을 수정해 보세요"
+        
+        for i in 0...(fieldNames.count - 1) {
+            settingViews[i].nameTextLabel.text = fieldNames[i]
+            // 레이어 이름 로직 추가
+            settingViews[i].nmaeInputTextField.layer.name  = fieldNames[i]
+            print(settingViews[i].nmaeInputTextField.layer.name)
+            settingViews[i].nameTextLabel.textColor = .white
+        }
         
     }
     

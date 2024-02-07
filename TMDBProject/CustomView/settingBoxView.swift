@@ -12,6 +12,8 @@ class settingBoxView: BaseView {
     let nameTextLabel = UILabel()
     let nmaeInputTextField = UITextField()
     
+       
+    
     
     override func configureHierarchy() {
         self.addSubview(nameTextLabel)
@@ -30,4 +32,5 @@ class settingBoxView: BaseView {
         }
     }
 
+    
 }

@@ -11,11 +11,10 @@ import SnapKit
 class ProfileSettingHomeView: BaseView {
     
     let nicknameTextField = UITextField()
-    var nickNameText : ((String) -> Void)? {
-        didSet {
-            
-        }
-    }
+    var nickNameText : ((String) -> Void)?
+       
+    
+    
     override func designView() {
         self.backgroundColor = .black
         nicknameTextField.backgroundColor = .white
