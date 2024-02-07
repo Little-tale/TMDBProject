@@ -31,6 +31,8 @@ class settingBoxView: BaseView {
             make.trailing.equalTo(self.safeAreaLayoutGuide)
         }
     }
-
+    override func designView() {
+        nmaeInputTextField.textColor = .white
+    }
     
 }

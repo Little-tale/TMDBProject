@@ -77,12 +77,22 @@ class ProfileModifySettingHomeView: BaseView {
         nameSetting()
         
         
-        for i in 0...(fieldNames.count - 1) {
+//        for i in 0...(fieldNames.count - 1) {
+//            settingViews[i].nameTextLabel.text = fieldNames[i]
+//            // 레이어 이름 로직 추가
+//            // settingViews[i].nmaeInputTextField.layer.name  = fieldNames[i]
+//            // print(settingViews[i].nmaeInputTextField.layer.name)
+//            settingViews[i].nameTextLabel.textColor = .white
+//            
+//            settingViews[i].nmaeInputTextField.layer.name = settingSession.allCases[i].layerName
+//            
+//        }
+        // print(settingSession.allCases.count) 5
+        for i in 0...(settingSession.allCases.count - 1) {
             settingViews[i].nameTextLabel.text = fieldNames[i]
-            // 레이어 이름 로직 추가
-            settingViews[i].nmaeInputTextField.layer.name  = fieldNames[i]
-            print(settingViews[i].nmaeInputTextField.layer.name)
+            settingViews[i].nmaeInputTextField.layer.name = settingSession.allCases[i].layerName
             settingViews[i].nameTextLabel.textColor = .white
+            
         }
         
     }
