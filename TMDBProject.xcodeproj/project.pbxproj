@@ -17,6 +17,12 @@
 		7B69FB7C2B71E96300598DF1 /* GenreHomeVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69FB7B2B71E96300598DF1 /* GenreHomeVIew.swift */; };
 		7B69FB7E2B71EB5200598DF1 /* GenreTableVIewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69FB7D2B71EB5200598DF1 /* GenreTableVIewCells.swift */; };
 		7B69FB802B721EED00598DF1 /* GenreCollectionViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69FB7F2B721EED00598DF1 /* GenreCollectionViewCells.swift */; };
+		7B69FC282B7337EB00598DF1 /* ProfileInfoSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69FC272B7337EB00598DF1 /* ProfileInfoSettingViewController.swift */; };
+		7B69FC2A2B73389C00598DF1 /* ProfileSettingHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69FC292B73389C00598DF1 /* ProfileSettingHomeView.swift */; };
+		7B69FC2D2B7343DA00598DF1 /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69FC2C2B7343DA00598DF1 /* ProfileSettingViewController.swift */; };
+		7B69FC2F2B73468700598DF1 /* ProfileViewImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69FC2E2B73468700598DF1 /* ProfileViewImage.swift */; };
+		7B69FC312B734B7300598DF1 /* ProfileModifySettingHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69FC302B734B7300598DF1 /* ProfileModifySettingHomeView.swift */; };
+		7B69FC332B7366AB00598DF1 /* settingBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69FC322B7366AB00598DF1 /* settingBoxView.swift */; };
 		7BDEF2DB2B6CC2A500111D62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDEF2DA2B6CC2A500111D62 /* AppDelegate.swift */; };
 		7BDEF2DD2B6CC2A500111D62 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDEF2DC2B6CC2A500111D62 /* SceneDelegate.swift */; };
 		7BDEF2DF2B6CC2A500111D62 /* ReusabelIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDEF2DE2B6CC2A500111D62 /* ReusabelIdentifier.swift */; };
@@ -84,6 +90,12 @@
 		7B69FB7B2B71E96300598DF1 /* GenreHomeVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GenreHomeVIew.swift; path = ../TestGroup/GenreHomeVIew.swift; sourceTree = "<group>"; };
 		7B69FB7D2B71EB5200598DF1 /* GenreTableVIewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreTableVIewCells.swift; sourceTree = "<group>"; };
 		7B69FB7F2B721EED00598DF1 /* GenreCollectionViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCollectionViewCells.swift; sourceTree = "<group>"; };
+		7B69FC272B7337EB00598DF1 /* ProfileInfoSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoSettingViewController.swift; sourceTree = "<group>"; };
+		7B69FC292B73389C00598DF1 /* ProfileSettingHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingHomeView.swift; sourceTree = "<group>"; };
+		7B69FC2C2B7343DA00598DF1 /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
+		7B69FC2E2B73468700598DF1 /* ProfileViewImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewImage.swift; sourceTree = "<group>"; };
+		7B69FC302B734B7300598DF1 /* ProfileModifySettingHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModifySettingHomeView.swift; sourceTree = "<group>"; };
+		7B69FC322B7366AB00598DF1 /* settingBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingBoxView.swift; sourceTree = "<group>"; };
 		7BDEF2D72B6CC2A500111D62 /* TMDBProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDBProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BDEF2DA2B6CC2A500111D62 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BDEF2DC2B6CC2A500111D62 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -176,6 +188,8 @@
 			isa = PBXGroup;
 			children = (
 				7B69FB6B2B70FDA000598DF1 /* GenreTableHeaderView.swift */,
+				7B69FC2E2B73468700598DF1 /* ProfileViewImage.swift */,
+				7B69FC322B7366AB00598DF1 /* settingBoxView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -194,6 +208,15 @@
 			children = (
 			);
 			path = TestGroup;
+			sourceTree = "<group>";
+		};
+		7B69FC2B2B733AE600598DF1 /* ProfileSettingVIewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				7B69FC272B7337EB00598DF1 /* ProfileInfoSettingViewController.swift */,
+				7B69FC2C2B7343DA00598DF1 /* ProfileSettingViewController.swift */,
+			);
+			path = ProfileSettingVIewControllers;
 			sourceTree = "<group>";
 		};
 		7BDEF2CE2B6CC2A500111D62 = {
@@ -274,6 +297,8 @@
 				7BDEF2FD2B6CC6EF00111D62 /* AllListView.swift */,
 				7BDEF2FF2B6CC70B00111D62 /* DetailView.swift */,
 				7B69FB672B70F2B500598DF1 /* GenreHomeView.swift */,
+				7B69FC292B73389C00598DF1 /* ProfileSettingHomeView.swift */,
+				7B69FC302B734B7300598DF1 /* ProfileModifySettingHomeView.swift */,
 			);
 			path = HomeViews;
 			sourceTree = "<group>";
@@ -281,6 +306,7 @@
 		7BDEF3012B6CC79A00111D62 /* mainViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				7B69FC2B2B733AE600598DF1 /* ProfileSettingVIewControllers */,
 				7BE61CA72B6F9A65006E3CAF /* OnboardPageView */,
 				7BDEF3022B6CC7E100111D62 /* StartViewController.swift */,
 				7BE61C862B6D3476006E3CAF /* DetailViewController.swift */,
@@ -552,6 +578,7 @@
 				7BDEF3002B6CC70B00111D62 /* DetailView.swift in Sources */,
 				7B69FB682B70F2B500598DF1 /* GenreHomeView.swift in Sources */,
 				7B69FB802B721EED00598DF1 /* GenreCollectionViewCells.swift in Sources */,
+				7B69FC2F2B73468700598DF1 /* ProfileViewImage.swift in Sources */,
 				7BE61C902B6D3C17006E3CAF /* overviewView.swift in Sources */,
 				7BE61C7A2B6CEFAD006E3CAF /* TMDBAPI.swift in Sources */,
 				7BE61C8D2B6D3ABE006E3CAF /* BaseCollectionViewCell.swift in Sources */,
@@ -560,6 +587,7 @@
 				7BE61CB42B6FA540006E3CAF /* OnboardEnum.swift in Sources */,
 				7BDEF2FC2B6CC69500111D62 /* StartView.swift in Sources */,
 				7BDEF3032B6CC7E100111D62 /* StartViewController.swift in Sources */,
+				7B69FC312B734B7300598DF1 /* ProfileModifySettingHomeView.swift in Sources */,
 				7B69FB6C2B70FDA000598DF1 /* GenreTableHeaderView.swift in Sources */,
 				7B69FB662B70EE4B00598DF1 /* GenreViewController.swift in Sources */,
 				7BE61C762B6CE2EB006E3CAF /* APIModel.swift in Sources */,
@@ -574,12 +602,16 @@
 				7BE61C992B6D65FC006E3CAF /* defaultHeaderLabel.swift in Sources */,
 				7BDEF2DD2B6CC2A500111D62 /* SceneDelegate.swift in Sources */,
 				7BE61C932B6D4165006E3CAF /* ReusableIdentifier.swift in Sources */,
+				7B69FC2D2B7343DA00598DF1 /* ProfileSettingViewController.swift in Sources */,
 				7BE61CBA2B6FBFAF006E3CAF /* LastViewController.swift in Sources */,
 				7BE61CA62B6E7E02006E3CAF /* Test.swift in Sources */,
+				7B69FC332B7366AB00598DF1 /* settingBoxView.swift in Sources */,
 				7BE61CB62B6FA75D006E3CAF /* OnboardLabel.swift in Sources */,
 				7BE61C782B6CE301006E3CAF /* APIManager.swift in Sources */,
 				7BE61C6C2B6CD078006E3CAF /* StartViewControllerTableCell.swift in Sources */,
 				7BE61CAF2B6F9DC0006E3CAF /* StartOnBoard.swift in Sources */,
+				7B69FC2A2B73389C00598DF1 /* ProfileSettingHomeView.swift in Sources */,
+				7B69FC282B7337EB00598DF1 /* ProfileInfoSettingViewController.swift in Sources */,
 				7BDEF2FE2B6CC6EF00111D62 /* AllListView.swift in Sources */,
 				7BDEF2F52B6CC51400111D62 /* StartBaseView.swift in Sources */,
 				7BE61C732B6CDE60006E3CAF /* StartViewCollectIonvIewCell.swift in Sources */,
