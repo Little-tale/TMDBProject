@@ -84,101 +84,136 @@ class ProfileSettingViewController : StartBaseViewController {
             return
         }
         print("세션----------------------")
-        switch session {
-        case .genderName:
-            profileInfoSettingViewController.settingInfo = {
-                result in
-                print("genderName")
-                if let gender = self.gender {
-                    print("genderName 이름이 존재")
-                    self.profileInfoSettingViewController.text = gender
-                } else {
-                    self.profileInfoSettingViewController.text = ""
-                }
-                print(result)
-                self.settingHomeView.genderNameView.nmaeInputTextField.text = result
+        
+        // MARK: 이제 이것을 더 줄여봐야함 session에 따라 해당하는 텍스트 필드, 텍스트 변수,
+        // 중복되는것 : 텍스트가 존재하는가,
+        // 중복 되지 않는것 : 각 텍스트 필드, 결과 각 세션,
+    
+        getTextFieldText(textField: test, session: session)
+      
+        present(profileInfoSettingViewController, animated: true)
+
+    }
+ 
+    func getTextFieldText(textField: UITextField, session: settingSession) {
+        profileInfoSettingViewController.settingInfo = {
+            result in
+            
+            switch session {
+            case .name:
+                self.name = result
+            case .userName:
+                self.userName = result
+            case .genderName:
                 self.gender = result
-            }
-        case .introduce :
-            profileInfoSettingViewController.settingInfo = {
-                result in
-                print("introduce")
-                if let intro = self.intro {
-                    print(" introduce 이름이 존재")
-                    self.profileInfoSettingViewController.text = intro
-                } else {
-                    self.profileInfoSettingViewController.text = ""
-                }
-                print(result)
-                self.settingHomeView.introduceView.nmaeInputTextField.text = result
+            case .introduce:
                 self.intro = result
-            }
-        case .link:
-            profileInfoSettingViewController.settingInfo = {
-                result in
-                print("link")
-                if let link = self.link {
-                    print("link 이름이 존재")
-                    self.profileInfoSettingViewController.text = link
-                } else {
-                    self.profileInfoSettingViewController.text = ""
-                }
-                print(result)
-                self.settingHomeView.linkView.nmaeInputTextField.text = result
+            case .link:
                 self.link = result
             }
-        case .name:
-            profileInfoSettingViewController.settingInfo = {
-                result in
-                print("name")
-                if let name = self.name {
-                    print("name 이름이 존재")
-                    self.profileInfoSettingViewController.text = name
-                } else {
-                    self.profileInfoSettingViewController.text = ""
-                }
-                print(result)
-                self.settingHomeView.nameSettingView.nmaeInputTextField.text = result
-                self.name = result
-            }
-        case .userName:
-            profileInfoSettingViewController.settingInfo = {
-                result in
-                print("userName")
-                if let userName = self.userName {
-                    print("userName 이름이 존재")
-                    self.profileInfoSettingViewController.text = userName
-                } else {
-                    self.profileInfoSettingViewController.text = ""
-                }
-                print(result)
-                self.settingHomeView.userNameView.nmaeInputTextField.text = result
-                self.userName = result
-            }
+            textField.text = result
         }
         
-        present(profileInfoSettingViewController, animated: true)
-        
-        //        // settingHomeView.nameSettingView.nameTextLabel.text =
-        //        profileInfoSettingViewController.settingInfo = settingInfo(name:)
-        //        profileInfoSettingViewController.settingInfo = {
-        //            retsult in
-        //            if let name = self.name {
-        //                print("이름이 존재")
-        //                self.profileInfoSettingViewController.text = name
-        //            }
-        //            print(retsult)
-        //            self.settingHomeView.nameSettingView.nmaeInputTextField.text = retsult
-        //            self.name = retsult
-        //        }
-        //        settingHomeView.endEditing(true)
-        //
     }
-    // var settingInfo: ((String) -> Void)?
-    func settingInfo(name: String?) -> Void {
-       
-    }
+    /*
+     switch session {
+     case .genderName:
+         profileInfoSettingViewController.settingInfo = {
+             result in
+             print("genderName")
+             if let gender = self.gender {
+                 print("genderName 이름이 존재")
+                 self.profileInfoSettingViewController.text = gender
+             }
+             print(result)
+             self.settingHomeView.genderNameView.nmaeInputTextField.text = result
+             self.gender = result
+         }
+     case .introduce :
+         profileInfoSettingViewController.settingInfo = {
+             result in
+             print("introduce")
+             if let intro = self.intro {
+                 print(" introduce 이름이 존재")
+                 self.profileInfoSettingViewController.text = intro
+             }
+             print(result)
+             self.settingHomeView.introduceView.nmaeInputTextField.text = result
+             self.intro = result
+         }
+     case .link:
+         profileInfoSettingViewController.settingInfo = {
+             result in
+             print("link")
+             if let link = self.link {
+                 print("link 이름이 존재")
+                 self.profileInfoSettingViewController.text = link
+             }
+             print(result)
+             self.settingHomeView.linkView.nmaeInputTextField.text = result
+             self.link = result
+         }
+     case .name:
+         profileInfoSettingViewController.settingInfo = {
+             result in
+             print("name")
+             if let name = self.name {
+                 print("name 이름이 존재")
+                 self.profileInfoSettingViewController.text = name
+             }
+             print(result)
+             self.settingHomeView.nameSettingView.nmaeInputTextField.text = result
+             self.name = result
+         }
+     case .userName:
+         profileInfoSettingViewController.settingInfo = {
+             result in
+             print("userName")
+             if let userName = self.userName {
+                 print("userName 이름이 존재")
+                 self.profileInfoSettingViewController.text = userName
+             }
+             print(result)
+             self.settingHomeView.userNameView.nmaeInputTextField.text = result
+             self.userName = result
+         }
+     }
+     
+     */
     
+    //        // settingHomeView.nameSettingView.nameTextLabel.text =
+    //        profileInfoSettingViewController.settingInfo = settingInfo(name:)
+    //        profileInfoSettingViewController.settingInfo = {
+    //            retsult in
+    //            if let name = self.name {
+    //                print("이름이 존재")
+    //                self.profileInfoSettingViewController.text = name
+    //            }
+    //            print(retsult)
+    //            self.settingHomeView.nameSettingView.nmaeInputTextField.text = retsult
+    //            self.name = retsult
+    //        }
+    //        settingHomeView.endEditing(true)
+    //
+    // var settingInfo: ((String) -> Void)?
+   /*
+    case .genderName:
+        profileInfoSettingViewController.settingInfo = {
+            result in
+            print("genderName")
+            if let gender = self.gender {
+                print("genderName 이름이 존재")
+                self.profileInfoSettingViewController.text = gender
+            } else {
+                self.profileInfoSettingViewController.text = ""
+            }
+            print(result)
+            self.settingHomeView.genderNameView.nmaeInputTextField.text = result
+            self.gender = result
+        }
+    */
+    
+   
     
     @objc
     func genderClicked(test : UITextField) {
