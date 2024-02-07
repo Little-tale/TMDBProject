@@ -19,7 +19,7 @@ class ProfileModifySettingHomeView: BaseView {
     let linkView = settingBoxView()
     
     lazy var settingViews = [nameSettingView, userNameView, genderNameView, introduceView, linkView]
-    let fieldNames = ["이름","사용자이름","성별 대명사", "소개", "링크"]
+    // let fieldNames = ["이름","사용자이름","성별 대명사", "소개", "링크"]
 
     
     override func configureHierarchy() {
@@ -89,7 +89,7 @@ class ProfileModifySettingHomeView: BaseView {
 //        }
         // print(settingSession.allCases.count) 5
         for i in 0...(settingSession.allCases.count - 1) {
-            settingViews[i].nameTextLabel.text = fieldNames[i]
+            settingViews[i].nameTextLabel.text = settingSession.allCases[i].layerName
             settingViews[i].nmaeInputTextField.layer.name = settingSession.allCases[i].layerName
             settingViews[i].nameTextLabel.textColor = .white
             

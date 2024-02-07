@@ -32,12 +32,17 @@ class ProfileInfoSettingViewController : StartBaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        // print(text)
         guard let text = text else {
-            self.text = nil
+            self.text = ""
             return
         }
         ProfileNickNameSettingHomeView.nicknameTextField.text = text
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        text = ""
+        // print(text)
     }
 }
 
@@ -49,8 +54,9 @@ extension ProfileInfoSettingViewController : UITextFieldDelegate {
             print("글자가 없습니다.")
             return true
         }
-        
+        self.text = ""
         settingInfo?(text)
+        
         dismiss(animated: true)
         return true
     }

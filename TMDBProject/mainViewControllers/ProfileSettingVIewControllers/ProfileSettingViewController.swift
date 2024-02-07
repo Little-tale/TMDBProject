@@ -89,32 +89,57 @@ class ProfileSettingViewController : StartBaseViewController {
         // 중복되는것 : 텍스트가 존재하는가,
         // 중복 되지 않는것 : 각 텍스트 필드, 결과 각 세션,
     
+        let value = sendTextFieldText(session: session)
+        print("☺️☺️☺️☺️☺️☺️",value)
+        profileInfoSettingViewController.text = value
         getTextFieldText(textField: test, session: session)
       
         present(profileInfoSettingViewController, animated: true)
 
     }
- 
+    
+    
+    // MARK: 받는 기능만 담당함.
     func getTextFieldText(textField: UITextField, session: settingSession) {
         profileInfoSettingViewController.settingInfo = {
             result in
-            
+            print("getTextFieldText")
             switch session {
             case .name:
+                print("이름영역")
                 self.name = result
             case .userName:
+                print("사람이름영역")
                 self.userName = result
             case .genderName:
+                print("성별영역")
                 self.gender = result
             case .introduce:
+                print("소개영역")
                 self.intro = result
             case .link:
+                print("링크영역")
                 self.link = result
             }
             textField.text = result
         }
-        
     }
+    
+    func sendTextFieldText(session: settingSession) ->String? {
+        switch session {
+        case .name:
+            return self.name ?? ""
+        case .userName:
+            return self.userName ?? ""
+        case .genderName:
+            return self.gender ?? ""
+        case .introduce:
+            return self.intro ?? ""
+        case .link:
+            return self.link ?? ""
+        }
+    }
+    
     /*
      switch session {
      case .genderName:
