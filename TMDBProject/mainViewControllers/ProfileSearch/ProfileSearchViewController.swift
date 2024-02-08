@@ -10,6 +10,9 @@ import UIKit
 class ProfileSearchViewController: StartBaseViewController {
     let homeView = ProfileSearchHomeView()
     var dataModel: NaverSearch = .init(total: 0, start: 0, display: 0, items: [])
+    var totalCount = 0
+    
+    var getImageName: ((String) -> Void)?
     
     override func loadView() {
         self.view = homeView
@@ -40,13 +43,15 @@ class ProfileSearchViewController: StartBaseViewController {
                 print(fail)
             }
         }
+    
+        
     }
     
 }
 
 extension ProfileSearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // print(dataModel.count)
+        totalCount = dataModel.total
         return dataModel.items.count
     }
     
@@ -55,10 +60,26 @@ extension ProfileSearchViewController: UICollectionViewDelegate, UICollectionVie
             print("셀 레지스터 문제이거나 애초에 셀이 잘못됨")
             return UICollectionViewCell()
         }
-        cell.backgroundColor = .green
+        cell.backgroundColor = .gray
         let image = ImageManager.getImage(imageCase: .naverImage, image: dataModel.items[indexPath.row].thumbnail)
+        
+        // collectionView.layer.name = dataModel.items[indexPath.row].thumbnail
+        print(dataModel.items[indexPath.row].thumbnail,"🐥🐥🐥🐥🐥🐥🐥🐥🐥🐥🐥🐥🐥🐥")
         cell.prepare(image: image, title: nil)
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        backView(image: dataModel.items[indexPath.row].thumbnail)
+    }
+    
+    func backView(image: String) {
+        print(image,"😗😗😗😗😗😗😗😗😗😗😗😗😗")
+        getImageName?(image)
+        self.dismiss(animated: true)
+    }
 
 }
+
+

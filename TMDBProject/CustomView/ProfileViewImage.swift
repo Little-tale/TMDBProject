@@ -14,8 +14,8 @@ import SnapKit
 ///해당 뷰에는 이밎 뷰 두개에 코너 레디우스 원으로 2개
 ///밑에는 "사진또는 이미지 수정" Plain 버튼이 있는것으로 추정
 final class ProfileViewImage: BaseView {
-    let ProfileImageView = UIImageView()
-    let genderImageView = UIImageView()
+    let ProfileImageView = UIButton()
+    let genderImageView = UIButton()
     let allImageView = UIView()
     
     var ProfileImageName : String?
@@ -77,6 +77,12 @@ final class ProfileViewImage: BaseView {
         PhotoOrAvartarModifybutton.backgroundColor = .red
         genderImageView.backgroundColor = .green
         ProfileImageView.backgroundColor = .cyan
+        designButton()
+        
+        ProfileImageView.setBackgroundImage(UIImage(systemName: "person.fil"), for: .normal)
+    }
+    
+    func designButton(){
         
     }
     
@@ -95,4 +101,3 @@ final class ProfileViewImage: BaseView {
     }
     
 }
-

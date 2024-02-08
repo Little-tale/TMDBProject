@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 /*
  이젠 여기서는 테이블뷰를 넣어서 할 예정이다.
  수정창은 재활용 해서 테이블 뷰에서 어떻게 해줄지 고민해보자
@@ -19,6 +19,7 @@ final class ProfileInTableCaseViewController: StartBaseViewController {
     // 테이블 헤더에 넣자
     let imageInfoView = ProfileViewImage()
     let homeView = ProfileTableInHomeView()
+    var imageName = ""
     
     // 다음뷰
     let nextViewController = ProfileInfoSettingViewController()
@@ -35,6 +36,25 @@ final class ProfileInTableCaseViewController: StartBaseViewController {
     func register(){
         homeView.infoTableView.dataSource = self
         homeView.infoTableView.delegate = self
+        imageInfoView.ProfileImageView.addTarget(self, action: #selector(profileImageClicked), for: .touchUpInside)
+    
+    }
+    @objc func profileImageClicked(){
+        print("클릭")
+        let vc = ProfileSearchViewController()
+        vc.getImageName = {
+            result in
+            print("😍😍😍😍😍😍😍",result)
+            self.imageName = result
+            self.imageViewSetting(image: result)
+        }
+        present(vc,animated: true)
+    }
+  
+   
+    func imageViewSetting(image: String) {
+        let url = URL(string: image)
+        imageInfoView.ProfileImageView.kf.setImage(with: url, for: .normal)
     }
 }
 
