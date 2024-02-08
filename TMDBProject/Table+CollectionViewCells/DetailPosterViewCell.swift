@@ -11,7 +11,7 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-class DetailPosterViewCell : BaseTableViewCell {
+final class DetailPosterViewCell : BaseTableViewCell {
     
     let backDropImageView = UIImageView()
     let miniPosterView = UIImageView()
@@ -45,18 +45,22 @@ class DetailPosterViewCell : BaseTableViewCell {
     override func designView() {
         contentView.backgroundColor = .black
         self.backgroundColor = .black
-       // backDropImageView.backgroundColor = .red
-        // detailView.backgroundColor = .gray
+
         self.layer.cornerRadius = 12
         self.clipsToBounds = true
-        backDropImageView.layer.cornerRadius = 12
-        backDropImageView.clipsToBounds = true
-        // miniPosterView.backgroundColor = .blue
+        
+        imageViewSetting()
+    }
+    
+    private func imageViewSetting() {
         backDropImageView.contentMode = .scaleAspectFill
         miniPosterView.contentMode = .scaleAspectFill
+        
         miniPosterView.layer.cornerRadius = 12
         miniPosterView.clipsToBounds = true
         
+        backDropImageView.layer.cornerRadius = 12
+        backDropImageView.clipsToBounds = true
     }
     
     
@@ -67,9 +71,7 @@ class DetailPosterViewCell : BaseTableViewCell {
     }
     func prepare(backDropImage: URL?,miniPoster: URL?) {
         self.miniPosterView.isHidden = false
-        
     
-        
         if let backDrop = backDropImage {
             print(backDrop)
             guard let poster = miniPoster else {

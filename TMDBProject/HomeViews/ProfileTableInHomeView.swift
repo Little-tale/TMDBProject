@@ -27,7 +27,7 @@ final class ProfileTableInHomeView: BaseView {
         registerTableCell()
     }
     
-    func registerTableCell() {
+    private func registerTableCell() {
         infoTableView.register(ProfileInfoTableCell.self, forCellReuseIdentifier: ProfileInfoTableCell.reuseableIdentiFier)
         infoTableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.reuseableIdentiFier)
     }

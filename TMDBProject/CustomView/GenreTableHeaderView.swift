@@ -7,7 +7,7 @@
 
 import UIKit
 import SnapKit
-class GenreTableHeaderView: BaseView{
+final class GenreTableHeaderView: BaseView{
     
     lazy var buttonsColletionView = UICollectionView(frame: .zero, collectionViewLayout: configureCollectionViewLayout())
     
@@ -29,7 +29,7 @@ class GenreTableHeaderView: BaseView{
 }
 
 extension GenreTableHeaderView {
-    func configureCollectionViewLayout() -> UICollectionViewLayout {
+    private func configureCollectionViewLayout() -> UICollectionViewLayout {
             let layout = UICollectionViewFlowLayout()
             layout.itemSize = CGSize(width: 80, height: 40)
             layout.minimumLineSpacing = 10

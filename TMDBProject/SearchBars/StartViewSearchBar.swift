@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StarViewSearchBar: UISearchBar {
+final class StarViewSearchBar: UISearchBar {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

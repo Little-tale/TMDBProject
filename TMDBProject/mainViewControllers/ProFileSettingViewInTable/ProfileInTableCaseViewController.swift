@@ -38,7 +38,7 @@ final class ProfileInTableCaseViewController: StartBaseViewController {
     private func register(){
         homeView.infoTableView.dataSource = self
         homeView.infoTableView.delegate = self
-        imageInfoView.ProfileImageView.addTarget(self, action: #selector(profileImageClicked), for: .touchUpInside)
+        imageInfoView.ProfileImageButton.addTarget(self, action: #selector(profileImageClicked), for: .touchUpInside)
     
     }
     // MARK: 프로필 이미지 클릭시
@@ -59,7 +59,7 @@ final class ProfileInTableCaseViewController: StartBaseViewController {
    // MARK: 이미지 로직
     private func imageViewSetting(image: String) {
         let url = URL(string: image)
-        imageInfoView.ProfileImageView.kf.setImage(with: url, for: .normal)
+        imageInfoView.ProfileImageButton.kf.setImage(with: url, for: .normal)
     }
     
     

@@ -38,10 +38,9 @@ class StartView: BaseView {
         trendTableView.separatorStyle = .singleLine
     }
    
-    func register() {
+    private func register() {
         trendTableView.register(StartViewControllerTableCell.self,
                                 forCellReuseIdentifier: StartViewControllerTableCell.getIdentifier)
-        
     }
     
 }

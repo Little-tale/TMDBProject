@@ -18,19 +18,19 @@ import UIKit
  
  */
 
-class AllListViewControler: AllListBaseViewController {
+final class AllListViewControler: AllListBaseViewController {
     
-    let allListHomeView = AllListView()
+    private let allListHomeView = AllListView()
     
     override func loadView() {
         self.view = allListHomeView
         self.view.backgroundColor = .black
     }
-    var pageNum = 2
-    var presentItemCount = 0
+     var pageNum = 2
+     var presentItemCount = 0
     /// 이건 트렌드나 pop 등의 페이지별 갯수가 다른 경우가 있을수도 있다고 생각해서 핸들링 시도
-    var pageInCount = 0
-    var totalPageCount = 0
+     var pageInCount = 0
+     var totalPageCount = 0
     
     var modelList: [Searchs]? = [] {
         didSet {
@@ -40,13 +40,17 @@ class AllListViewControler: AllListBaseViewController {
             self.allListHomeView.listCollectionView.reloadData()
         }
     }
-    var APIStyles : TMDBAPI? {
+     var APIStyles : TMDBAPI? {
         didSet{
             print("에이피아이 받았어요!")
             ApiRequest(pageNum: self.pageNum)
         }
     }
-    
+    // MARK: overrride 재정의 한것을 private 하지 못하는 이유
+    /// 서브클래싱을 통해 오버라이드 되는 경우가 많기 때문이다.
+    ///  UIViewController의 생병 주기 메서드 들이 상속 구조내에서 오버라이드 될수 있도록 설계되어 있는데
+    ///   이걸 private를 하게 되면 서브 클래스가 접근을 할수가 없게 되어 정상적인 오버라이딩일 불가능해진다.
+    ///
     override func viewDidLoad() {
         super.viewDidLoad()
         print(#function)
@@ -63,7 +67,7 @@ class AllListViewControler: AllListBaseViewController {
 ////        }
 //
 //    }
-    func ApiRequest(pageNum : Int){
+    private func ApiRequest(pageNum : Int){
 //        TMDBAPIManager.shared.fetchOnlyForAllListView(api: APIStyles ?? .top(language: .kor),
 //                                                      pageNum: pageNum) { searchModel in
 //            modelList?.append(contentsOf: searchModel.results )

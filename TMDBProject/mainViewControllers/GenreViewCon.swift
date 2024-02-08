@@ -13,10 +13,13 @@ import UIKit
  */
 
 //MARK: 알럿설정
-class GenreViewCon: StartBaseViewController {
-    let homeView = GenreHomeVIew()
+final class GenreViewCon: StartBaseViewController {
+    private let homeView = GenreHomeVIew()
+    //이건 후에 접근 할수도 vc.genrModel 같이
     var genrModel: [GenreElement]?
-    var colorArray : Array<UIColor> = []
+    
+    private var colorArray : Array<UIColor> = []
+    
     override func loadView() {
         self.view = homeView
     }
@@ -83,9 +86,3 @@ extension GenreViewCon: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
 }
-
-
-#Preview{
-    GenreViewCon()
-}
-

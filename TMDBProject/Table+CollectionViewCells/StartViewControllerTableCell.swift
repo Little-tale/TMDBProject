@@ -8,13 +8,12 @@
 import UIKit
 import SnapKit
 
-class StartViewControllerTableCell : UITableViewCell {
+final class StartViewControllerTableCell : UITableViewCell {
     static var getIdentifier : String {
         return String(describing: self)
     }
     lazy var startCollectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
-    
-    
+
     let underLineLabel = UnderLineLabel()
     let button = UIButton()
     
@@ -29,13 +28,13 @@ class StartViewControllerTableCell : UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureHierachy(){
+    private func configureHierachy(){
         contentView.addSubview(underLineLabel)
         contentView.addSubview(button)
         contentView.addSubview(startCollectionView)
     }
     
-    func configureLayout(){
+    private func configureLayout(){
         underLineLabel.snp.makeConstraints { make in
             make.top.equalTo(contentView)
             make.leading.equalTo(contentView).inset(4)
@@ -52,14 +51,14 @@ class StartViewControllerTableCell : UITableViewCell {
         }
     }
     
-    func designView() {
+    private func designView() {
         self.backgroundColor = .black
         self.contentView.backgroundColor = .black
         startCollectionView.backgroundColor = .black
         underLineLabel.setWidth(width: 10)
         
     }
-    func designButton(){
+    private func designButton(){
         var config = UIButton.Configuration.filled()
         config.baseBackgroundColor = .black
         config.baseForegroundColor = .white
@@ -82,7 +81,7 @@ class StartViewControllerTableCell : UITableViewCell {
 // MARK: Layout
 extension StartViewControllerTableCell {
     
-    var collectionViewLayout : UICollectionViewFlowLayout {
+    private var collectionViewLayout : UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 110 , height: 160)
         layout.minimumLineSpacing = 8
@@ -96,7 +95,7 @@ extension StartViewControllerTableCell {
 // MARK: Register
 
 extension StartViewControllerTableCell {
-    func register(){
+    private func register(){
         startCollectionView.register(StartViewCollectIonvIewCell.self, forCellWithReuseIdentifier: StartViewCollectIonvIewCell.reuseIdentifier)
     }
 }

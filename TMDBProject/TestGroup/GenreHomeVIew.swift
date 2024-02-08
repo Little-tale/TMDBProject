@@ -28,7 +28,7 @@ class GenreHomeVIew: BaseView {
         genreCollectionView.clipsToBounds = true
     }
     
-    func colletionViewLayout() -> UICollectionViewFlowLayout{
+    private func colletionViewLayout() -> UICollectionViewFlowLayout{
         let layout = UICollectionViewFlowLayout()
         
         let width = UIScreen.main.bounds.width / 2.6

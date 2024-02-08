@@ -3,7 +3,7 @@
  */
 import UIKit
 
-class StartViewController: StartBaseViewController {
+final class StartViewController: StartBaseViewController {
 
     let startView = StartView()
     // var data : [Int: [Searchs]] = [:]

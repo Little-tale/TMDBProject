@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class HeaderButtonCell: BaseCollectionViewCell {
+final class HeaderButtonCell: BaseCollectionViewCell {
     let button = UIButton()
     
     override func configureHierarchy() {

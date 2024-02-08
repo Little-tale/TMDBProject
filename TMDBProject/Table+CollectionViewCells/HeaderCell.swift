@@ -9,10 +9,9 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-class HeaderCell: BaseCollectionViewCell {
+final class HeaderCell: BaseCollectionViewCell {
     
     let backDrop = UIImageView()
-    
     
     override func configureHierarchy() {
         contentView.addSubview(backDrop)

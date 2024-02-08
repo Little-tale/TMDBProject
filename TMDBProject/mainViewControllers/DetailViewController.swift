@@ -7,9 +7,9 @@
 
 import UIKit
 
-class DetailViewController : DetailBaseView {
+final class DetailViewController : DetailBaseViewController {
     
-    let homeView = DetailView()
+    private let homeView = DetailView()
     // 불가능 -> 단일변수로는 앙됨
     // var detailModel <T:Decodable> = []
     // 아래 방식은 Decodable 로 다 받아서 구분지으려 했으나 들어가면 타입이 손실됨
@@ -31,7 +31,7 @@ class DetailViewController : DetailBaseView {
     // 놀랍게도 이건또 됨
     // var detailViewModel : [UIView: DetailViewModels] = [ : ]
     // 전혀 생각이 안떠오른다....
-    var detailViewModel : [Int: DetailViewModels] = [ : ]
+    private var detailViewModel : [Int: DetailViewModels] = [ : ]
     // 한번에는 무린가?
     
     var id = 93405
@@ -71,7 +71,7 @@ class DetailViewController : DetailBaseView {
         }
         navigationItem.title = "검색결과"
     }
-    func delegateDateSource() {
+    private func delegateDateSource() {
         homeView.tableView.delegate = self
         homeView.tableView.dataSource = self
     }
@@ -103,23 +103,23 @@ extension DetailViewController : UITableViewDelegate, UITableViewDataSource {
             return cell
             
             // 캐스트 모델
-        case .cast(let castInfo):
+        case .cast(_):
             let cell = tableView.dequeueReusableCell(withIdentifier: ReusableIdentifier<DetailRecommendTableViewCell>.reuseableItentifier, for: indexPath) as! DetailRecommendTableViewCell
             cell.recommendColletionView.dataSource = self
             cell.recommendColletionView.delegate = self
             cell.recommendColletionView.tag = indexPath.row
-            cell.headetLabel.text = SectionText.DetailView.allCases[indexPath.row].rawValue
+            cell.headerLabel.text = SectionText.DetailView.allCases[indexPath.row].rawValue
             cell.selectionStyle = .none
             return cell
             
             // 추천 모델 스타일
-        case .recommendations(let recommendInfo):
+        case .recommendations(_):
             let cell = tableView.dequeueReusableCell(withIdentifier: ReusableIdentifier<DetailRecommendTableViewCell>.reuseableItentifier, for: indexPath) as! DetailRecommendTableViewCell
             
             cell.recommendColletionView.dataSource = self 
             cell.recommendColletionView.delegate = self
             cell.recommendColletionView.tag = indexPath.row
-            cell.headetLabel.text = SectionText.DetailView.allCases[indexPath.row].rawValue
+            cell.headerLabel.text = SectionText.DetailView.allCases[indexPath.row].rawValue
             cell.selectionStyle = .none
             return cell
         case .none:

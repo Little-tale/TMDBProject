@@ -13,42 +13,46 @@ import SnapKit
 
 // 였는데요 그래도 연습이니까 계속 다시 만들어 봅니다
 
-class DetailRecommendTableViewCell : BaseTableViewCell {
-    let headetLabel = DefaultHeaderLabel()
+final class DetailRecommendTableViewCell : BaseTableViewCell {
+    let headerLabel = DefaultHeaderLabel()
     
     lazy var recommendColletionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout )
     
     override func configureHierarchy() {
-        contentView.addSubview(headetLabel)
+        contentView.addSubview(headerLabel)
         contentView.addSubview(recommendColletionView)
     }
+    
     override func configureLayout() {
-        headetLabel.snp.makeConstraints { make in
+        headerLabel.snp.makeConstraints { make in
             make.horizontalEdges.top.equalTo(contentView.safeAreaLayoutGuide).inset(8)
             make.height.equalTo(40)
         }
         
         recommendColletionView.snp.makeConstraints { make in
             make.height.equalTo(160).priority(600)
-            make.top.equalTo(headetLabel.snp.bottom).inset( -4 )
+            make.top.equalTo(headerLabel.snp.bottom).inset( -4 )
             make.horizontalEdges.bottom.equalTo(contentView.safeAreaLayoutGuide)
         }
     }
     
+    //MARK: View Design Method
     override func designView() {
-        headetLabel.backgroundColor = .black
+        headerLabel.backgroundColor = .black
         recommendColletionView.backgroundColor = .black
         self.backgroundColor = .black
         self.contentView.backgroundColor = .black
         register()
     }
-    func register() {
+    
+    //MARK: 레지스터
+    private func register() {
         recommendColletionView.register(StartViewCollectIonvIewCell.self, forCellWithReuseIdentifier: StartViewCollectIonvIewCell.reuseIdentifier)
     }
 }
 
 extension DetailRecommendTableViewCell {
-    var collectionViewLayout : UICollectionViewFlowLayout {
+    private var collectionViewLayout : UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 100 , height: 150)
         layout.minimumLineSpacing = 8

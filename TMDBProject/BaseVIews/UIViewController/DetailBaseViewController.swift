@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailBaseView: UIViewController {
+class DetailBaseViewController: UIViewController {
     
     override func viewDidLoad() {
         configureHierarchy()

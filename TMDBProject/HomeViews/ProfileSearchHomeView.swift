@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ProfileSearchHomeView: BaseView {
+final class ProfileSearchHomeView: BaseView {
     
     let genreHomeVIew = GenreHomeVIew()
     lazy var searchBar: UISearchBar = {

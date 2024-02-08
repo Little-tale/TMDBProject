@@ -98,7 +98,7 @@ typealias naverUrl<T:Decodable> = (Result<T,NaverError>) -> Void
 typealias urlRequestTest<T:Decodable> = Result<T,NaverError>
 typealias urlTest = Result<URLRequest,NaverError>
 
-class URLSessionNaver {
+final class URLSessionNaver {
     private init() {}
     
     static let shared =  URLSessionNaver()

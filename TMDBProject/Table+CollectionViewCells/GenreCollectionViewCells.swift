@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class GenreCollectionViewCells: BaseCollectionViewCell {
+final class GenreCollectionViewCells: BaseCollectionViewCell {
 
     let titleLabel: UILabel = {
        let view = UILabel()

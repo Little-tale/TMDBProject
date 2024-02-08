@@ -30,11 +30,11 @@ class StartViewCollectIonvIewCell : UICollectionViewCell {
     }
     
     
-    func configureHierarchy(){
+    private func configureHierarchy(){
         contentView.addSubview(imageView)
         contentView.addSubview(titleLabel)
     }
-    func configureLayout(){
+    private func configureLayout(){
         imageView.snp.makeConstraints { make in
             make.edges.equalTo(contentView)
         }
@@ -44,7 +44,7 @@ class StartViewCollectIonvIewCell : UICollectionViewCell {
             make.height.equalTo(40)
         }
     }
-    func designView(){
+    private func designView(){
         imageView.tintColor = .darkGray
         titleLabel.numberOfLines = 2
         titleLabel.textAlignment = .center
@@ -85,12 +85,11 @@ class StartViewCollectIonvIewCell : UICollectionViewCell {
         
     }
     
-    func prepareCrewPoster(image : URL?, title: String?) {
+     func prepareCrewPoster(image : URL?, title: String?) {
         layoutTwo()
         if let image = image {
-
             imageView.kf.setImage(with: image,
-                                  placeholder:.none ,
+                                  placeholder:.none,
                                   options:[
                                     .transition(.fade(0.5))])
         } else {
@@ -102,7 +101,7 @@ class StartViewCollectIonvIewCell : UICollectionViewCell {
         
     }
     // MARK: 특정상황에서 유동적으로 레이아웃 잡을때는 remakeConstraints 를 이용해야함 기억하도록
-    func layoutOne() {
+    private func layoutOne() {
         titleLabel.snp.remakeConstraints { make in
             make.center.equalTo(imageView)
             make.horizontalEdges.equalTo(imageView).inset(8)
@@ -110,10 +109,10 @@ class StartViewCollectIonvIewCell : UICollectionViewCell {
         }
         self.titleLabel.textColor = .white
         self.titleLabel.backgroundColor = .clear
-
+        
     }
     
-    func layoutTwo() {
+    private func layoutTwo() {
         titleLabel.snp.remakeConstraints { make in
             make.bottom.equalTo(imageView.snp.bottom)
             make.horizontalEdges.equalTo(imageView).inset(8)
