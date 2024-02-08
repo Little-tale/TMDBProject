@@ -10,12 +10,8 @@ import Foundation
 //protocol URLRequest{
 //    
 //}
-protocol URL_ERROR : Error {
-    
-}
 
-
-enum NaverError: URL_ERROR{
+enum NaverError: Error{
     case nodata
     case noResponse
     case errorResponse
@@ -57,8 +53,8 @@ enum naverApi:UrlSession {
     var query: URLQueryItem {
         switch self {
         case .searchImage(searchText: let searchText,_):
-            let text = searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-            return URLQueryItem(name: "query", value: text)
+            let text = searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed )
+            return URLQueryItem(name: "query", value: searchText)
         }
     }
     var header: [String: String] {

@@ -9,6 +9,7 @@ import UIKit
 
 class ProfileSearchViewController: StartBaseViewController {
     let homeView = ProfileSearchHomeView()
+    var dataModel: NaverSearch = .init(total: 0, start: 0, display: 0, items: [])
     
     override func loadView() {
         self.view = homeView
@@ -27,10 +28,14 @@ class ProfileSearchViewController: StartBaseViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        URLSessionNaver.shared.fetchSession(type: NaverSearch.self, API: naverApi.searchImage(searchText: "짱구", APiKey: .search)) { result in
+        URLSessionNaver.shared.fetchSession(type: NaverSearch.self, API: naverApi.searchImage(searchText: "짱구는못말려", APiKey: .search)) { result in
             switch result {
             case .success(let success):
-                print(success)
+                // print(success)
+                self.dataModel = success
+               
+                self.homeView.genreHomeVIew.genreCollectionView.reloadData()
+                print(self.dataModel)
             case .failure(let fail):
                 print(fail)
             }
@@ -41,7 +46,8 @@ class ProfileSearchViewController: StartBaseViewController {
 
 extension ProfileSearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        // print(dataModel.count)
+        return dataModel.items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -50,7 +56,8 @@ extension ProfileSearchViewController: UICollectionViewDelegate, UICollectionVie
             return UICollectionViewCell()
         }
         cell.backgroundColor = .green
-        
+        let image = ImageManager.getImage(imageCase: .naverImage, image: dataModel.items[indexPath.row].thumbnail)
+        cell.prepare(image: image, title: nil)
         return cell
     }
 

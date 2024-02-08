@@ -205,7 +205,7 @@ struct GenreElement: Decodable {
 
 // MARK: - NaverSearch
 struct NaverSearch: Decodable {
-    let lastBuildDate: String
+    //let lastBuildDate: String
     let total, start, display: Int
     let items: [naverItem]
 }
@@ -215,7 +215,7 @@ struct naverItem: Decodable {
     let title: String
     let link: String
     let thumbnail: String
-    let sizeheight, sizewidth: String
+    //let sizeheight, sizewidth: String
     
     
 }

@@ -12,6 +12,7 @@ enum ImageManager {
     case top
     case popular
     case detail
+    case naverImage
     
     static var baseImageUrl : String {
         return "https://image.tmdb.org/t/p/w500"
@@ -31,6 +32,8 @@ enum ImageManager {
             case .detail:
                 //print(URL(string: "\(baseImageUrl)\(String(describing: image))"))
                 return URL(string: "\(baseImageUrl)\(image!)")
+            case .naverImage:
+                return URL(string: image!)
             }
         }
         return nil
