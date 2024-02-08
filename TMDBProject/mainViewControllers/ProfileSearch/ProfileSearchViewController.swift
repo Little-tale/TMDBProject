@@ -14,6 +14,7 @@ class ProfileSearchViewController: StartBaseViewController {
     var totalPage = 1
     
     var getImageName: ((String) -> Void)?
+    var searchText: String = ""
     
     override func loadView() {
         self.view = homeView
@@ -33,20 +34,7 @@ class ProfileSearchViewController: StartBaseViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        URLSessionNaver.shared.fetchSession(type: NaverSearch.self, API: naverApi.searchImage(searchText: "짱구는못말려", APiKey: .search)) { result in
-            switch result {
-            case .success(let success):
-                // print(success)
-                self.dataModel = success
-               
-                self.homeView.genreHomeVIew.genreCollectionView.reloadData()
-                print(self.dataModel)
-            case .failure(let fail):
-                print(fail)
-            }
-        }
-    
-        
+        // reqeust()
     }
     
 }
@@ -81,12 +69,34 @@ extension ProfileSearchViewController: UICollectionViewDelegate, UICollectionVie
         getImageName?(image)
         self.dismiss(animated: true)
     }
-
+    func reqeust(){
+        URLSessionNaver.shared.fetchSession(type: NaverSearch.self, API: naverApi.searchImage(searchText: searchText, APiKey: .search)) { result in
+            switch result {
+            case .success(let success):
+                // print(success)
+                self.dataModel = success
+               
+                self.homeView.genreHomeVIew.genreCollectionView.reloadData()
+                print(self.dataModel)
+            case .failure(let fail):
+                print(fail)
+            }
+        }
+    }
 }
 
 
 extension ProfileSearchViewController: UISearchBarDelegate{
-    TextField
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text else {
+            print("검색된 텍스트가 없습니다.")
+            return
+        }
+        searchText = text
+        reqeust()
+        //짱구
+        view.endEditing(true)
+    }
 }
 
 

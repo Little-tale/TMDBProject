@@ -147,7 +147,8 @@ class URLSessionNaver {
         print(urlRe.headers)
         urlRe.allHTTPHeaderFields = API.header
         
-        print(urlRe.headers)
+        // print(urlRe.headers)
+        print(urlRe.url)
         return .success(urlRe)
     }
     
@@ -173,8 +174,12 @@ class URLSessionNaver {
             return urlRequestTest.failure(.errorResponse)
         }
         print(response.statusCode)
+        
         guard response.statusCode == 200 else {
             print("응답코드 200이 아닌 상황 발생")
+            if response.statusCode == 400{
+                print("정상적인 쿼리가 아님")
+            }
             return urlRequestTest.failure(.cantStatusCoding)
         }
         
@@ -189,3 +194,4 @@ class URLSessionNaver {
     }
     
 }
+
