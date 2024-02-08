@@ -30,7 +30,7 @@ class ProfileViewInTable: StartBaseViewController {
     // 다음뷰
     let nextViewController = ProfileInfoSettingViewController()
     
-    var valueDic: [String : String] = [:]
+    var valueDic: [String : String?] = [:]
     
     override func loadView() {
         self.view = homeView
@@ -60,8 +60,11 @@ extension ProfileViewInTable : UITableViewDelegate, UITableViewDataSource {
         cell.titlelabel.text = settingSession.allCases[indexPath.row].layerName
         cell.textField.delegate = self
         
-        cell.textField.text = valueDic[cell.textField.layer.name!]
-
+        cell.textField.text = valueDic[cell.textField.layer.name!] ?? " "
+        // 키보드 올라오는거 막기
+        // 텍스트 필드자체가 안눌러지는 현상.
+        // cell.textField.isUserInteractionEnabled = false
+        
         
         return cell
     }
@@ -95,17 +98,22 @@ extension ProfileViewInTable : UITableViewDelegate, UITableViewDataSource {
 extension ProfileViewInTable: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        homeView.endEditing(true)
         let vc = nextViewController
-       
-        present(vc, animated: true)
-        print("인식확인")
+        
+        // 이시점에서 값전달 하면 될듯
         
         guard let textFieldLayerName = findTextField(textField: textField) else {
             print("텍스트 필드 이름 못받아옴 :textFieldShouldBeginEditing")
             return true
         }
-    
+
+        vc.text = valueDic[textFieldLayerName] ?? ""
+        
+        present(vc, animated: true)
+        print("인식확인")
+        
+        
+        // 역값전달 시점 + 클로저의 캡쳐
         vc.settingInfo = {
             results in
             self.valueDic[textFieldLayerName] = results
@@ -116,6 +124,8 @@ extension ProfileViewInTable: UITextFieldDelegate {
         
         return true
     }
+    
+    
     
     
     func findTextField(textField: UITextField) -> String?{
@@ -135,4 +145,5 @@ extension ProfileViewInTable: UITextFieldDelegate {
         return textField.layerName
     }
     
+   
 }
