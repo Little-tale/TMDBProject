@@ -36,4 +36,5 @@ class ProfileInfoTableCell: BaseTableViewCell {
     }
     
     
+    
 }

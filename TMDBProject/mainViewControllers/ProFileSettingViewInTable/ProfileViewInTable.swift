@@ -61,10 +61,6 @@ extension ProfileViewInTable : UITableViewDelegate, UITableViewDataSource {
         cell.textField.delegate = self
         
         cell.textField.text = valueDic[cell.textField.layer.name!] ?? " "
-        // 키보드 올라오는거 막기
-        // 텍스트 필드자체가 안눌러지는 현상.
-        // cell.textField.isUserInteractionEnabled = false
-        
         
         return cell
     }
@@ -79,39 +75,24 @@ extension ProfileViewInTable : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 130
     }
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileInfoTableCell.reuseableIdentiFier) as? ProfileInfoTableCell else {
-//            print("내 예상과 다른 셀임")
-//            return
-//        }
-//        
-//        guard cell.textField.text != "" else {
-//            print("현재는 테이블뷰 셀에는 텍스트가 없구만유")
-//            return
-//        }
-//        // print(cell.textField.text)
-//        print("현재 테이블뷰 셀에 텍스트가 있음")
-//    }
+
 
 }
 
 extension ProfileViewInTable: UITextFieldDelegate {
-    
+    // MARK: 텍스트 시작시 값전달과 역 값전달 시전
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         let vc = nextViewController
-        
-        // 이시점에서 값전달 하면 될듯
         
         guard let textFieldLayerName = findTextField(textField: textField) else {
             print("텍스트 필드 이름 못받아옴 :textFieldShouldBeginEditing")
             return true
         }
-
+        
         vc.text = valueDic[textFieldLayerName] ?? ""
         
         present(vc, animated: true)
         print("인식확인")
-        
         
         // 역값전달 시점 + 클로저의 캡쳐
         vc.settingInfo = {
@@ -120,14 +101,13 @@ extension ProfileViewInTable: UITextFieldDelegate {
             // print(self.valueDic[textFieldLayerName])
             self.homeView.infoTableView.reloadData()
         }
-        // 테이블 뷰의 셀의 텍스트 필드에 접근해야 하는데.
-        
-        return true
+        self.homeView.endEditing(true)
+        // false를 반환하여 키보드 안올라오게 처리
+        return false
     }
     
     
-    
-    
+    // MARK: 텍스트 필드 찾기 레이어 이름 찾기
     func findTextField(textField: UITextField) -> String?{
         guard let textFieldLayerName = textField.layer.name else {
             print("텍슽 필드 이름 존재 여부 확인좀: findTextField")
