@@ -28,8 +28,8 @@ enum NaverError: URL_ERROR{
 
 protocol UrlSession{
     var baseUrl : String {get}
-    var query : String {get}
-    var header : [[String : String]] {get}
+    var query : URLQueryItem {get}
+    var header : [String: String] {get}
     var method : String {get}
     
     var schem : String{get}
@@ -54,18 +54,18 @@ enum naverApi:UrlSession {
         }
     }
     
-    var query: String {
+    var query: URLQueryItem {
         switch self {
         case .searchImage(searchText: let searchText,_):
-            return searchText
+            let text = searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            return URLQueryItem(name: "query", value: text)
         }
     }
-    var header: [[String : String]] {
+    var header: [String: String] {
         switch self {
         case .searchImage(_, APiKey: let apikey):
-            let naverClient = apikey.id
-            let naverSecret = apikey.secret
-            return [naverClient,naverSecret]
+            //let test = naverClient + naverSecret
+            return apikey.queryItems
         }
     }
     
@@ -90,6 +90,8 @@ enum naverApi:UrlSession {
         }
     }
     
+   
+    
 }
 
 struct NaverComponets {
@@ -98,6 +100,7 @@ struct NaverComponets {
 // 원래 있는걸 써도 좋지만 연습을 위해 계속 만듭니다.
 typealias naverUrl<T:Decodable> = (Result<T,NaverError>) -> Void
 typealias urlRequestTest<T:Decodable> = Result<T,NaverError>
+typealias urlTest = Result<URLRequest,NaverError>
 
 class URLSessionNaver {
     private init() {}
@@ -107,41 +110,54 @@ class URLSessionNaver {
     func fetchSession<T: Decodable>(type: T.Type, API: UrlSession, completionHandler: @escaping naverUrl<T>) {
     
         let componentsTest = componentsErrorCatch(API:API)
-        
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            DispatchQueue.main.async {
-                let result = self.urlErrorCatch(type:T.self, data: data, response: response, error: error)
-                switch result {
-                case .success(let sucesse) :
-                   
-                case .failure(let failer) :
+        switch componentsTest {
+        case .success(let url):
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                DispatchQueue.main.async {
+                    let result = self.urlErrorCatch(type:T.self, data: data, response: response, error: error)
+                    switch result {
+                    case .success(let success) :
+                        completionHandler(.success(success))
+                    case .failure(let failer) :
+                        completionHandler(.failure(failer))
+                    }
                 }
+            }.resume()
+        case .failure(let error) :
+            DispatchQueue.main.async {
+                completionHandler(.failure(error))
             }
-        }.resume()
+        }
+        
     }
     
     // MARK: 컴포넌트 전용 에러 캐치
-    func componentsErrorCatch<T:Decodable>(API:UrlSession) -> urlRequestTest<T>{
+    private func componentsErrorCatch(API:UrlSession) -> urlTest{
         var urlComponents = URLComponents()
         urlComponents.scheme = API.schem
         urlComponents.host = API.host
-        urlComponents.path = API.path
-        for Items in API.header {
-            for (key, value) in Items {
-                urlComponents.queryItems = [URLQueryItem(name: key, value: value)]
-            }
-        }
+        urlComponents.path = "/" + API.path
+        urlComponents.queryItems = [API.query]
+        // urlComponents.queryItems = API.header
+        
+        // print(urlComponents.queryItems)
+        
         guard let url = urlComponents.url else {
             print("url 컴포넌츠 미스")
             return .failure(.componatsError)
         }
-        return .success(url)
+        
+        var urlRe = URLRequest(url: url)
+        print(urlRe.headers)
+        urlRe.allHTTPHeaderFields = API.header
+        
+        print(urlRe.headers)
+        return .success(urlRe)
     }
     
     
     // MARK: URL 테스트 전용 에러 캐치
-    func urlErrorCatch<T:Decodable>(type:T.Type, data: Data?, response: URLResponse?, error: Error?) -> urlRequestTest<T> {
+    private func urlErrorCatch<T:Decodable>(type:T.Type, data: Data?, response: URLResponse?, error: Error?) -> urlRequestTest<T> {
         guard error == nil else {
             print("에러가 존재 즉 요청실패입니다.")
             return urlRequestTest.failure(.failRequest)
@@ -150,14 +166,17 @@ class URLSessionNaver {
             print("에러는 없으나 데이터가 없습니다.")
             return urlRequestTest.failure(.nodata)
         }
+        print(data)
         guard let response = response else {
             print("에러는 없으나 응답이 오지 않았습니다.")
             return urlRequestTest.failure(.noResponse)
         }
+        print(response)
         guard let response = response as? HTTPURLResponse else {
             print("응답은 있었으나 응답코드로 변경을 싪패")
             return urlRequestTest.failure(.errorResponse)
         }
+        print(response.statusCode)
         guard response.statusCode == 200 else {
             print("응답코드 200이 아닌 상황 발생")
             return urlRequestTest.failure(.cantStatusCoding)

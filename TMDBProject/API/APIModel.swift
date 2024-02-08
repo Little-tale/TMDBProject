@@ -98,6 +98,7 @@ struct DetailModel: Decodable {
         return "DetailLayer"
     }
     
+    
 }
 // MARK: Detail에서는 모델이 두개 정도 사용될 예정이다. 디테일이랑 리코멘드
 // 아니 새벽에 짜서 그런가 이거 왜있는 거지 일단 킵

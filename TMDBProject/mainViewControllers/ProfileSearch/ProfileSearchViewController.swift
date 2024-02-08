@@ -25,6 +25,17 @@ class ProfileSearchViewController: StartBaseViewController {
     func placeHolder(){
         homeView.searchBar.placeholder = "캐릭터 이름을 검색해보세요!!!"
     }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        URLSessionNaver.shared.fetchSession(type: NaverSearch.self, API: naverApi.searchImage(searchText: "짱구", APiKey: .search)) { result in
+            switch result {
+            case .success(let success):
+                print(success)
+            case .failure(let fail):
+                print(fail)
+            }
+        }
+    }
     
 }
 

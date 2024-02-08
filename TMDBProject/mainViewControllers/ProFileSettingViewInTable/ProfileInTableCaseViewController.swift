@@ -49,6 +49,7 @@ extension ProfileInTableCaseViewController : UITableViewDelegate, UITableViewDat
             print("ProfileInfoTableCell register Erorr")
             return UITableViewCell()
         }
+        
         cell.textField.layer.name  = settingSession.allCases[indexPath.row].layerName
         cell.titlelabel.text = settingSession.allCases[indexPath.row].layerName
         cell.textField.delegate = self
@@ -73,7 +74,7 @@ extension ProfileInTableCaseViewController : UITableViewDelegate, UITableViewDat
 }
 
 extension ProfileInTableCaseViewController: UITextFieldDelegate {
-    // MARK: 텍스트 시작시 값전달과 역 값전달 시전
+    // MARK: 텍스트 시작시 값전달   과 역 값전달 시전
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         let vc = nextViewController
         
