@@ -21,17 +21,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let nav = UINavigationController(rootViewController: StartViewController())
             
             let secondNav = UINavigationController(rootViewController:  GenreViewCon())
+            let thirdNav = UINavigationController(rootViewController: ProfileInTableCaseViewController())
             let tabber = UITabBarController()
+            
             
             let firstTab = UITabBarItem(title: "검색", image: UIImage(systemName: "magnifyingglass.circle"), tag: 0)
             let seccondTab = UITabBarItem(title: "장르", image: UIImage(systemName: "fleuron"), tag: 1)
+            let thirdTab = UITabBarItem(title: "프로필", image: UIImage(systemName: "person"), tag: 2)
             
             nav.tabBarItem = firstTab
             secondNav.tabBarItem = seccondTab
+            thirdNav.tabBarItem = thirdTab
+            tabber.viewControllers = [nav, secondNav, thirdNav]
             
-            tabber.viewControllers = [nav, secondNav]
-            
-            window?.rootViewController = ProfileInTableCaseViewController() // ProfileSearchViewController() //ProfileInTableCaseViewController()  // tabber // ProfileSettingViewController() // ProfileInfoSettingViewController() // tabber  // GenreViewCon() // //TestClass() // GenreViewCon() //  // GenreViewController() // nav //TestClass() // GenreViewController()//// nav
+            window?.rootViewController =  tabber// ProfileSearchViewController() //ProfileInTableCaseViewController()  // tabber // ProfileSettingViewController() // ProfileInfoSettingViewController() // tabber  // GenreViewCon() // //TestClass() // GenreViewCon() //  // GenreViewController() // nav //TestClass() // GenreViewController()//// nav
             window?.makeKeyAndVisible()
         } else{
             window?.rootViewController = OnBoardPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)  // StartOnBoard() // nav  // ViewController()

@@ -32,13 +32,16 @@ final class ProfileInTableCaseViewController: StartBaseViewController {
     override func designView() {
         register()
         imageInfoView.clipsToBounds = true
+        navigationItem.title = "설정"
     }
-    func register(){
+    // MARK: 이미지 레지스터
+    private func register(){
         homeView.infoTableView.dataSource = self
         homeView.infoTableView.delegate = self
         imageInfoView.ProfileImageView.addTarget(self, action: #selector(profileImageClicked), for: .touchUpInside)
     
     }
+    // MARK: 프로필 이미지 클릭시
     @objc func profileImageClicked(){
         print("클릭")
         let vc = ProfileSearchViewController()
@@ -48,14 +51,18 @@ final class ProfileInTableCaseViewController: StartBaseViewController {
             self.imageName = result
             self.imageViewSetting(image: result)
         }
-        present(vc,animated: true)
+        // present(vc,animated: true)
+        vc.navigationItem.title = "검색"
+        transitionView(viewInstens: vc, tresitionStyle: .pushNavigation)
     }
   
-   
-    func imageViewSetting(image: String) {
+   // MARK: 이미지 로직
+    private func imageViewSetting(image: String) {
         let url = URL(string: image)
         imageInfoView.ProfileImageView.kf.setImage(with: url, for: .normal)
     }
+    
+    
 }
 
 // MARK: 프로필 설정란들 컨트롤
@@ -72,8 +79,8 @@ extension ProfileInTableCaseViewController : UITableViewDelegate, UITableViewDat
         
         cell.textField.layer.name  = settingSession.allCases[indexPath.row].layerName
         cell.titlelabel.text = settingSession.allCases[indexPath.row].layerName
-        cell.textField.delegate = self
         
+        cell.textField.delegate = self
         cell.textField.text = valueDic[cell.textField.layer.name!] ?? " "
         
         return cell
@@ -92,7 +99,7 @@ extension ProfileInTableCaseViewController : UITableViewDelegate, UITableViewDat
 
 
 }
-
+// MARK: 텍스트 필드 딜리게이트
 extension ProfileInTableCaseViewController: UITextFieldDelegate {
     // MARK: 텍스트 시작시 값전달   과 역 값전달 시전
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -102,10 +109,11 @@ extension ProfileInTableCaseViewController: UITextFieldDelegate {
             print("텍스트 필드 이름 못받아옴 :textFieldShouldBeginEditing")
             return true
         }
+        vc.navigationTitle = textFieldLayerName
         
         vc.text = valueDic[textFieldLayerName] ?? ""
-        
-        present(vc, animated: true)
+        transitionView(viewInstens: vc, tresitionStyle: .pushNavigation)
+        // present(vc, animated: true)
         print("인식확인")
         
         // 역값전달 시점 + 클로저의 캡쳐
@@ -115,6 +123,7 @@ extension ProfileInTableCaseViewController: UITextFieldDelegate {
            
             self.homeView.infoTableView.reloadData()
         }
+        
         // self.homeView.endEditing(true)
         // false를 반환하여 키보드 안올라오게 처리
         return false

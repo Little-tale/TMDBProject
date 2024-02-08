@@ -16,6 +16,7 @@ class ProfileSearchHomeView: BaseView {
         view.barStyle = .black
         view.searchBarStyle = .minimal
         view.searchTextField.leftView?.tintColor = .white
+        view.backgroundColor = .black
         return view
     }()
     

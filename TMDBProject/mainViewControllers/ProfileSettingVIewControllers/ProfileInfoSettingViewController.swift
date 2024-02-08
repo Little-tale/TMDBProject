@@ -13,7 +13,11 @@ final class ProfileInfoSettingViewController : StartBaseViewController {
     
     var settingInfo : ((String) -> Void)?
     var text : String?
-    
+    var navigationTitle: String? {
+        didSet{
+            navigationItem.title = navigationTitle
+        }
+    }
     
     override func loadView() {
         self.view = ProfileNickNameSettingHomeView
@@ -52,8 +56,12 @@ extension ProfileInfoSettingViewController : UITextFieldDelegate {
         self.text = ""
         settingInfo?(text)
         
-        dismiss(animated: true)
+        backView()
         return true
+    }
+    
+    func backView() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

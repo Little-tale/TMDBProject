@@ -35,6 +35,7 @@ class ProfileSearchViewController: StartBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // reqeust()
+        
     }
     
 }
@@ -58,17 +59,17 @@ extension ProfileSearchViewController: UICollectionViewDelegate, UICollectionVie
         cell.prepare(image: image, title: nil)
         return cell
     }
-    
+    // MARK: 셀 클릭시 뒤로가면서 값
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
         backView(image: dataModel.items[indexPath.row].thumbnail)
     }
-    
+    // MARK: 뒤로가는 구역
     func backView(image: String) {
         print(image,"😗😗😗😗😗😗😗😗😗😗😗😗😗")
         getImageName?(image)
-        self.dismiss(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
+    //. MARK:  urlRequest
     func reqeust(){
         URLSessionNaver.shared.fetchSession(type: NaverSearch.self, API: naverApi.searchImage(searchText: searchText, APiKey: .search)) { result in
             switch result {
@@ -99,30 +100,3 @@ extension ProfileSearchViewController: UISearchBarDelegate{
     }
 }
 
-
-//extension ProfileSearchViewController: UICollectionViewDataSourcePrefetching {
-//    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-//        for indexPath in indexPaths {
-//            //print("프리패칭 인덱스 패스 : ",indexPath.row)
-//            
-////            if presentItemCount - 10 <= indexPath.row && pageNum <= totalPageCount{
-////                presentItemCount += pageInCount
-////                pageNum += 1
-////                TMDBAPIManager.shared.fetchOnlyForAllListView(type: SearchModel.self, api: APIStyles ?? .top(language: .kor), pageNum: pageNum) { results in
-////                    self.modelList?.append(contentsOf: results.results)
-////                }
-////            }
-//            
-//            
-//            
-//        }
-//        func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
-//            print("불러오기 안할꼬야 ", indexPaths)
-//            //print("이건 전혀 감이 안온다.")
-//        }
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
-//        
-//    }
-//}
