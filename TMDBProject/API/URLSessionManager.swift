@@ -37,7 +37,7 @@ final class URLSessionManager {
         // 1. URL 세션. 싱글톤. 데이타 URL
         URLSession.shared.dataTask(with: url) { data, response, error in
             // print(data, response, error)
-        
+            
             DispatchQueue.main.async {
                 // 에러가 없어야만
                 guard error == nil else{
@@ -52,7 +52,7 @@ final class URLSessionManager {
                     return
                 }
                 dump(String(data: data, encoding: .utf8))
-
+                
                 
                 // 정정 리스폰 코드가 있을때만
                 guard let response = response as? HTTPURLResponse else {
@@ -121,23 +121,23 @@ final class URLSessionManager {
             }
         }.resume()
     }
-
+    
     func errorHandler<T:Decodable>(data: Data?, response: URLResponse? , error: Error?) -> resultError<T> {
         guard error == nil else {
             return resultError.failure(.failRequest)
         }
         
         guard let data = data else {
-//            complitionHandler(.failure(.noData))
+            //            complitionHandler(.failure(.noData))
             return .failure(.noData)
         }
         
         guard let response = response as? HTTPURLResponse else {
-//            complitionHandler(.failure(.noResponse))
+            //            complitionHandler(.failure(.noResponse))
             return .failure(.noResponse)
         }
         guard response.statusCode >= 200 && response.statusCode < 300 else {
-//            complitionHandler(.failure(.errorResponse))
+            //            complitionHandler(.failure(.errorResponse))
             return .failure(.errorResponse)
         }
         
@@ -149,16 +149,35 @@ final class URLSessionManager {
             return.failure(.errorDecoding)
         }
     }
-   
+    
+    // 연습을 위해 하나 더 만들려고 합니다.
+    
+    
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
 //    func requestSearchView< T: Decodable >(api: URLAPI, compltionHandelr: @escaping (Result<T,URLError>) -> Void)
-//    
+//
     
 //    enum Result<Success, Fail: Error> {
 //        case success(Success)
 //        case failure(Fail)
 //    }
 //    func reqeust<T:Decodable>(request: RequestURLSession, complitionHandeler: @escaping (Result<T,URLError>) -> Void) {
-//        
+//
 //    }
     
     /*
@@ -176,7 +195,8 @@ final class URLSessionManager {
 //    func request<T: Decodable>(request: RequestURLSession, completion: @escaping (Result<T, URLError>) -> Void) {
 //        var urlRequest = URLRequest(url: request.url)
 //    }
-}
+// }
+
 
 //protocol RequestURLSession {
 //    var url: URL { get }

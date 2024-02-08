@@ -9,9 +9,9 @@ import UIKit
 /*
  테이블 뷰 헤더뷰에 이미지 두개와 버튼이 들어있는 뷰를 사용해 보도록 하겠다.
  */
-class ProfileTableInHomeView: BaseView {
+final class ProfileTableInHomeView: BaseView {
     
-    let infoTableView = UITableView()
+    let infoTableView = UITableView(frame: .zero, style: .grouped)
     
     
     override func configureHierarchy() {

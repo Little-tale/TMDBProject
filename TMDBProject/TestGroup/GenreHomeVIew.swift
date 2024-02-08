@@ -20,6 +20,7 @@ class GenreHomeVIew: BaseView {
             make.edges.equalTo(self.safeAreaLayoutGuide)
         }
         genreCollectionView.register(GenreCollectionViewCells.self, forCellWithReuseIdentifier: GenreCollectionViewCells.reuseableIdentiFier)
+        genreCollectionView.register(StartViewCollectIonvIewCell.self, forCellWithReuseIdentifier: StartViewCollectIonvIewCell.reuseIdentifier)
     }
     
     override func designView() {

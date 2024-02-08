@@ -31,7 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             tabber.viewControllers = [nav, secondNav]
             
-            window?.rootViewController = ProfileViewInTable()  // tabber // ProfileSettingViewController() // ProfileInfoSettingViewController() // tabber  // GenreViewCon() // //TestClass() // GenreViewCon() //  // GenreViewController() // nav //TestClass() // GenreViewController()//// nav
+            window?.rootViewController = ProfileSearchViewController() //ProfileInTableCaseViewController()  // tabber // ProfileSettingViewController() // ProfileInfoSettingViewController() // tabber  // GenreViewCon() // //TestClass() // GenreViewCon() //  // GenreViewController() // nav //TestClass() // GenreViewController()//// nav
             window?.makeKeyAndVisible()
         } else{
             window?.rootViewController = OnBoardPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)  // StartOnBoard() // nav  // ViewController()

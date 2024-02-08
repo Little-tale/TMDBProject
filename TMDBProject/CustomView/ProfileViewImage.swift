@@ -8,12 +8,18 @@
 import UIKit
 import SnapKit
 
+// -> 뷰컨은 데이터를 조리하고 지급
+// -> 뷰 )> 그려요
+
 ///해당 뷰에는 이밎 뷰 두개에 코너 레디우스 원으로 2개
 ///밑에는 "사진또는 이미지 수정" Plain 버튼이 있는것으로 추정
-class ProfileViewImage: BaseView {
+final class ProfileViewImage: BaseView {
     let ProfileImageView = UIImageView()
     let genderImageView = UIImageView()
     let allImageView = UIView()
+    
+    var ProfileImageName : String?
+    var gerderImageName : String?
     
     let PhotoOrAvartarModifybutton : UIButton = {
         let view = UIButton()

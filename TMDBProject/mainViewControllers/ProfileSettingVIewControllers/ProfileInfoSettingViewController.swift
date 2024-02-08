@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileInfoSettingViewController : StartBaseViewController {
+final class ProfileInfoSettingViewController : StartBaseViewController {
     
     let ProfileNickNameSettingHomeView = ProfileSettingHomeView()
     

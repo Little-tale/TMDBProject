@@ -7,7 +7,7 @@ class AllListView: UIView {
     
     var navigationTitle = ""
     let listCollectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
-    let reuseableView = AllListReusableView()
+    // let reuseableView = AllListReusableView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
