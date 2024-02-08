@@ -29,40 +29,46 @@ class ProfileViewImage: BaseView {
         allImageView.addSubview(ProfileImageView)
         allImageView.addSubview(genderImageView)
         self.addSubview(PhotoOrAvartarModifybutton)
+        allImageView.clipsToBounds = true
+        allImageView.backgroundColor = .blue
+        self.backgroundColor = .gray
     }
     override func configureLayout() {
-         // layoutIfNeeded()
+        // 버튼 위치
         PhotoOrAvartarModifybutton.snp.makeConstraints { make in
             make.centerX.bottom.equalTo(self.safeAreaLayoutGuide)
-            make.width.equalTo(120)
+            make.bottom.equalTo(self.safeAreaLayoutGuide)// .inset(20)
+            make.width.equalTo(self.safeAreaLayoutGuide).dividedBy(2)
             make.height.equalTo(20)
         }
         // MARK: 이미지 두개 감싼 뷰
         allImageView.snp.makeConstraints { make in
-            make.horizontalEdges.top.equalTo(self.safeAreaLayoutGuide)
-            make.height.equalTo(140)
-            make.bottom.equalTo(PhotoOrAvartarModifybutton.snp.top).inset(8)
+            make.top.equalTo(self.safeAreaLayoutGuide)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(UIScreen.main.bounds.width / 2)
+            make.bottom.equalTo(PhotoOrAvartarModifybutton.snp.top).inset(-8)
         }
         /// 프로필이미지 레이아웃
         ProfileImageView.snp.makeConstraints { make in
-            //make.width.equalTo(40)
-           // make.height.equalTo(ProfileImageView.snp.width)
-            make.verticalEdges.leading.equalTo(allImageView)
-            make.size.equalTo(allImageView.snp.width).dividedBy(2)
-        }
-        ///성별 이미지 레이아웃
-        genderImageView.snp.makeConstraints { make in
-//            make.width.height.equalTo(ProfileImageView.snp.width)
-            // make.height.equalTo(ProfileImageView.snp.width)
-            make.verticalEdges.trailing.equalTo(allImageView)
-            make.size.equalTo(allImageView.snp.width).dividedBy(2)
+            make.centerY.equalTo(allImageView)
+            make.size.equalTo(allImageView.snp.width).multipliedBy(0.4)
+            make.leading.equalTo(allImageView.snp.leading)
         }
         
+        ProfileImageView.layer.cornerRadius = ProfileImageView.frame.height / 2
+        ProfileImageView.clipsToBounds = true
+        ///성별 이미지 레이아웃
+        genderImageView.snp.makeConstraints { make in
+            make.centerY.equalTo(allImageView)
+            // make.verticalEdges.equalTo(allImageView)
+            make.trailing.equalTo(allImageView.snp.trailing)
+            make.size.equalTo(allImageView.snp.width).multipliedBy(0.4)
+        }
+       
         
     }// 언스플래쉬
     override func designView() {
         PhotoOrAvartarModifybutton.backgroundColor = .red
-        // ProfileImageView.backgroundColor = .blue
         genderImageView.backgroundColor = .green
         ProfileImageView.backgroundColor = .cyan
         
@@ -71,7 +77,9 @@ class ProfileViewImage: BaseView {
     func cornerImage() {
         DispatchQueue.main.async {
             self.ProfileImageView.layer.cornerRadius = self.ProfileImageView.frame.width / 2
+            self.ProfileImageView.clipsToBounds = true
             self.genderImageView.layer.cornerRadius = self.genderImageView.frame.width / 2
+            self.genderImageView.clipsToBounds = true
         }
     }
     

@@ -46,13 +46,7 @@ class ProfileSettingViewController : StartBaseViewController {
     override func configureLayout() {
         
     }
-    /*
-     let nameSettingView = settingBoxView()
-     let userNameView = settingBoxView()
-     let genderNameView = settingBoxView()
-     let introduceView = settingBoxView()
-     let linkView = settingBoxView()
-     */
+   
     override func designView() {
         settingHomeView.nameSettingView.nmaeInputTextField.addTarget(self, action: #selector(TextFieldClicked), for: .editingDidBegin)
         settingHomeView.genderNameView.nmaeInputTextField.addTarget(self, action: #selector(TextFieldClicked), for: .editingDidBegin)

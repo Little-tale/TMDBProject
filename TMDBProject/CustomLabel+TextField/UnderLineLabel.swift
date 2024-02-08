@@ -28,6 +28,8 @@ class UnderLineLabel : UILabel {
         self.layer.addSublayer(line)
         self.textColor = .white
         
+    
+        
     }
     override func layoutSubviews() {
         super.layoutSubviews()

@@ -8,6 +8,7 @@
 import UIKit
 
 class BaseTableViewCell : UITableViewCell {
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureHierarchy()
@@ -17,6 +18,7 @@ class BaseTableViewCell : UITableViewCell {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        fatalError("여길 접근하지 마시오")
     }
     
     func configureHierarchy(){
