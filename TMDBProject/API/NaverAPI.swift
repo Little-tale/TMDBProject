@@ -53,7 +53,7 @@ enum naverApi:UrlSession {
     var query: URLQueryItem {
         switch self {
         case .searchImage(searchText: let searchText,_):
-            let text = searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed )
+            // let text = searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed )
             return URLQueryItem(name: "query", value: searchText)
         }
     }
@@ -91,7 +91,7 @@ enum naverApi:UrlSession {
 }
 
 struct NaverComponets {
-    
+    // let uiButton = UIButton(type: .plain, primaryAction : UIAction)
 }
 // 원래 있는걸 써도 좋지만 연습을 위해 계속 만듭니다.
 typealias naverUrl<T:Decodable> = (Result<T,NaverError>) -> Void

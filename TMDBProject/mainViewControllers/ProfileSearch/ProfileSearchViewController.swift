@@ -11,6 +11,7 @@ class ProfileSearchViewController: StartBaseViewController {
     let homeView = ProfileSearchHomeView()
     var dataModel: NaverSearch = .init(total: 0, start: 0, display: 0, items: [])
     var totalCount = 0
+    var totalPage = 1
     
     var getImageName: ((String) -> Void)?
     
@@ -25,6 +26,7 @@ class ProfileSearchViewController: StartBaseViewController {
     func register(){
         homeView.genreHomeVIew.genreCollectionView.dataSource = self
         homeView.genreHomeVIew.genreCollectionView.delegate = self
+        homeView.searchBar.delegate = self
     }
     func placeHolder(){
         homeView.searchBar.placeholder = "캐릭터 이름을 검색해보세요!!!"
@@ -83,3 +85,34 @@ extension ProfileSearchViewController: UICollectionViewDelegate, UICollectionVie
 }
 
 
+extension ProfileSearchViewController: UISearchBarDelegate{
+    TextField
+}
+
+
+//extension ProfileSearchViewController: UICollectionViewDataSourcePrefetching {
+//    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+//        for indexPath in indexPaths {
+//            //print("프리패칭 인덱스 패스 : ",indexPath.row)
+//            
+////            if presentItemCount - 10 <= indexPath.row && pageNum <= totalPageCount{
+////                presentItemCount += pageInCount
+////                pageNum += 1
+////                TMDBAPIManager.shared.fetchOnlyForAllListView(type: SearchModel.self, api: APIStyles ?? .top(language: .kor), pageNum: pageNum) { results in
+////                    self.modelList?.append(contentsOf: results.results)
+////                }
+////            }
+//            
+//            
+//            
+//        }
+//        func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+//            print("불러오기 안할꼬야 ", indexPaths)
+//            //print("이건 전혀 감이 안온다.")
+//        }
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+//        
+//    }
+//}
