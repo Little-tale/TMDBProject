@@ -71,7 +71,7 @@ extension ProfileSearchViewController: UICollectionViewDelegate, UICollectionVie
     }
     //. MARK:  urlRequest
     func reqeust(){
-        URLSessionNaver.shared.fetchSession(type: NaverSearch.self, API: naverApi.searchImage(searchText: searchText, APiKey: .search)) { result in
+        NEWURLSessionMAnager.shared.fetchSession(type: NaverSearch.self, API: naverApi.searchImage(searchText: searchText, APiKey: .search)) { result in
             switch result {
             case .success(let success):
                 // print(success)

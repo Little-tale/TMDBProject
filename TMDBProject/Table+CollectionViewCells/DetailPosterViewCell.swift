@@ -10,6 +10,7 @@
 import UIKit
 import SnapKit
 import Kingfisher
+import WebKit
 
 final class DetailPosterViewCell : BaseTableViewCell {
     
@@ -17,7 +18,7 @@ final class DetailPosterViewCell : BaseTableViewCell {
     let miniPosterView = UIImageView()
     /// 해당 뷰는 해당 컨텐츠의 줄고리와 날짜, 이름이 적용되어있는 것입니다.
     let detailView = overviewView()
-    let youtubeWebView = UIWebView()
+    let youtubeWebView = WKWebView()
     
     override func configureHierarchy() {
         contentView.addSubview(backDropImageView)

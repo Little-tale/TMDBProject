@@ -217,8 +217,15 @@ struct naverItem: Decodable {
     let thumbnail: String
     //let sizeheight, sizewidth: String
     
-    
 }
 
+// MARK: - TMDBVideos
+struct TMDBVideos: Decodable {
+    let results: [VideoResult]
+}
 
+// MARK: - Result
+struct VideoResult: Decodable {
+    let key: String
+}
 

@@ -10,11 +10,26 @@ import UIKit
 final class DetailViewController : DetailBaseViewController {
     
     private let homeView = DetailView()
-   
+    private var youtubeKeys: TMDBVideos = .init(results: [])
     private var detailViewModel : [Int: DetailViewModels] = [ : ]
+    private let youtubeAssistance = YoutubeAssistance()
     // 한번에는 무린가?
     
-    var id = 93405
+    // MARK: 번호가 변경된 시점에서 Video API 가동
+    var id = 0 {
+        didSet{
+            NEWURLSessionMAnager.shared.fetchSession(type: TMDBVideos.self, API: NewTMDB.videos(key: id)) { result in
+                switch result{
+                case .success(let OKData) :
+                    // 하나만 띄운다면 바로 넣으면되는데
+                    // 여러개를 연속해서 보여줄 가능성도 있으니 일단 담자
+                    self.youtubeKeys = OKData
+                case .failure(let fail):
+                    print(fail)
+                }
+            }
+        }
+    }
     
     override func loadView() {
         self.view = homeView
@@ -55,6 +70,9 @@ final class DetailViewController : DetailBaseViewController {
         homeView.tableView.delegate = self
         homeView.tableView.dataSource = self
     }
+//    func disPatchRequest(){
+//        NEWURLSessionMAnager.shared.fetchSession(type: <#T##Decodable.Protocol#>, API: <#T##UrlSession#>, completionHandler: <#T##(Result<Decodable, Error>) -> Void#>)
+//    }
 }
 
 //MARK: 테이블뷰 딜리게이트 데이타 소스
@@ -80,6 +98,17 @@ extension DetailViewController : UITableViewDelegate, UITableViewDataSource {
             let posterUrl = ImageManager.getImage(imageCase: .detail, image: detailInfo.poster_path)
             
             cell.prepare(backDropImage: backUrl, miniPoster: posterUrl)
+            
+         
+            guard let youtubeFirst = youtubeKeys.results.first else {
+                return cell
+            }
+            let htmlRequest = youtubeAssistance.getYouteLink(youtubeFirst.key)
+            // print(urlRequest.url)
+            // 중간 UIWebView 에서 WKWebView로 변경
+            cell.youtubeWebView.loadHTMLString(htmlRequest, baseURL: nil)
+            
+            
             return cell
             
             // 캐스트 모델

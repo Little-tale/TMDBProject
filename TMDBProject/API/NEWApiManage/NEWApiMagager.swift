@@ -13,10 +13,10 @@ typealias urlRequestTest<T:Decodable> = Result<T,NewAPIManagerRequestError>
 
 typealias urlTest = Result<URLRequest,NewAPIManagerRequestError>
 
-final class URLSessionNaver {
+final class NEWURLSessionMAnager {
     private init() {}
     
-    static let shared =  URLSessionNaver()
+    static let shared =  NEWURLSessionMAnager()
 
     func fetchSession<T: Decodable>(type: T.Type, API: UrlSession, completionHandler: @escaping naverUrl<T>) {
     

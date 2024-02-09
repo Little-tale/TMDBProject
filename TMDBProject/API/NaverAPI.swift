@@ -106,19 +106,7 @@ enum NewTMDB: UrlSession {
             return "https://api.themoviedb.org/3/tv/\(key)/videos"
         }
     }
-     // MARK: Base URL 을 쓰진 않지만 그렇다면 조립할수 있다면? -> 이것도 좋기는 한데.... 에러 처리가 애매해짐...
-//    var testBaseUrl: URL {
-//        switch self {
-//        case .videos(let key):
-//            var component = URLComponents()
-//            component.scheme = "https"
-//            component.host = "api.themoviedb.org"
-//            component.path = "3/tv/\(key)/videos"
-//            component.url
-//            
-//        }
-//    }
-    
+
     var query: URLQueryItem? {
         switch self {
         case .videos:
@@ -154,9 +142,19 @@ enum NewTMDB: UrlSession {
             "/3/tv/\(key)/videos"
         }
     }
-    
-    
 }
 // 원래 있는걸 써도 좋지만 연습을 위해 계속 만듭니다.
 
 
+// MARK: Base URL 을 쓰진 않지만 그렇다면 조립할수 있다면? -> 이것도 좋기는 한데.... 에러 처리가 애매해짐...
+//    var testBaseUrl: URL {
+//        switch self {
+//        case .videos(let key):
+//            var component = URLComponents()
+//            component.scheme = "https"
+//            component.host = "api.themoviedb.org"
+//            component.path = "3/tv/\(key)/videos"
+//            component.url
+//
+//        }
+//    }
