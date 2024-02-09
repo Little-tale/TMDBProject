@@ -13,6 +13,7 @@
 		7B11CBB92B7487DF0050E5B0 /* ProfileSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B11CBB82B7487DF0050E5B0 /* ProfileSearchViewController.swift */; };
 		7B11CBBB2B748FB80050E5B0 /* ProfileSearchHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B11CBBA2B748FB80050E5B0 /* ProfileSearchHomeView.swift */; };
 		7B11CBBD2B74A41C0050E5B0 /* NaverAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B11CBBC2B74A41C0050E5B0 /* NaverAPI.swift */; };
+		7B11CBBF2B75D8D90050E5B0 /* memo in Resources */ = {isa = PBXBuildFile; fileRef = 7B11CBBE2B75D8D90050E5B0 /* memo */; };
 		7B69FB642B70B4C200598DF1 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69FB632B70B4C200598DF1 /* AlertManager.swift */; };
 		7B69FB662B70EE4B00598DF1 /* GenreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69FB652B70EE4B00598DF1 /* GenreViewController.swift */; };
 		7B69FB6C2B70FDA000598DF1 /* GenreTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69FB6B2B70FDA000598DF1 /* GenreTableHeaderView.swift */; };
@@ -90,6 +91,7 @@
 		7B11CBB82B7487DF0050E5B0 /* ProfileSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSearchViewController.swift; sourceTree = "<group>"; };
 		7B11CBBA2B748FB80050E5B0 /* ProfileSearchHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSearchHomeView.swift; sourceTree = "<group>"; };
 		7B11CBBC2B74A41C0050E5B0 /* NaverAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverAPI.swift; sourceTree = "<group>"; };
+		7B11CBBE2B75D8D90050E5B0 /* memo */ = {isa = PBXFileReference; lastKnownFileType = text; path = memo; sourceTree = "<group>"; };
 		7B69FB632B70B4C200598DF1 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		7B69FB652B70EE4B00598DF1 /* GenreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreViewController.swift; sourceTree = "<group>"; };
 		7B69FB6B2B70FDA000598DF1 /* GenreTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreTableHeaderView.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				7BDEF2E52B6CC2A700111D62 /* LaunchScreen.storyboard */,
 				7BDEF2E82B6CC2A700111D62 /* Info.plist */,
 				7BDEF2EE2B6CC2B300111D62 /* APIKey.swift */,
+				7B11CBBE2B75D8D90050E5B0 /* memo */,
 			);
 			path = TMDBProject;
 			sourceTree = "<group>";
@@ -578,6 +581,7 @@
 			files = (
 				7BDEF2F12B6CC2EA00111D62 /* .gitignore in Resources */,
 				7BDEF2E72B6CC2A700111D62 /* LaunchScreen.storyboard in Resources */,
+				7B11CBBF2B75D8D90050E5B0 /* memo in Resources */,
 				7BDEF2E42B6CC2A700111D62 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

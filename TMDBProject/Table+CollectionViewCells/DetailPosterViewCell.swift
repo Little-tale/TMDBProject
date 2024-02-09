@@ -15,12 +15,15 @@ final class DetailPosterViewCell : BaseTableViewCell {
     
     let backDropImageView = UIImageView()
     let miniPosterView = UIImageView()
+    /// 해당 뷰는 해당 컨텐츠의 줄고리와 날짜, 이름이 적용되어있는 것입니다.
     let detailView = overviewView()
+    let youtubeWebView = UIWebView()
     
     override func configureHierarchy() {
         contentView.addSubview(backDropImageView)
         backDropImageView.addSubview(detailView)
         backDropImageView.addSubview(miniPosterView)
+        backDropImageView.addSubview(youtubeWebView)
     }
     
     override func configureLayout() {
@@ -28,8 +31,8 @@ final class DetailPosterViewCell : BaseTableViewCell {
             make.edges.equalTo(contentView.safeAreaLayoutGuide).inset(8)
             make.height.equalTo(UIScreen.main.bounds.height / 1.7).priority(100)
         }
+        
         detailView.snp.makeConstraints { make in
-            
             make.horizontalEdges.equalTo(contentView).inset(20)
             make.bottom.equalTo(backDropImageView.snp.bottom).inset(8)
             make.height.equalTo(170)
@@ -41,6 +44,14 @@ final class DetailPosterViewCell : BaseTableViewCell {
             make.width.equalTo(100)
             make.height.equalTo(miniPosterView.snp.width).multipliedBy(1.5)
         }
+        youtubeWebView.snp.makeConstraints { make in
+            make.trailing.equalTo(detailView.snp.trailing)
+            make.top.equalTo(miniPosterView.snp.top)
+            make.bottom.equalTo(miniPosterView.snp.bottom)
+            make.width.equalTo(youtubeWebView.snp.height).multipliedBy(1.5)
+            make.leading.greaterThanOrEqualTo(miniPosterView.snp.trailing).offset(15)
+        }
+        
     }
     override func designView() {
         contentView.backgroundColor = .black

@@ -10,27 +10,7 @@ import UIKit
 final class DetailViewController : DetailBaseViewController {
     
     private let homeView = DetailView()
-    // 불가능 -> 단일변수로는 앙됨
-    // var detailModel <T:Decodable> = []
-    // 아래 방식은 Decodable 로 다 받아서 구분지으려 했으나 들어가면 타입이 손실됨
-    // 즉 애매해짐
-    // var detailViewModel : [Int: Decodable] = [:]
-    
-    // MARK: 해당 뷰에서 사용할 Enum(타입가능)으로 넣어준다.
-    //  var detailViewModel : [DeDetailViewModels] = []
-    // 또다른 문제 이렇게하면 순서가 보장이 안된다.
-    // 딕셔너리로 순서 잡으려고 한다. 딕셔너리는 순서를 보장 못하지만 키가 인덱스 패스면 되지 않을까?
-    
-    // var detailViewModel : [Int: DetailViewModels] = [ : ]
-    // 좀더 뜯어 고쳐 볼 준비 하려고 한다....!
-    // Any? 로 다양하게 더 받은후에
-    // 키는 layer.name이나 다른게 들어갈수 있으면 넣으면 되지 않을까?
-    //var detailViewModel : [DetailViewModels.self: DetailViewModels] = [ : ]
-    
-    // 일단 위에처럼은 불가능
-    // 놀랍게도 이건또 됨
-    // var detailViewModel : [UIView: DetailViewModels] = [ : ]
-    // 전혀 생각이 안떠오른다....
+   
     private var detailViewModel : [Int: DetailViewModels] = [ : ]
     // 한번에는 무린가?
     
@@ -178,3 +158,26 @@ extension DetailViewController : UICollectionViewDelegate, UICollectionViewDataS
 }
 
 
+
+
+// // 불가능 -> 단일변수로는 앙됨
+// var detailModel <T:Decodable> = []
+// 아래 방식은 Decodable 로 다 받아서 구분지으려 했으나 들어가면 타입이 손실됨
+// 즉 애매해짐
+// var detailViewModel : [Int: Decodable] = [:]
+
+// MARK: 해당 뷰에서 사용할 Enum(타입가능)으로 넣어준다.
+//  var detailViewModel : [DeDetailViewModels] = []
+// 또다른 문제 이렇게하면 순서가 보장이 안된다.
+// 딕셔너리로 순서 잡으려고 한다. 딕셔너리는 순서를 보장 못하지만 키가 인덱스 패스면 되지 않을까?
+
+// var detailViewModel : [Int: DetailViewModels] = [ : ]
+// 좀더 뜯어 고쳐 볼 준비 하려고 한다....!
+// Any? 로 다양하게 더 받은후에
+// 키는 layer.name이나 다른게 들어갈수 있으면 넣으면 되지 않을까?
+//var detailViewModel : [DetailViewModels.self: DetailViewModels] = [ : ]
+
+// 일단 위에처럼은 불가능
+// 놀랍게도 이건또 됨
+// var detailViewModel : [UIView: DetailViewModels] = [ : ]
+// 전혀 생각이 안떠오른다....
