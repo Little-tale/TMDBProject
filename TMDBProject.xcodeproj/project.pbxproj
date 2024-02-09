@@ -14,6 +14,7 @@
 		7B11CBBB2B748FB80050E5B0 /* ProfileSearchHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B11CBBA2B748FB80050E5B0 /* ProfileSearchHomeView.swift */; };
 		7B11CBBD2B74A41C0050E5B0 /* NaverAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B11CBBC2B74A41C0050E5B0 /* NaverAPI.swift */; };
 		7B11CBBF2B75D8D90050E5B0 /* memo in Resources */ = {isa = PBXBuildFile; fileRef = 7B11CBBE2B75D8D90050E5B0 /* memo */; };
+		7B11CBC22B75E1AA0050E5B0 /* NEWApiMagager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B11CBC12B75E1AA0050E5B0 /* NEWApiMagager.swift */; };
 		7B69FB642B70B4C200598DF1 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69FB632B70B4C200598DF1 /* AlertManager.swift */; };
 		7B69FB662B70EE4B00598DF1 /* GenreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69FB652B70EE4B00598DF1 /* GenreViewController.swift */; };
 		7B69FB6C2B70FDA000598DF1 /* GenreTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69FB6B2B70FDA000598DF1 /* GenreTableHeaderView.swift */; };
@@ -92,6 +93,7 @@
 		7B11CBBA2B748FB80050E5B0 /* ProfileSearchHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSearchHomeView.swift; sourceTree = "<group>"; };
 		7B11CBBC2B74A41C0050E5B0 /* NaverAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverAPI.swift; sourceTree = "<group>"; };
 		7B11CBBE2B75D8D90050E5B0 /* memo */ = {isa = PBXFileReference; lastKnownFileType = text; path = memo; sourceTree = "<group>"; };
+		7B11CBC12B75E1AA0050E5B0 /* NEWApiMagager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NEWApiMagager.swift; sourceTree = "<group>"; };
 		7B69FB632B70B4C200598DF1 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		7B69FB652B70EE4B00598DF1 /* GenreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreViewController.swift; sourceTree = "<group>"; };
 		7B69FB6B2B70FDA000598DF1 /* GenreTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreTableHeaderView.swift; sourceTree = "<group>"; };
@@ -189,6 +191,14 @@
 				7B11CBB82B7487DF0050E5B0 /* ProfileSearchViewController.swift */,
 			);
 			path = ProfileSearch;
+			sourceTree = "<group>";
+		};
+		7B11CBC02B75E1750050E5B0 /* NEWApiManage */ = {
+			isa = PBXGroup;
+			children = (
+				7B11CBC12B75E1AA0050E5B0 /* NEWApiMagager.swift */,
+			);
+			path = NEWApiManage;
 			sourceTree = "<group>";
 		};
 		7B69FB622B70B4A400598DF1 /* AllertManager */ = {
@@ -390,6 +400,7 @@
 		7BE61C742B6CE2DA006E3CAF /* API */ = {
 			isa = PBXGroup;
 			children = (
+				7B11CBC02B75E1750050E5B0 /* NEWApiManage */,
 				7BE61C752B6CE2EB006E3CAF /* APIModel.swift */,
 				7BE61C772B6CE301006E3CAF /* APIManager.swift */,
 				7BE61C792B6CEFAD006E3CAF /* TMDBAPI.swift */,
@@ -607,6 +618,7 @@
 				7BE61CA32B6E7A7F006E3CAF /* HeaderCell.swift in Sources */,
 				7BE61CBD2B6FC871006E3CAF /* UserDefaltsManager.swift in Sources */,
 				7BE61C9C2B6E312F006E3CAF /* DateManager.swift in Sources */,
+				7B11CBC22B75E1AA0050E5B0 /* NEWApiMagager.swift in Sources */,
 				7BE61C712B6CDA0C006E3CAF /* UnderLineLabel.swift in Sources */,
 				7BE61C822B6D26BF006E3CAF /* SectionText.swift in Sources */,
 				7B11CBB62B744F380050E5B0 /* ProfileInfoTableCell.swift in Sources */,
