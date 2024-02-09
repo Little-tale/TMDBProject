@@ -16,20 +16,7 @@ final class DetailViewController : DetailBaseViewController {
     // 한번에는 무린가?
     
     // MARK: 번호가 변경된 시점에서 Video API 가동
-    var id = 0 {
-        didSet{
-            NEWURLSessionMAnager.shared.fetchSession(type: TMDBVideos.self, API: NewTMDB.videos(key: id)) { result in
-                switch result{
-                case .success(let OKData) :
-                    // 하나만 띄운다면 바로 넣으면되는데
-                    // 여러개를 연속해서 보여줄 가능성도 있으니 일단 담자
-                    self.youtubeKeys = OKData
-                case .failure(let fail):
-                    print(fail)
-                }
-            }
-        }
-    }
+    var id = 0
     
     override func loadView() {
         self.view = homeView
@@ -61,6 +48,20 @@ final class DetailViewController : DetailBaseViewController {
             self.detailViewModel[2] = .recommendations( result )
             group.leave()
         }
+        group.enter()
+        NEWURLSessionMAnager.shared.fetchSession(type: TMDBVideos.self, API: NewTMDB.videos(key: id)) { result in
+            switch result{
+            case .success(let OKData) :
+                // 하나만 띄운다면 바로 넣으면되는데
+                // 여러개를 연속해서 보여줄 가능성도 있으니 일단 담자
+                self.youtubeKeys = OKData
+            case .failure(let fail):
+                print(fail)
+            }
+            group.leave()
+        }
+        
+        
         group.notify(queue: .main) {
             self.homeView.tableView.reloadData()
         }
@@ -106,16 +107,17 @@ extension DetailViewController : UITableViewDelegate, UITableViewDataSource {
             let htmlRequest = youtubeAssistance.getYouteLink(youtubeFirst.key)
             // print(urlRequest.url)
             // 중간 UIWebView 에서 WKWebView로 변경
-            // cell.youtubeWebView.loadHTMLString(htmlRequest, baseURL: nil)
-            
-            let urlRe = youtubeAssistance.requestyoutube(forKey: youtubeFirst.key)
-            switch urlRe {
-            case .success(let success):
-                cell.youtubeWebView.load(success)
-            case .failure(let failure):
-                print("뭐 없어")
-            }
-           // = //htmlRequest
+            print(htmlRequest)
+            cell.youtubeWebView.loadHTMLString(htmlRequest, baseURL: nil)
+            print("🤣🤣🤣🤣🤣🤣🤣🤣🤣")
+            // let urlRe = youtubeAssistance.requestyoutube(forKey: youtubeFirst.key)
+//            switch urlRe {
+//            case .success(let success):
+//                cell.youtubeWebView.load(success)
+//            case .failure(let failure):
+//                print("뭐 없어")
+//            }
+            //= //htmlRequest
             return cell
             
             // 캐스트 모델

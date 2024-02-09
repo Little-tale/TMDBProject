@@ -22,7 +22,6 @@ struct YoutubeAssistance {
     // 태그언어로 크기 조절이 가능하다고 한다 잠시 vsCode좀 갔다오겠다.
     // https://www.youtube.com/embed/XZ8daibM3AE
     let youtubeSettingHeml = """
-<!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -56,3 +55,4 @@ struct YoutubeAssistance {
     }
     
 }
+// <!DOCTYPE html>

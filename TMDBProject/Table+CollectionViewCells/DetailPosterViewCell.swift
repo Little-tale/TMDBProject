@@ -20,6 +20,8 @@ final class DetailPosterViewCell : BaseTableViewCell {
     let detailView = overviewView()
     let youtubeWebView = WKWebView(frame: .zero)
     
+    /// 컴포지팅 뷰가 자꾸 나의 유튜브를 가린다.
+    
     override func configureHierarchy() {
         contentView.addSubview(backDropImageView)
         backDropImageView.addSubview(detailView)
@@ -77,6 +79,7 @@ final class DetailPosterViewCell : BaseTableViewCell {
     }
     func webViewSetting(){
         youtubeWebView.scrollView.isScrollEnabled = false
+        
     }
     
     
