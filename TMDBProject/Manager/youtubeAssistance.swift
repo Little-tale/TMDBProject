@@ -17,7 +17,7 @@ import UIKit
 
 struct YoutubeAssistance {
     // 과제 에선 이밑 주소로 하라고 하셨지만 유튜브 화면이 깨지는 이슈가 발생하여수정하려고 한다
-    // let baseUrl = "https://www.youtube.com/watch?v="
+    let defaultBaseUrl = "https://www.youtube.com/watch?v="
     let baseUrl = "https://www.youtube.com/embed/"
     // 태그언어로 크기 조절이 가능하다고 한다 잠시 vsCode좀 갔다오겠다.
     // https://www.youtube.com/embed/XZ8daibM3AE
@@ -41,4 +41,18 @@ struct YoutubeAssistance {
        
         return url
     }
+    
+    func requestyoutube(forKey: String) -> Result<URLRequest,URLError> {
+        
+        let url = URL(string: defaultBaseUrl + forKey)
+        
+        guard let url = url else {
+            print("url 생성 실패")
+            return .failure(.unknownError)
+        }
+        
+        let urlRequest = URLRequest(url: url)
+        return .success(urlRequest)
+    }
+    
 }

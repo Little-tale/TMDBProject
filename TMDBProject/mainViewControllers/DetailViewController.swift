@@ -106,9 +106,16 @@ extension DetailViewController : UITableViewDelegate, UITableViewDataSource {
             let htmlRequest = youtubeAssistance.getYouteLink(youtubeFirst.key)
             // print(urlRequest.url)
             // 중간 UIWebView 에서 WKWebView로 변경
-            cell.youtubeWebView.loadHTMLString(htmlRequest, baseURL: nil)
+            // cell.youtubeWebView.loadHTMLString(htmlRequest, baseURL: nil)
             
-            
+            let urlRe = youtubeAssistance.requestyoutube(forKey: youtubeFirst.key)
+            switch urlRe {
+            case .success(let success):
+                cell.youtubeWebView.load(success)
+            case .failure(let failure):
+                print("뭐 없어")
+            }
+           // = //htmlRequest
             return cell
             
             // 캐스트 모델

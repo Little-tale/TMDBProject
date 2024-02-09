@@ -222,6 +222,7 @@
 		7B69FB692B70F51200598DF1 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				7B11CBC02B75E1750050E5B0 /* NEWApiManage */,
 				7BE61C9A2B6E311C006E3CAF /* DateFormetter */,
 				7B69FB622B70B4A400598DF1 /* AllertManager */,
 				7BE61CBB2B6FC85D006E3CAF /* UserDefaultsManager */,
@@ -412,7 +413,6 @@
 			isa = PBXGroup;
 			children = (
 				7B11CBC32B75EA760050E5B0 /* APIModel */,
-				7B11CBC02B75E1750050E5B0 /* NEWApiManage */,
 				7BE61C772B6CE301006E3CAF /* APIManager.swift */,
 				7BE61C792B6CEFAD006E3CAF /* TMDBAPI.swift */,
 				7BE61CC02B709C9B006E3CAF /* URLSessionManager.swift */,
